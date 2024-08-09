@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
+        <p>footer footer footer</p>
       </div>
     </Router>
   );
