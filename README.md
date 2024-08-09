@@ -7,8 +7,6 @@ Very flowery, like a garden, like the iconostasis
 Each page/tab should use an embroidered design:
 https://www.vesminte.ro/en/vesminte-preotesti-de-brocart/page-2
 
-
-Potential Pages:
 About Us
 -Our Leaders
 -Parish History
