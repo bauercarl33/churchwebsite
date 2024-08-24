@@ -1,6 +1,9 @@
 import SimpleSlider from "../comp/SimpleSlider";
 
 const homepage = () => {
+  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+  const url =
+    "https://drive.google.com/uc?export=view&id=1frvCU6OrC_xc5BRwKCMHl_Tc0xYZkIH7";
   return (
     <div>
       <h1>Saint Mary's Romanian Orthodox Church</h1>
@@ -50,6 +53,12 @@ const homepage = () => {
       </section>
       <section>
         <h1>Photo Library</h1>
+
+        <img
+          src={
+            "https://y1393423fh.execute-api.us-east-1.amazonaws.com/prod/image/img123"
+          }
+        />
       </section>
     </div>
   );
