@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Gallery from "react-photo-gallery";
+import AwsImage from "./AwsImage"; // Import the AwsImage component
 
 const DriveFolderView = ({ folderId }) => {
   const [photos, setPhotos] = useState([]);
@@ -18,7 +19,7 @@ const DriveFolderView = ({ folderId }) => {
           const images = data.files
             .filter((file) => file.mimeType.startsWith("image/"))
             .map((file) => ({
-              src: `https://drive.google.com/uc?export=view&id=${file.id}`,
+              id: file.id, // Store the ID for use with AwsImage
               width: 4, // Adjust width ratio as needed
               height: 3, // Adjust height ratio as needed
             }));
@@ -35,7 +36,18 @@ const DriveFolderView = ({ folderId }) => {
 
   return (
     <div>
-      <Gallery photos={photos} />
+      <Gallery
+        photos={photos.map((photo) => ({
+          ...photo,
+          // Use AwsImage component for src
+          src: <AwsImage imageId={photo.id} />,
+        }))}
+        renderImage={(props) => (
+          <div style={{ margin: "2px", display: "inline-block" }}>
+            {props.photo.src} {/* Render the AwsImage component */}
+          </div>
+        )}
+      />
     </div>
   );
 };

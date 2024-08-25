@@ -1,5 +1,5 @@
 import SimpleSlider from "../comp/SimpleSlider";
-
+import AwsImage from "../comp/AwsImage";
 const homepage = () => {
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   const url =
@@ -54,11 +54,7 @@ const homepage = () => {
       <section>
         <h1>Photo Library</h1>
 
-        <img
-          src={
-            "https://y1393423fh.execute-api.us-east-1.amazonaws.com/prod/image/img123"
-          }
-        />
+        <AwsImage imageId={"1frvCU6OrC_xc5BRwKCMHl_Tc0xYZkIH7"} />
       </section>
     </div>
   );
