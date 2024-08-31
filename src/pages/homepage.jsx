@@ -53,8 +53,6 @@ const homepage = () => {
       </section>
       <section>
         <h1>Photo Library</h1>
-
-        <AwsImage imageId={"1frvCU6OrC_xc5BRwKCMHl_Tc0xYZkIH7"} />
       </section>
     </div>
   );
