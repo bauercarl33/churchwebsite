@@ -15,7 +15,7 @@ import CalendarPage from "./pages/calendars";
 import FAQpage from "./pages/faq";
 import PhotoAlbumPage from "./pages/photoalbum";
 import AdminPage from "./pages/admin";
-
+import FolderImages from "./pages/FolderImages";
 import FolderTabs from "./comp/FolderTabs";
 
 function App() {
@@ -43,6 +43,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/admin" element={<AdminPage />} />
+        </Routes>
+        <Routes>
+          <Route path="/folder/:folderId" component={<FolderImages />} />
         </Routes>
         <p>footer footer footer</p>
       </div>

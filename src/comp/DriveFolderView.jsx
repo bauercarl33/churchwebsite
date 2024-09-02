@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import AwsImage from "./AwsImage";
+import { Link } from "react-router-dom";
 
 const DriveFolderView = ({ folderId }) => {
   const [folders, setFolders] = useState([]);
@@ -60,7 +61,14 @@ const DriveFolderView = ({ folderId }) => {
   return (
     <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
       {folders.map((folder) => (
-        <Box key={folder.id} width="150px" height="150px">
+        <Box
+          key={folder.id}
+          width="150px"
+          height="150px"
+          component={Link}
+          to={`/folder/${folder.id}`}
+          sx={{ textDecoration: "none", color: "inherit" }}
+        >
           <Typography variant="h6" align="center" gutterBottom noWrap>
             {folder.name}
           </Typography>
@@ -79,14 +87,9 @@ const DriveFolderView = ({ folderId }) => {
               <AwsImage
                 imageId={images[folder.id][currentIndex[folder.id]]}
                 style={{
-                  width: "150px", // Final output width
-                  height: "150px", // Final output height
-                  maxWidth: "none", // Ensure no scaling issues
-                  maxHeight: "none", // Ensure no scaling issues
-                  position: "absolute",
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
+                  width: "150px",
+                  height: "150px",
+                  objectFit: "cover",
                 }}
               />
             ) : (
