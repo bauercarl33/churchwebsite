@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import AwsImage from "../comp/AwsImage";
+import AwsImage from "../components/AwsImage";
 
 const FolderImages = () => {
   const { folderId } = useParams();

@@ -1,5 +1,5 @@
-import SimpleSlider from "../comp/SimpleSlider";
-import AwsImage from "../comp/AwsImage";
+import SimpleSlider from "../components/SimpleSlider";
+import AwsImage from "../components/AwsImage";
 const homepage = () => {
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   const url =
