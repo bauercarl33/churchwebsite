@@ -1,55 +1,32 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 import React from "react";
 import {
-  BrowserRouter as Router,
   Route,
-  Switch,
   Routes,
+  useLocation
 } from "react-router-dom";
-import Home from "./pages/homepage";
-import AboutUsPage from "./pages/aboutus";
-import BulletinPage from "./pages/bulletin";
-import CalendarPage from "./pages/calendars";
-import FAQpage from "./pages/faq";
-import PhotoAlbumPage from "./pages/photoalbum";
-import AdminPage from "./pages/admin";
-import FolderImages from "./pages/FolderImages";
-import FolderTabs from "./comp/FolderTabs";
+import Navbar from "./components/Navbar";
+import Hero from "./pages/Hero";
+import About from "./pages/About";
+import Bulletin from "./pages/Bulletin";
+
+import './css/app.css'
+
 
 function App() {
+
+  const location = useLocation();
+
   return (
-    <Router>
-      <div>
-        <FolderTabs />
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-        <Routes>
-          <Route path="/bulletin" element={<BulletinPage />} />
-        </Routes>
-        <Routes>
-          <Route path="/calendars" element={<CalendarPage />} />
-        </Routes>
-        <Routes>
-          <Route path="/photo-album" element={<PhotoAlbumPage />} />
-        </Routes>
-        <Routes>
-          <Route path="/about-us" element={<AboutUsPage />} />
-        </Routes>
-        <Routes>
-          <Route path="/frequently-asked-questions" element={<FAQpage />} />
-        </Routes>
-        <Routes>
-          <Route path="/admin" element={<AdminPage />} />
-        </Routes>
-        <Routes>
-          <Route path="/folder/:folderId" component={<FolderImages />} />
-        </Routes>
-        <p>footer footer footer</p>
-      </div>
-    </Router>
+    <>
+      <Navbar />
+      <Routes location={location} key={location.pathname}>
+        <Route index element={<Hero />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/bulletin" element={<Bulletin />} />
+      </Routes>
+    </>
   );
 }
 
