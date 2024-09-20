@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import {Link} from 'react-scroll'
 
 import '../css/navbar.css'
-import { Link } from 'react-router-dom'
+import { useLocation, NavLink } from 'react-router-dom'
 
 const Navbar = () => {
 
@@ -12,10 +13,15 @@ const Navbar = () => {
 
     const closeMenu = () => setClick(false)
 
+    let location = useLocation();
+    console.log(location);
+
     return (
         <div className='header'>
             <nav className='navbar'>
-                <Link to='/#home' onClick={closeMenu} className='logo'>LOGO</Link> 
+                <Link to='home' spy={true} smooth={true} offset={0} duration={500} className='logo'>
+                    LOGO
+                </Link> 
                 <div className='hamburger' onClick={handleClick}>
                     {click ? (<FaTimes size={30} style={{ color: '#ffffff' }} />)
                         : (<FaBars size={30} style={{ color: '#ffffff' }} />)}
@@ -23,22 +29,22 @@ const Navbar = () => {
                 </div>
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     <li className='nav-item'>
-                        <Link to='/#home' onClick={closeMenu}>Home</Link>
+                        <Link to='home' spy={true} smooth={true} offset={0} duration={500} onClick={closeMenu}>Home</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/#about' onClick={closeMenu}>About</Link>
+                        <Link to='about' spy={true} smooth={true} offset={0} duration={500} onClick={closeMenu}>About</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/#bulletin' onClick={closeMenu}>Bulletin</Link>
+                        <Link to='bulletin' spy={true} smooth={true} offset={50} duration={500} onClick={closeMenu}>Bulletin</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/#calendar' onClick={closeMenu}>Calendar</Link>
+                        <Link to='calendar' spy={true} smooth={true} offset={50} duration={500} onClick={closeMenu}>Calendar</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/#photo-album' onClick={closeMenu}>Photos</Link>
+                        <Link to='photo-album' spy={true} smooth={true} offset={50} duration={500} onClick={closeMenu}>Photos</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/#faq' onClick={closeMenu}>FAQ</Link>
+                        <Link to='faq' spy={true} smooth={true} offset={50} duration={500} onClick={closeMenu}>FAQ</Link>
                     </li>
                 </ul>
             </nav>

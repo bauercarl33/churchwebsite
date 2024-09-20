@@ -46,7 +46,7 @@
 
 .nav-item .active {
     padding-bottom: 12px;
-    border-bottom: 3px solid var(--secondary-color);
+    /* border-bottom: 3px solid var(--secondary-color); */
     cursor: pointer;
 }
 
@@ -81,7 +81,7 @@
 
     .nav-menu {
         position: fixed;
-        left: -100%;
+        left: 100%;
         top: 90px;
         flex-direction: column;
         background-color: rgba(0,0,0,.9);
