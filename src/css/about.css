@@ -18,13 +18,27 @@
 
 .about h2 {
     font-size: 3rem;
+    font-weight: 400;
+    padding: 1rem;
 }
 
 .about .icon {
-    height: auto;
     max-width: 500px;
     width: 100%;
     overflow: hidden;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0;
+    background-color: green;
+}
+
+.about .thumbnail {
+    padding-bottom: 1rem;
+}
+
+.about .frame img {
+    width: 100%;
+    border-radius: 10px;
 }
 
 .about .col {
@@ -35,13 +49,32 @@
     padding: 3rem;
 }
 
-.about button {
-    margin-top: 1rem;
+.about .col p {
+    padding: 1rem 0 2rem 0;
 }
 
-.about button a {
-    text-decoration: none;
-    color: #fff;
+.about .link-wrapper {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+    background-color: pink;
+}
+
+.about .link {
+    padding: 17px 28px;
+    font-size: 1.2rem;
+    color: #000;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.about .link:hover {
+    color: #555;
+    transition: all 0.3s;
 }
 
 @media screen and (max-width:940px) {
@@ -50,12 +83,8 @@
         flex-direction: column;
     }
 
-    .about .icon {
-        width: auto;
-    }
-
     .about .container {
-        width: 100%;
+        width: 90%;
     }
 
     .about .container .col {
@@ -65,4 +94,5 @@
     .about button {
         margin-bottom: 1rem;
     }
+
 }

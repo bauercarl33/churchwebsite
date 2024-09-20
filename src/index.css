@@ -1,9 +1,12 @@
 :root {
-  --primary-color: #5bb462;
-  --primary-dark: #4f9c55;
-  --secondary-color: #ffea00;
-  --secondary-dark:#e3d002;
+  --primary-color: #375eff;
+  --primary-dark: #0435ff;
+  --secondary-color: #c9c9c9;
+  --secondary-dark:#898989;
   --overlay: rgba(0,0,0,.7);
+  --romania_blue: #002B7F;
+  --romania_yellow: #FFFF00;
+  --romania_red: #CE1126;
 }
 
 * {
@@ -39,24 +42,24 @@ a {
 .button {
   padding: 17px 28px;
   font-size: 1.2rem;
-  color: #fff;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
+  color: #f8f8f8;
   background-color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 4px;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
+  transition-duration: 0.4s;
 }
 
 .button:hover {
-  background: var(--primary-dark);
-  border: 1px solid var(--primary-dark);
+  background-color: var(--primary-dark);
 }
 
+
 .line {
-  display: block;
-  width: 40px;
-  height: 3px;
+  width: 120px;
+  height: 5px;
   margin: 5px auto;
   background-color: var(--primary-color);
 }
