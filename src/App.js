@@ -11,6 +11,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import AboutMore from './pages/AboutMore'
 import Bulletin from './pages/Bulletin';
+import AnimatedRedirect from './pages/AnimatedRedirect';
 import ScrollToSection from './components/ScrollToSection'
 import { AnimatePresence } from 'framer-motion'
 
@@ -38,7 +39,7 @@ function App() {
     <div className='app'>
       <Navbar />
       <ScrollToSection />
-      <AnimatePresence initial={false} mode='wait'>
+      {/* <AnimatePresence initial={false} mode='wait'> */}
         <Routes location={location} key={location.key}>
           <Route
             path='/'
@@ -50,9 +51,10 @@ function App() {
               </>
             }
           />
-          <Route path='/about' element={<AboutMore />} />
+          {/* <Route path='/about' element={<AboutMore />} /> */}
+          <Route path='/about' element={<AnimatedRedirect />} />
         </Routes>
-      </AnimatePresence>
+      {/* </AnimatePresence> */}
     </div>
     
       // <div className='app'>

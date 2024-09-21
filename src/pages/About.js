@@ -67,7 +67,10 @@ const About = () => {
                         Archbishop and Metropolitan Nicolae.
                     </p>
                     <Link to='/about'>
-                        <button className='button'>
+                        <button className='button'
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                            >
                             LearnMore
                         </button>
                     </Link>
