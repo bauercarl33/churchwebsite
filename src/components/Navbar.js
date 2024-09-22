@@ -1,81 +1,65 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 import '../css/navbar.css'
-import { Link, useLocation } from 'react-router-dom'
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
+import { Events, Link as ScrollLink, scroller } from 'react-scroll'
 
 const Navbar = () => {
+    const sections = ['home', 'about', 'bulletin', 'calendar', 'photos', 'faq']
+
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const [click, setClick] = useState(false)
-    const handleClick = () => setClick(!click)    
+    const [activeLink, setActiveLink] = useState('#home')
 
-    const closeMenu = () => setClick(false)
-    let location = useLocation()
+    const closeMenu = (hash) => {
+        setClick(false)
+        navigate(`/#${hash}`)   
+    }
+    const handleClick = () => setClick(!click)
+    const handleLink = () => setActiveLink(location.hash.substring(1)) 
+    
+    useEffect(() => {
+        const hash = location.hash.replace('#', '');
+        if (hash) {
+            scroller.scrollTo(hash, {
+                duration: 800,
+                delay: 0,
+                smooth: 'easeInOutQuart',
+                offset: 0,
+            });
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [location]);
 
     return (
         <div className='header'>
             <nav className='navbar'>
-                <Link to='/#home' onClick={closeMenu} className='logo'>St. Mary</Link> 
+                <RouterLink to='/' onClick={closeMenu} className='logo'>
+                    St. Mary
+                </RouterLink>
                 <div className='hamburger' onClick={handleClick}>
                     {click ? (<FaTimes size={30} style={{ color: '#555' }} />)
                         : (<FaBars size={30} style={{ color: '#555' }} />)}
-
                 </div>
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
-                    <li className='nav-item'>
-                        <Link 
-                            to='/#home' 
-                            onClick={closeMenu} 
-                            className={location.hash === '#home' ? 'active' : ''}
-                        >
-                            Home
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link 
-                            to='/#about' 
-                            onClick={closeMenu}
-                            className={location.hash === '#about' ? 'active' : ''}
-                        >
-                            About
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link 
-                            to='/#bulletin' 
-                            onClick={closeMenu}
-                            className={location.hash === '#bulletin' ? 'active' : ''}
-                        >
-                            Bulletin
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link 
-                            to='/#calendar' 
-                            onClick={closeMenu}
-                            className={location.hash === '#calendar' ? 'active' : ''}
-                        >
-                            Calendar
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link 
-                            to='/#photos' 
-                            onClick={closeMenu}
-                            className={location.hash === '#photos' ? 'active' : ''}
-                        >
-                            Photos
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link 
-                            to='/#faq' 
-                            onClick={closeMenu}
-                            className={location.hash === '#faq' ? 'active' : ''}
-                        >
-                            FAQ
-                        </Link>
-                    </li>
+                    {sections.map((section, i) => (
+                        <li className='nav-item' key={i} onClick={handleLink}>
+                            <ScrollLink
+                                to={section}
+                                smooth={true}
+                                duration={800}
+                                hashSpy={true}
+                                onClick={() => closeMenu(section)}
+                                activeClass='active'
+                            >
+                                {section.substring(0, 1).toUpperCase() + section.substring(1)}
+                            </ScrollLink>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </div>
