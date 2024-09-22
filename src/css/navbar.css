@@ -44,6 +44,7 @@
 
 .header .nav-item a:hover {
     color: #000;
+    cursor: pointer;
 }
 
 .header .nav-item a::before,

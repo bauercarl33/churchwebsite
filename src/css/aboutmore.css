@@ -1,85 +1,87 @@
 .about-more {
-  width: 100vw;
-  height: 100vh;
-}
-
-.about-more .container {
-  flex-grow: 1;
-  margin: 0 auto;
-  position: relative;
-  width: auto;
+  width: 100%;
   height: 100%;
-}
-
-.container .top-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #f8f8f8;
-  height: 50vh;
+}
+
+.container {
   width: 100%;
-  padding: 20px;
-}
-.top-row .title-wrapper {
-  width: 90%;
-  display: inline-block;
-}
-.top-row .title-wrapper .title {
   justify-content: center;
   align-items: center;
-  margin: 40px;
-}
-.top-row .title span {
-  display: inline-block;
-  position: relative;
-  font-size: 224px;
-  font-family: Maragsa;
-}
-@media (max-width: 1440px) {
-  .top-row .title {
-    width: 90%;
-    background-color: red;
-  }
-
-  .top-row .title span {
-    font-size: 128px;
-  }
-}
-
-
-.container .bottom-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: blue;
-  height: 50vh;
-  width: 100%;
-}
-.bottom-row .img-container {
-  width: 100%;
-  height: 100%;
   overflow: hidden;
 }
-.bottom-row .img-container img {
+.container .row {
   width: 100%;
+  height: 50vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.container .row.content {
+  width: 50%;
   height: auto;
+  margin: auto;
+  padding: 120px 20px 120px 20px;
+}
+.container .row.content p {
+  font-size: 20px;
+  font-weight: 200;
 }
 
-.info {
-  height: 100vh;
-  width: 100vw;
+.title {
+  width: 90%;
+  height: auto;
+  display: flex;
+  position: absolute;
   justify-content: center;
   align-items: center;
-  display: flex;
-  padding: 50px;
+}
+.title .word {
+  position: relative;
+  padding: 40px;
+}
+.title span {
+  font-family: 'Maragsa';
+  font-size: 224px;
+  color: black;
 }
 
-.info .info-container {
-  width: 50%;
+@media (max-width: 940px) {
+  .title {
+    height: 40%;
+  }
+
+  .title .word {
+    padding: 20px;
+  }
+
+  .title span {
+    font-size: 128px;
+  }
+
+  .container .row.content {
+    width: 90%;
+    padding: 60px 20px 60px 20px;
+  }
+}
+@media (max-width: 600px) {
+  .title span {
+    font-size: 90px;
+  }
+}
+
+.img-container {
+  width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
-
-.info .info-container p {
-  font-size: 20px;
+.img-container img {
+  width: 100%;
+  height: auto;
 }
 

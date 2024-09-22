@@ -20,7 +20,7 @@ const About = () => {
     };
 
     return (
-        <div className='about'>
+        <div className='about' id='about'>
             <div className='container'>
                 <div className='icon'>
                     <div
