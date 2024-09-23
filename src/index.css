@@ -3,7 +3,7 @@
   --primary-dark: #0435ff;
   --secondary-color: #c9c9c9;
   --secondary-dark:#898989;
-  --overlay: rgba(0,0,0,.7);
+  --overlay: rgba(0,0,0,.5);
   --romania_blue: #002B7F;
   --romania_yellow: #FFFF00;
   --romania_red: #CE1126;
@@ -58,8 +58,8 @@ a {
 
 
 .line {
-  width: 120px;
-  height: 5px;
+  width: 200px;
+  height: 2px;
   margin: 5px auto;
   background-color: var(--primary-color);
 }

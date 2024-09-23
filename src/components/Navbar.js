@@ -4,6 +4,7 @@ import { FaBars, FaTimes } from 'react-icons/fa'
 import '../css/navbar.css'
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
 import { Events, Link as ScrollLink, scroller } from 'react-scroll'
+import { AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
     const sections = ['home', 'about', 'bulletin', 'calendar', 'photos', 'faq']
@@ -31,7 +32,7 @@ const Navbar = () => {
                 offset: 0,
             });
         } else {
-            window.scrollTo(0, 0);
+            window.scroll(0, 0);
         }
     }, [location]);
 
@@ -53,6 +54,7 @@ const Navbar = () => {
                                 smooth={true}
                                 duration={800}
                                 hashSpy={true}
+                                spy={true}
                                 onClick={() => closeMenu(section)}
                                 activeClass='active'
                             >

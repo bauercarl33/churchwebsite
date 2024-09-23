@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { 
   Routes, 
   Route, 
@@ -11,29 +11,29 @@ import Home from './pages/Home'
 import About from './pages/About'
 import AboutMore from './pages/AboutMore'
 import Bulletin from './pages/Bulletin';
-import ScrollToSection from './components/ScrollToSection'
 import { AnimatePresence } from 'framer-motion'
 
 function App() {
   const location = useLocation();
+
   return (
     <div className='app'>
-      <Navbar />
-      {/* <AnimatePresence initial={false} mode='wait'> */}
+        <Navbar />
+        {/* <AnimatePresence mode='wait' initial={false}> */}
         <Routes location={location} key={location.key}>
           <Route
             path='/'
             element={
               <>
                 <Home />
-                <About />
+                <About  />
                 <Bulletin />
               </>
             }
           />
-          <Route path='/about' element={<AboutMore />} />
+          <Route exact path='/about' element={<AboutMore />} />
         </Routes>
-      {/* </AnimatePresence> */}
+        {/* </AnimatePresence> */}
     </div>
   );
 }

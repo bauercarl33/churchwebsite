@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-let transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
-transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
+// const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
+const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
 const ScrollForMore = () => {
   return (
