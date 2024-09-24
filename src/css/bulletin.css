@@ -8,7 +8,7 @@
 
 .bulletin .parallax-img {
     content: '';
-    background: url('../images/bgimg.jpg') no-repeat center center/cover;
+    background: url('../images/bgimg2.jpg') no-repeat center center/cover;
     min-height: 100%;
     width: 100%;
     position: absolute;
@@ -18,7 +18,7 @@
 }
 
 .bulletin .container {
-    width: 65%;
+    width: 30%;
     height: 100%;
     margin: auto;
     display: flex;
@@ -72,7 +72,25 @@
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1600px) {
+    .bulletin .container {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .bulletin .container {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .bulletin .container {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 650px) {
     .bulletin .container {
         width: 100%;
     }

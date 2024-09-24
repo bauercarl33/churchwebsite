@@ -11,7 +11,10 @@ import Home from './pages/Home'
 import About from './pages/About'
 import AboutMore from './pages/AboutMore'
 import Bulletin from './pages/Bulletin';
+import Footer from './pages/Footer'
+
 import { AnimatePresence } from 'framer-motion'
+
 
 function App() {
   const location = useLocation();
@@ -33,6 +36,7 @@ function App() {
           />
           <Route exact path='/about' element={<AboutMore />} />
         </Routes>
+        <Footer />
         {/* </AnimatePresence> */}
     </div>
   );
