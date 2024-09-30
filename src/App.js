@@ -14,6 +14,7 @@ import Bulletin from './pages/Bulletin';
 import Footer from './pages/Footer'
 
 import { AnimatePresence } from 'framer-motion'
+import Calendar from './pages/Calendar'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                 <Home />
                 <About  />
                 <Bulletin />
+                <Calendar />
               </>
             }
           />

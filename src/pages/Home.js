@@ -22,10 +22,10 @@ const Home = () => {
                     backgroundPositionY: y,
                 }}
             />
-                <div className='content'>
-                    <h1>St. Mary</h1>
-                    <p>Orthodox Church</p>
-                </div>
+            <div className='content'>
+                <h1>St. Mary</h1>
+                <h3>Orthodox Church</h3>
+            </div>
         </motion.div>
     )
 }

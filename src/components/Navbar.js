@@ -14,6 +14,7 @@ const Navbar = () => {
 
     const [click, setClick] = useState(false)
     const [activeLink, setActiveLink] = useState('#home')
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
     const closeMenu = (hash) => {
         setClick(false)
@@ -36,15 +37,35 @@ const Navbar = () => {
         }
     }, [location]);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <div className='header'>
             <nav className='navbar'>
                 <RouterLink to='/' onClick={closeMenu} className='logo'>
                     St. Mary
                 </RouterLink>
-                <div className='hamburger' onClick={handleClick}>
-                    {click ? (<FaTimes size={30} style={{ color: '#555' }} />)
-                        : (<FaBars size={30} style={{ color: '#555' }} />)}
+                <div className='hamburger'>
+                    <button className='button'>Donate</button>
+                    {click ? 
+                        (<FaTimes 
+                            className='hamburger-icon'
+                            onClick={handleClick}
+                            size={30}
+                        />) : 
+                        (<FaBars 
+                            className='hamburger-icon'
+                            onClick={handleClick}
+                            size={30}
+                        />)}
                 </div>
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     {sections.map((section, i) => (
@@ -63,6 +84,14 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
+                <button 
+                    className='button'
+                    style={{
+                        display: windowWidth > 1200 ? '' : 'none'
+                    }}
+                >
+                    Donate
+                </button>
             </nav>
         </div>
     )

@@ -35,10 +35,6 @@
   margin: auto;
   padding: 120px 20px 120px 20px;
 }
-.container .row.content p {
-  font-size: 20px;
-  font-weight: 200;
-}
 
 .bottom {
   height: 100%;
@@ -61,7 +57,6 @@
   display: inline-block;
   position: relative;
   font-weight: 400;
-  font-size: 12rem;
   margin: -1.2%;
 }
 
@@ -75,7 +70,6 @@
   }
 
   .title span {
-    font-size: 8rem;
   }
 
   .container .row.content {
@@ -85,7 +79,6 @@
 }
 @media (max-width: 600px) {
   .title span {
-    font-size: 6rem;
   }
 }
 

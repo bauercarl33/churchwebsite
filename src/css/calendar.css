@@ -1,4 +1,4 @@
-.bulletin {
+.calendar {
     background-color: var(--overlay);
     padding: 3rem;
     width: 100%;
@@ -6,7 +6,7 @@
     position: relative;
 }
 
-.bulletin .parallax-img {
+.calendar .parallax-img {
     content: '';
     background: url('../images/bgimg2.jpg') no-repeat center center/cover;
     min-height: 100%;
@@ -17,7 +17,7 @@
     z-index: -1;
 }
 
-.bulletin .container {
+.calendar .container {
     width: 30%;
     height: 100%;
     margin: auto;
@@ -26,7 +26,7 @@
     justify-content: center;
 }
 
-.bulletin .container .content {
+.calendar .container .content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,7 +38,7 @@
     padding: 2rem;
 }
 
-.bulletin .container .content .title {
+.calendar .container .content .title {
     flex: 0 1 auto;
     flex-direction: column;
     width: auto;
@@ -46,42 +46,42 @@
     margin-bottom: 50px;
 }
 
-.bulletin .container .content ul {
+.calendar .container .content ul {
     align-items: top;
     justify-content: left;
     position: relative;
     overflow: auto;
 }
 
-.bulletin .container .content ul li {
+.calendar .container .content ul li {
     margin-bottom: 1rem;
 }
 
-.bulletin .container .content ul li p {
+.calendar .container .content ul li p {
     text-indent: 1rem;
 } 
 
 
 @media screen and (max-width: 1600px) {
-    .bulletin .container {
+    .calendar .container {
         width: 40%;
     }
 }
 
 @media screen and (max-width: 1200px) {
-    .bulletin .container {
+    .calendar .container {
         width: 60%;
     }
 }
 
 @media screen and (max-width: 900px) {
-    .bulletin .container {
+    .calendar .container {
         width: 80%;
     }
 }
 
 @media screen and (max-width: 650px) {
-    .bulletin .container {
+    .calendar .container {
         width: 100%;
     }
 }
