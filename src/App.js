@@ -31,7 +31,6 @@ function App() {
               <>
                 <Home />
                 <About  />
-                <Bulletin />
                 <Calendar />
               </>
             }

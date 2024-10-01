@@ -4,13 +4,13 @@ import '../css/bulletin.css'
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Bulletin = () => {
-    const bulletinRef = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: bulletinRef,
-        offset: ["start end", "end start"]
-    });
+    // const bulletinRef = useRef(null)
+    // const { scrollYProgress } = useScroll({
+    //     target: bulletinRef,
+    //     offset: ["start end", "end start"]
+    // });
 
-    const y = useTransform(scrollYProgress, [0, 1], ['150%', '0%']);
+    // const y = useTransform(scrollYProgress, [0, 1], ['150%', '0%']);
 
     return (
         // <motion.div className='bulletin'>
@@ -59,7 +59,7 @@ const Bulletin = () => {
         //         </div>
         // </motion.div>
         <div className='bulletin'>
-            <div className='conatiner'>
+            <div className='container'>
 
             </div>
         </div>

@@ -7,14 +7,14 @@
     z-index: 1;
     transition: .3s ease-in;
     overflow: hidden;
-    background-color: rgba(248, 248, 248, 1);
+    background-color: var(--secondary-dark);
 }
 
 .header .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1240px;
+    max-width: 1600px;
     margin: auto;
     height: 100%;
     padding: 0 var(--space-l);
@@ -37,12 +37,11 @@
     position: relative;
     padding: 15px 0;
     transition: all .5s;
-    color: #555;
+    color: var(--bg-color);
     font-weight: 400;
 }
 
 .header .nav-item a:hover {
-    color: #000;
     cursor: pointer;
 }
 
@@ -57,7 +56,7 @@
     width: 0%;
     content: '.';
     color: transparent;
-    background: #aaa;
+    background: var(--primary-color);
     height: 1px;
 }
 
@@ -70,28 +69,24 @@
 }
 
 .header .logo {
-    color: #555;
-    font-size: 1.5rem;
+    color: var(--bg-color);
+    font-size: var(--step-1);
     cursor: pointer;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .hamburger {
     height: 100%;
     width: auto;
     display: none;
-    color: #555;
+    color: var(--bg-color);
     justify-content: center;
     align-items: center;
     column-gap: var(--space-s);
 }
 
 .hamburger-icon {
-    color: #555;
-    cursor: pointer;
-}
-.hamburger-icon {
-    color: #555;
+    color: var(--bg-color);
     cursor: pointer;
 }
 
@@ -100,26 +95,30 @@
     padding: 12px 20px;
     font-weight: 400;
     font-size: var(--step-0);
-    color: #f8f8f8;
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 10px;
+    color: var(--bg-color);
+    background-color: transparent;
+    border: 3px solid var(--primary-color);
+    border-radius: 20%/50%;
     cursor: pointer;
     transition-duration: 0.4s;
 }
 
 .navbar .button:hover {
-    background-color: var(--primary-dark);
+    background-color: var(--primary-color);
 }
 
 
-@media screen and (max-width:1200px) {
+@media screen and (max-width:960px) {
     .header {
         max-width: 100%;
     }
 
     .header .navbar {
         max-width: 100%;
+    }
+
+    .navbar .button:last-child {
+        display: none;
     }
 
     .hamburger {
@@ -131,8 +130,8 @@
         left: 100%;
         top: 90px;
         flex-direction: column;
-        background-color: #f8f8f8;
-        width: 100%;
+        background-color: var(--secondary-dark);
+        width: 50%;
         height: 90vh;
         z-index: 999;
         text-align: center;
@@ -140,7 +139,7 @@
     }
 
     .nav-menu.active {
-        left: 0;
+        left: 50%;
     }
 
     .nav-item {

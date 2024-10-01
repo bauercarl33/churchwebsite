@@ -22,9 +22,16 @@ const Home = () => {
                     backgroundPositionY: y,
                 }}
             />
-            <div className='content'>
-                <h1>St. Mary</h1>
-                <h3>Orthodox Church</h3>
+            <div className='home'>
+                <div className='content'>
+                    <div className='welcome'>
+                        <h5>Welcome To</h5>
+                        <h2>St. Mary</h2>
+                        <h4>Orthodox Church</h4>
+                        <h6>A Romanian Orthodox parish in Austin, Texas.</h6>
+                        <h6>We would love for you to join us in worship of the Most Holy Trinity.</h6>
+                    </div>
+                </div>
             </div>
         </motion.div>
     )

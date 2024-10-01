@@ -1,15 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-  --bg-color: #f8f8f8;
-  --bg-dark: #e8e8e8;
+  --bg-color: rgb(241, 231, 220);
   --text-color: #000;
-  --primary-color: #375eff;
-  --primary-dark: #0435ff;
-  --secondary-color: #c9c9c9;
-  --secondary-dark:#898989;
-  --overlay: rgba(0,0,0,.5);
-  --romania_blue: #002B7F;
-  --romania_yellow: #FFFF00;
-  --romania_red: #CE1126;
+  --primary-color: rgb(247, 108, 93);
+  --primary-dark: rgb(196, 68, 54);
+  --secondary-color: rgb(53, 68, 79);
+  --secondary-dark: rgb(40, 53, 62);
+  --overlay: rgba(0,0,0,0.1);
 
   --step--2: clamp(0.5556rem, 0.7143rem + -0.0992vw, 0.6944rem);
   --step--1: clamp(0.8333rem, 0.8333rem + 0vw, 0.8333rem);
@@ -55,9 +53,10 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.2rem;
@@ -104,6 +103,10 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .line {

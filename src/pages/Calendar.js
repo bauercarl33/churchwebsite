@@ -1,38 +1,54 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
-
 import '../css/calendar.css'
-import { motion, useScroll, useTransform } from 'framer-motion';
+
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
 const Calendar = () => {
-    const calendarRef = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: calendarRef,
-        offset: ["start end", "end start"]
-    });
 
-    const y = useTransform(scrollYProgress, [0, 1], ['150%', '0%']);
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
     return (
-        <motion.div className='calendar'>
-            <motion.div 
-                className='parallax-img' 
-                id='calendar'
-                ref={calendarRef}
-                style={{
-                    backgroundPositionY: y,
-                }}
-            />
-            <iframe 
-              src="https://embed.styledcalendar.com/#wlDvInZ735Z6JDn82azU" 
-              title="Styled Calendar" 
-              className="styled-calendar-container" 
-              style={{
-                width: '100%', 
-                height: '100%',
-                border: 'none',
-              }}
-            />
-        </motion.div>
+        <div className='calendar'>
+            <div className='container'>
+                <div className='head'>
+                    <div className='buttons-wrapper'>
+                        <div className='buttons'>
+                            <button className='button'><FaAngleLeft styles={{ fontWeight: 100 }}/></button>
+                            <button className='button'><FaAngleRight /></button>
+                        </div>
+                        <div className='buttons'>
+                            <button className='button'>Today</button>
+                        </div>
+                    </div>
+                    <h5>Month Year</h5>
+                    <div className='buttons'>
+                        <button className='selected'>Month</button>
+                        <button className='button'>Week</button>
+                        <button className='button'>Day</button>
+                    </div>
+                </div>
+                <div className='week-header'>
+                    {daysOfWeek.map((day) => {
+                        return (
+                            <div className='day-header' key={day}>{day}</div>
+                        )
+                    })}
+                </div>
+                {Array.from({ length: 5 }, (_, i) => { 
+                    return (
+                        <div className='row' key={i}>
+                            {Array.from({ length: 7 }, (_, i) => {
+                                return (
+                                    <div className='col' key={i} >
+                                        {i}
+                                    </div>
+                                )
+                                
+                            })}
+                        </div>
+                    )
+                 })}
+            </div>
+        </div>
     )
 }
 

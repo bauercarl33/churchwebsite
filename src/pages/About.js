@@ -1,37 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
-import { motion } from "framer-motion";
 
 import { aboutVars } from '../vars/AboutVars'
+import { motion, useScroll, useTransform } from 'framer-motion';
+
 import '../css/about.css'
 
-const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
-const About = () => {
-    const [isHovered, setIsHovered] = useState(false);
+const About = () => {     
+    const aboutRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: aboutRef,
+        offset: ["start start", "end start"]
+    });
 
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
-     
+    const y = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+
     return (
         <div className='about'>
             <div className='container' >
                 {Object.entries(aboutVars).map(([key, value]) => {
                     return (
                         <div className='row' key={key}>
+                            <div className='label' />
                             <div className='col'>
-                                <h3>{key}</h3>
-                                <p>{value.text}</p>
-                                <button className='button'>Learn More</button>
+                                <div className='text'>
+                                    <h5>Our</h5>
+                                    <h4>{key}</h4>
+                                    <p>{value.text}</p>
+                                    <button className='button'>Learn More</button>
+                                </div>
                             </div>
                             <div className='col'>
                                 <div className='image'>
-                                    {console.log(value.image)}
                                     <img className='image' src={value.image} />
                                 </div>
                             </div>

@@ -7,14 +7,13 @@ import { Events, Link as ScrollLink, scroller } from 'react-scroll'
 import { AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
-    const sections = ['home', 'about', 'bulletin', 'calendar', 'photos', 'faq']
+    const sections = ['home', 'about', 'calendar']
 
     const location = useLocation()
     const navigate = useNavigate()
 
     const [click, setClick] = useState(false)
     const [activeLink, setActiveLink] = useState('#home')
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
     const closeMenu = (hash) => {
         setClick(false)
@@ -36,16 +35,6 @@ const Navbar = () => {
             window.scroll(0, 0);
         }
     }, [location]);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     return (
         <div className='header'>
@@ -84,12 +73,7 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                <button 
-                    className='button'
-                    style={{
-                        display: windowWidth > 1200 ? '' : 'none'
-                    }}
-                >
+                <button className='button'>
                     Donate
                 </button>
             </nav>

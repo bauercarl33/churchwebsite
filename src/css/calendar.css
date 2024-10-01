@@ -1,87 +1,118 @@
 .calendar {
-    background-color: var(--overlay);
-    padding: 3rem;
     width: 100%;
-    height: 90vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-}
-
-.calendar .parallax-img {
-    content: '';
-    background: url('../images/bgimg2.jpg') no-repeat center center/cover;
-    min-height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    background-color: white;
+    /* background: url('../images/bgimg2.jpg') no-repeat center center/cover; */
+    padding: var(--space-2xl);
 }
 
 .calendar .container {
-    width: 30%;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.calendar .container .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 90%;
     width: 100%;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    padding: 2rem;
-}
-
-.calendar .container .content .title {
-    flex: 0 1 auto;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    width: auto;
-    position: relative;
-    margin-bottom: 50px;
+    padding: var(--space-m);
 }
 
-.calendar .container .content ul {
-    align-items: top;
-    justify-content: left;
-    position: relative;
-    overflow: auto;
+.calendar .container .head {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-l);
 }
 
-.calendar .container .content ul li {
-    margin-bottom: 1rem;
+.calendar .container .head .title {
+
 }
 
-.calendar .container .content ul li p {
-    text-indent: 1rem;
-} 
-
-
-@media screen and (max-width: 1600px) {
-    .calendar .container {
-        width: 40%;
-    }
+.calendar .container .head .buttons-wrapper {
+    width: fit-content;
+    height: fit-content;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 80px;
 }
 
-@media screen and (max-width: 1200px) {
-    .calendar .container {
-        width: 60%;
-    }
+.calendar .container .head .buttons {
+    width: fit-content;
+    height: fit-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-@media screen and (max-width: 900px) {
-    .calendar .container {
-        width: 80%;
-    }
+.calendar .container .head .buttons .button {
+    padding: var(--space-s);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: var(--step--0);
+    transition: 0.3s;
 }
 
-@media screen and (max-width: 650px) {
-    .calendar .container {
-        width: 100%;
-    }
+.calendar .container .head .buttons .button:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.calendar .container .head .buttons .selected {
+    padding: var(--space-s);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: var(--step--0);
+    transition: 0.3s;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.calendar .container .week-header {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar .container .day-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid rgba(149, 157, 165, 0.7);
+    border-top: 1px solid rgba(149, 157, 165, 0.7);
+    border-bottom: 1px solid rgba(149, 157, 165, 0.7);
+}
+
+.calendar .container .day-header:last-child {
+    border-right: 1px solid rgba(149, 157, 165, 0.7) ;
+}
+
+.calendar .container .row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(149, 157, 165, 0.7);
+}
+
+.calendar .container .row .col {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid rgba(149, 157, 165, 0.7);
+}
+
+.calendar .container .row .col:last-child {
+    border-right: 1px solid rgba(149, 157, 165, 0.7);
 }

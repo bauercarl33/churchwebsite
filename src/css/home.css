@@ -1,7 +1,7 @@
 .home {
     background-color: var(--overlay);
     color: #f8f8f8;
-    height: 90vh;
+    height: 100vh;
     width: 100%;
     position: relative;
 }
@@ -18,21 +18,56 @@
 }
 
 .home .content {
+    width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: relative;
+    padding: var(--space-3xl);
+}
+
+.home .content .welcome {
+    margin-top: 100px;
+    width: 40%;
+    max-width: 600px;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    max-width: 1100px;
-    margin: auto;
-    padding: 2rem;
+    padding: var(--space-m);
+    backdrop-filter: blur(10px);
+    background-color: #f8f8f822;
 }
 
-.home .content .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
+.home .content .welcome h5 {
+    line-height: 1;
+    margin-bottom: var(--space-2xs);
+    font-style: italic;
+    opacity: 0.9;
+}
+.home .content .welcome h2 {
+    line-height: 1;
+    margin-bottom: var(--space-s);
+}
+.home .content .welcome h4 {
+    line-height: 1;
+    margin-bottom: var(--space-m);
+    opacity: 0.9;
+}
+.home .content .welcome h6 {
+    margin-bottom: var(--space-xl);
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 960px) {
+    .home .content {
+        justify-content: center;
+    }
+
+    .home .content .welcome {
+        width: 100%;
+        max-width: 600px;
+    }
+    
 }
