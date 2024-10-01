@@ -43,29 +43,13 @@
 
 .header .nav-item a:hover {
     cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
-.header .nav-item a::before,
-.header .nav-item a::after {
-    transition: all .5s;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 0%;
-    content: '.';
-    color: transparent;
-    background: var(--primary-color);
-    height: 1px;
-}
-
-.header .nav-item a:hover::after {
-    width: 100%;
-}
-
-.header .nav-item a.active::after {
-    width: 100%;
+.header .nav-item a.active {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .header .logo {
@@ -136,6 +120,8 @@
         z-index: 999;
         text-align: center;
         transition: .5s;
+        overflow-y: scroll;
+        padding: var(--space-l);
     }
 
     .nav-menu.active {

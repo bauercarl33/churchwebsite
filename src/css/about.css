@@ -84,19 +84,20 @@
 .about .container .row .col .button {
     width: fit-content;
     padding: 12px 20px;
-    font-weight: 400;
+    font-weight: 500;
     font-size: var(--step-0);
-    color: var(--bg-color);
-    background-color: var(--primary-color);
+    color: var(--secondary-dark);
+    background-color: var(--bg-color);
     border: solid 3px;
-    border-color: var(--secondary-dark);
+    border-color: var(--primary-color);
     border-radius: 20%/50%;
     cursor: pointer;
     transition-duration: 0.4s;
 }
 
 .about .container .row .col .button:hover {
-    background-color: var(--primary-dark);
+    background-color: var(--primary-color);
+    color: var(--bg-color);
 }
 
 @media screen and (min-width:960px) {
@@ -110,6 +111,14 @@
 }
 
 @media screen and (max-width:960px) {
+    .about {
+        padding: 5rem 0;
+    }
+
+    .about .container {
+        row-gap: 40px;
+    }
+
     .about .container .row {
         flex-direction: column;
     }

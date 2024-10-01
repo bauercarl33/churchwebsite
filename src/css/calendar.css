@@ -87,6 +87,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--secondary-dark);
+    color: var(--bg-color);
     border-left: 1px solid rgba(149, 157, 165, 0.7);
     border-top: 1px solid rgba(149, 157, 165, 0.7);
     border-bottom: 1px solid rgba(149, 157, 165, 0.7);
@@ -113,6 +115,43 @@
     border-left: 1px solid rgba(149, 157, 165, 0.7);
 }
 
+.calendar .container .row .col.not-curr {
+    background-color: rgba(149, 157, 165, 0.3);
+}
+
+.calendar .container .row .col.selected {
+    background-color: rgba(247, 108, 93, 0.3);;
+}
+
 .calendar .container .row .col:last-child {
     border-right: 1px solid rgba(149, 157, 165, 0.7);
+}
+
+@media screen and (max-width: 1100px) {
+    .calendar {
+        padding: var(--space-l) 0;
+    }
+
+    .calendar .container .head {
+        flex-direction: column;
+        row-gap: var(--space-m);
+        padding: var(--space-l) 0;
+    }
+    
+    .calendar .container .head #left-right {
+        order: 3;
+    }
+
+    .calendar .container .head #cal-title {
+        order: 1;
+    }
+
+    .calendar .container .head #time-span {
+        order: 2;
+    }
+ 
+
+    .calendar .container .head .buttons-wrapper {
+        column-gap: 60px;
+    }
 }

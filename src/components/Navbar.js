@@ -7,7 +7,7 @@ import { Events, Link as ScrollLink, scroller } from 'react-scroll'
 import { AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
-    const sections = ['home', 'about', 'calendar']
+    const sections = ['home', 'about', 'calendar', 'bulletin', 'media']
 
     const location = useLocation()
     const navigate = useNavigate()
