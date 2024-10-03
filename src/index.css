@@ -6,8 +6,8 @@
   --primary-color: rgb(247, 108, 93);
   --primary-dark: rgb(196, 68, 54);
   --secondary-color: rgb(53, 68, 79);
-  --secondary-dark: rgb(40, 53, 62);
-  --overlay: rgba(0,0,0,0.1);
+  --secondary-dark: rgb(26, 44, 55);
+  --overlay: rgba(0,0,0,0.4);
 
   --step--2: clamp(0.5556rem, 0.7143rem + -0.0992vw, 0.6944rem);
   --step--1: clamp(0.8333rem, 0.8333rem + 0vw, 0.8333rem);

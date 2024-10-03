@@ -13,6 +13,29 @@ const Calendar = () => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 
         'July', 'August', 'September', 'October', 'November', 'December'];
 
+    const events = {
+        9: {
+            1: [
+                'Event A',
+                'Event B',
+                'Event C'
+            ],
+            10: [
+                'Event A alksdhfkljahsdkljhf',
+                'Event C'
+            ]
+        }
+    }
+
+    const checkEvent = (month, day) => {
+        if (month in events) {
+            if (day in events[month]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     
     const handleCalendarDays = (mOffset = 0) => {
         let date = new Date();
@@ -45,8 +68,7 @@ const Calendar = () => {
 
         if (currentDays[6].month !== currentDays[15].month) {
             currentDays = currentDays.slice(7);
-        } 
-        
+        }      
         if (currentDays[currentDays.length - 7].month !== currentDays[15].month) {
             currentDays = currentDays.slice(0, -7)
         }
@@ -94,25 +116,21 @@ const Calendar = () => {
         <div className='calendar'>
             <div className='container'>
                 <div className='head'>
-                    <div className='buttons-wrapper' id='left-right'>
-                        <div className='buttons'>
-                            <button className='button' onClick={handlePreviousMonth}>
-                                    <FaAngleLeft />
-                            </button>
-                            <button className='button' onClick={handleNextMonth}>
-                                    <FaAngleRight />
-                            </button>
-                        </div>
-                        <div className='buttons'>
-                            <button className='button' onClick={handleToday}>
-                                Today
-                            </button>
-                        </div>
-                    </div>
                     <h5 id='cal-title'>
                         {calendarDays.length > 15 ? `${months[calendarDays[15].month]} ${calendarDays[15].year}` : 'Loading...'}
                     </h5>
-                    <div className='buttons' id='time-span'>
+                    <div className='buttons'>
+                        <button className='button' onClick={handlePreviousMonth}>
+                            <FaAngleLeft />
+                        </button>
+                        <button className='button' onClick={handleToday}>
+                            Today
+                        </button>
+                        <button className='button' onClick={handleNextMonth}>
+                            <FaAngleRight />
+                        </button>
+                    </div>
+                    {/* <div className='buttons' id='time-span'>
                         <button 
                             onClick={() => handleTimeFrame('month')}
                             className={timeFrame === 'month' ? 'selected' : 'button'}
@@ -131,7 +149,7 @@ const Calendar = () => {
                         >
                             Day
                         </button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='week-header'>
                     {daysOfWeek.map((day) => {
@@ -159,6 +177,14 @@ const Calendar = () => {
                                 key={dayIndex}
                             >
                                 {day.number}
+                                {checkEvent(day.month, day.number) ?
+                                <div className='event'>
+                                    {events[day.month][day.number].map((item) => {
+                                        return(
+                                            <p key={item}>{item}</p>
+                                        )
+                                    })}
+                                </div> : ''}
                             </div>
                         ))}
                     </div>

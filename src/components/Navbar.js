@@ -7,7 +7,7 @@ import { Events, Link as ScrollLink, scroller } from 'react-scroll'
 import { AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
-    const sections = ['home', 'about', 'calendar', 'bulletin', 'media']
+    const sections = ['home', 'about', 'calendar']
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -73,7 +73,7 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                <button className='button'>
+                <button className='button' onClick={() => navigate('/donate')}>
                     Donate
                 </button>
             </nav>

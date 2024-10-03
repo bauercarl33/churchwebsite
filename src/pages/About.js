@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
 
 import { aboutVars } from '../vars/AboutVars'
@@ -9,13 +9,7 @@ import '../css/about.css'
 
 
 const About = () => {     
-    const aboutRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: aboutRef,
-        offset: ["start start", "end start"]
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+    const navigate = useNavigate()
 
     return (
         <div className='about'>
@@ -29,7 +23,12 @@ const About = () => {
                                     <h5>Our</h5>
                                     <h4>{key}</h4>
                                     <p>{value.text}</p>
-                                    <button className='button'>Learn More</button>
+                                    <button 
+                                        className='button' 
+                                        onClick={() => navigate(`/about`)}
+                                    >
+                                        Learn More
+                                    </button>
                                 </div>
                             </div>
                             <div className='col'>

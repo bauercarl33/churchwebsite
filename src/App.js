@@ -10,11 +10,13 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
 import AboutMore from './pages/AboutMore'
+import Calendar from './pages/Calendar'
 import Bulletin from './pages/Bulletin';
+import Donate from './pages/Donate';
 import Footer from './pages/Footer'
 
 import { AnimatePresence } from 'framer-motion'
-import Calendar from './pages/Calendar'
+
 
 
 function App() {
@@ -23,7 +25,6 @@ function App() {
   return (
     <div className='app'>
         <Navbar />
-        {/* <AnimatePresence mode='wait' initial={false}> */}
         <Routes location={location} key={location.key}>
           <Route
             path='/'
@@ -36,9 +37,9 @@ function App() {
             }
           />
           <Route exact path='/about' element={<AboutMore />} />
+          <Route exact path='/donate' element={<Donate />} />
         </Routes>
         <Footer />
-        {/* </AnimatePresence> */}
     </div>
   );
 }
