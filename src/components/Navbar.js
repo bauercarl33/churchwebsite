@@ -36,6 +36,18 @@ const Navbar = () => {
         }
     }, [location]);
 
+    useEffect(() => {
+        if (click) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [click]);
+
     return (
         <div className='header'>
             <nav className='navbar'>
@@ -43,7 +55,9 @@ const Navbar = () => {
                     St. Mary
                 </RouterLink>
                 <div className='hamburger'>
-                    <button className='button'>Donate</button>
+                    <button className='button' onClick={() => navigate('/donate')}>
+                        Donate
+                    </button>
                     {click ? 
                         (<FaTimes 
                             className='hamburger-icon'

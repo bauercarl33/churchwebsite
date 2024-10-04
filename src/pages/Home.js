@@ -5,17 +5,17 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Home = () => {
     return (
+        
         <div className='home'>
-            <div className='parallax-img' />
+            <img className='parallax-img' />
             <div className='content'>
-                <div className='welcome'>
-                    <h5>Welcome To</h5>
-                    <h2>St. Mary</h2>
-                    <h4>Orthodox Church</h4>
-                    <h6>A Romanian Orthodox parish in Austin, Texas.</h6>
-                    <h6>We would love for you to join us in worship of the Most Holy Trinity.</h6>
-                </div>
-            </div>
+                <h2>St. Mary</h2>
+                <h4>Orthodox Church</h4>
+                        
+            </div> 
+            {/* <svg className='svg-mask' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 919">
+                <path fill="var(--bg-color)" d="M 0,919 Q 800,919 1920,850 L1920,920 L0,920 Z"></path>
+            </svg>            */}
         </div>
     )
 }

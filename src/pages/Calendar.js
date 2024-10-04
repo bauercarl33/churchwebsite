@@ -14,25 +14,37 @@ const Calendar = () => {
         'July', 'August', 'September', 'October', 'November', 'December'];
 
     const events = {
-        9: {
-            1: [
-                'Event A',
-                'Event B',
-                'Event C'
-            ],
-            10: [
-                'Event A alksdhfkljahsdkljhf',
-                'Event C'
-            ]
+        2024 : {
+            8: {
+                30: [
+                    'Event A',
+                    'Event B',
+                    'Event C'
+                ]
+            },
+            9: {
+                1: [
+                    'Event A',
+                    'Event B',
+                    'Event C'
+                ],
+                10: [
+                    'Event A alksdhfkljahsdkljhf',
+                    'Event C'
+                ]
+            }
         }
     }
 
-    const checkEvent = (month, day) => {
-        if (month in events) {
-            if (day in events[month]) {
-                return true;
-            }
+    const checkEvent = (year, month, day) => {
+        if (year in events) {
+            if (month in events[year]) {
+                if (day in events[year][month]) {
+                    return true;
+                }
         }
+        }
+        
         return false;
     }
 
@@ -164,31 +176,30 @@ const Calendar = () => {
                         }                      
                     })}
                 </div>
-                {/* I know this is spaghetti but it works */}
-                {Array.from({ length: Math.ceil(calendarDays.length / 7) }, (_, weekIndex) => (
-                    <div className='row' key={weekIndex}>
-                        {calendarDays.slice(weekIndex * 7, weekIndex * 7 + 7).map((day, dayIndex) => (
+                <div className='grid'>
+                    {calendarDays.map((day, index) =>  {
+                        return (
                             <div 
                                 className={
                                     day.month !== calendarDays[15].month ? 
-                                        'col not-curr' : day.selected ? 
-                                        'col selected' : 'col'
+                                        'cell not-curr' : day.selected ? 
+                                        'cell selected' : 'cell'
                                 } 
-                                key={dayIndex}
+                                key={index}
                             >
                                 {day.number}
-                                {checkEvent(day.month, day.number) ?
+                                {checkEvent(day.year, day.month, day.number) ?
                                 <div className='event'>
-                                    {events[day.month][day.number].map((item) => {
+                                    {events[day.year][day.month][day.number].map((item) => {
                                         return(
                                             <p key={item}>{item}</p>
                                         )
                                     })}
                                 </div> : ''}
                             </div>
-                        ))}
-                    </div>
-                ))}
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )

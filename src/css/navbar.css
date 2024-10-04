@@ -76,7 +76,7 @@
 
 .navbar .button {
     width: fit-content;
-    padding: 12px 20px;
+    padding: 8px 20px;
     font-weight: 400;
     font-size: var(--step-0);
     color: var(--bg-color);
@@ -116,7 +116,7 @@
         flex-direction: column;
         background-color: var(--secondary-dark);
         width: 50%;
-        height: 90vh;
+        height: 100vh;
         z-index: 999;
         text-align: center;
         transition: .5s;

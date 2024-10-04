@@ -1,16 +1,6 @@
 .about {
     background-color: var(--bg-color);
-    padding: 10rem 0 10rem 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.about .container {
+    padding: 8rem 0 ;
     width: 100%;
     height: 100%;
     display: flex;
@@ -18,21 +8,21 @@
     justify-content: center;
     align-items: center;
     row-gap: 80px;
-    text-align: center;
+    position: relative;
 }
 
-.about .container .row {
-    max-width: 1440px;
+.about .row {
+    /* max-width: 1440px; */
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: var(--space-xl);
-    /* padding: var(--space-2xl) 0; */
+    padding: var(--space-s) 0;
 }
 
-.about .container .row .col {
+.about .row .col {
     max-width: 600px;
     width: 50%;
     height: 100%;
@@ -40,10 +30,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: var(--space-m);
+    padding: 0 var(--space-m);
 }
 
-.about .container .row .col .text {
+.about .row .col .text {
     height: 100%;
     width: 100%;
     display: flex;
@@ -51,21 +41,21 @@
     justify-content: left;
     text-align: left;
     align-items: left;
-    padding: var(--space-m);
+    /* padding: var(--space-m); */
 }
 
-.about .container .row .col p {
+.about .row .col p {
     margin-bottom: var(--space-l);
     color: var(--secondary-dark);
     opacity: 0.8;
 }
 
-.about .container .row .col h4 {
+.about .row .col h4 {
     margin-bottom: var(--space-s);
     color: var(--secondary-dark);
 }
 
-.about .container .row .col h5 {
+.about .row .col h5 {
     font-size: var(--step-0);
     font-weight: 500;
     font-style: italic;
@@ -81,7 +71,7 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.about .container .row .col .button {
+.about .row .col .button {
     width: fit-content;
     padding: 12px 20px;
     font-weight: 500;
@@ -95,17 +85,17 @@
     transition-duration: 0.4s;
 }
 
-.about .container .row .col .button:hover {
+.about .row .col .button:hover {
     background-color: var(--primary-color);
     color: var(--bg-color);
 }
 
 @media screen and (min-width:960px) {
-    .about .container .row:nth-child(even) {
+    .about .row:nth-child(even) {
         flex-direction: row;
     }
 
-    .about .container .row:nth-child(odd) {
+    .about .row:nth-child(odd) {
         flex-direction: row-reverse;
     }
 }
@@ -113,17 +103,27 @@
 @media screen and (max-width:960px) {
     .about {
         padding: 5rem 0;
+        row-gap: 80px;
     }
 
-    .about .container {
-        row-gap: 40px;
-    }
-
-    .about .container .row {
+    .about .row {
         flex-direction: column;
     }
 
-    .about .container .row .col {
+    .about .row .col {
         width: 100%;
+    }
+
+    .about .row .col .text h4 {
+        margin-bottom: var(--space-xs);
+    }
+    
+    .about .row .col .text p {
+        margin-bottom: var(--space-m);
+    }
+
+    .about .row .col .image {
+        max-height: 300px;
+        margin-bottom: var(--space-l);
     }
 }

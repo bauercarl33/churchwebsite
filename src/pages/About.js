@@ -13,33 +13,31 @@ const About = () => {
 
     return (
         <div className='about'>
-            <div className='container' >
-                {Object.entries(aboutVars).map(([key, value]) => {
-                    return (
-                        <div className='row' key={key}>
-                            <div className='label' />
-                            <div className='col'>
-                                <div className='text'>
-                                    <h5>Our</h5>
-                                    <h4>{key}</h4>
-                                    <p>{value.text}</p>
-                                    <button 
-                                        className='button' 
-                                        onClick={() => navigate(`/about`)}
-                                    >
-                                        Learn More
-                                    </button>
-                                </div>
-                            </div>
-                            <div className='col'>
-                                <div className='image'>
-                                    <img className='image' src={value.image} />
-                                </div>
+            {Object.entries(aboutVars).map(([key, value]) => {
+                return (
+                    <div className='row' key={key}>
+                        <div className='col'>
+                            <div className='image'>
+                                <img className='image' src={value.image} />
                             </div>
                         </div>
-                    )
-                })}
-            </div>
+                        <div className='col'>
+                            <div className='text'>
+                                <h5>Our</h5>
+                                <h4>{key}</h4>
+                                <p>{value.text}</p>
+                                <button 
+                                    className='button' 
+                                    onClick={() => navigate(`/about`)}
+                                >
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                )
+            })}
         </div>
     )
 }
