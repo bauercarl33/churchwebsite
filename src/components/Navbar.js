@@ -13,6 +13,8 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     const [click, setClick] = useState(false)
+    const [scrollY, setScrollY] = useState(0)
+    const [navColor, setNavColor] = useState('transparent')
     const [activeLink, setActiveLink] = useState('#home')
 
     const closeMenu = (hash) => {
@@ -21,6 +23,7 @@ const Navbar = () => {
     }
     const handleClick = () => setClick(!click)
     const handleLink = () => setActiveLink(location.hash.substring(1)) 
+
     
     useEffect(() => {
         const hash = location.hash.replace('#', '');
@@ -36,6 +39,34 @@ const Navbar = () => {
         }
     }, [location]);
 
+
+    useEffect(() => {
+        const handleScroll = () => {
+          const scrollY = window.scrollY || document.documentElement.scrollTop;
+          setScrollY(scrollY);
+
+          if (scrollY > window.innerHeight * 0.2) {
+            setNavColor('var(--secondary-dark)');
+          } else {
+            setNavColor('transparent');
+          }
+
+        };
+
+        if (click && (window.innerWidth <= 960)) {
+            setNavColor('var(--secondary-dark)');
+        } else if (scrollY < window.innerHeight * 0.2) {
+            setNavColor('transparent')
+        }
+    
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, [click]);
+
+
     useEffect(() => {
         if (click) {
             document.body.style.overflow = 'hidden';
@@ -48,8 +79,15 @@ const Navbar = () => {
         };
     }, [click]);
 
+
     return (
-        <div className='header'>
+        <div 
+            className='header'
+            style={{
+                backgroundColor: navColor,
+                transition: '0.4s'
+            }}    
+        >
             <nav className='navbar'>
                 <RouterLink to='/' onClick={closeMenu} className='logo'>
                     St. Mary
