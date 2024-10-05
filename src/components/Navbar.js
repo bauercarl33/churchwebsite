@@ -85,7 +85,7 @@ const Navbar = () => {
             className='header'
             style={{
                 backgroundColor: navColor,
-                transition: '0.4s'
+                transition: '0.5s'
             }}    
         >
             <nav className='navbar'>
