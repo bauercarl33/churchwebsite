@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
-import '../css/navbar.css'
+import './navbar.css'
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
 import { Events, Link as ScrollLink, scroller } from 'react-scroll'
 import { AnimatePresence } from 'framer-motion'

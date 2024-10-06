@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
 
-import { aboutVars } from '../vars/AboutVars'
+import { aboutVars } from './AboutVars'
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-import '../css/about.css'
+import './about.css'
 
 
 const About = () => {     

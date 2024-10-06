@@ -8,7 +8,7 @@
 
 .bulletin .parallax-img {
     content: '';
-    background: url('../images/bgimg2.jpg') no-repeat center center/cover;
+    background: url('../../images/bgimg2.jpg') no-repeat center center/cover;
     min-height: 100%;
     width: 100%;
     position: absolute;

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 
-import '../css/bulletin.css'
+import './bulletin.css'
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Bulletin = () => {

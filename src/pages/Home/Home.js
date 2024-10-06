@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 
-import '../css/home.css'
+import './home.css'
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Home = () => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import '../css/calendar.css'
+import './calendar.css'
 
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 

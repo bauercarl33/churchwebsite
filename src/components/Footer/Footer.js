@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaPhoneAlt, FaFax, FaFacebook, FaInstagram, FaEnvelope, FaTruck } from 'react-icons/fa'
 import { FaLocationDot } from 'react-icons/fa6'
 
-import '../css/footer.css'
+import './footer.css'
 
 const Footer = () => {
   const navigate = useNavigate()

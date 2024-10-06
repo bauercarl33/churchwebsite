@@ -30,7 +30,7 @@
     height: 100%;
     background-size: cover;
     background-position: center center;
-    background-image: url('../images/church-home.jpg');
+    background-image: url('../../images/church-home.jpg');
     transform: translateZ(0);
     will-change: transform;
 }  
@@ -45,6 +45,7 @@
     justify-content: center;
     position: relative;
     padding: var(--space-3xl);
+    background-color: var(--overlay);
 }
 
 @media screen and (max-width: 960px) {

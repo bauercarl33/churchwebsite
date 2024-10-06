@@ -3,9 +3,9 @@ import {Link, useLocation} from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
 import { motion, useTransform, useScroll } from "framer-motion";
 
-import bgimg from '../images/bgimg.jpg'
-import '../css/aboutmore.css'
-import ScrollForMore from '../components/ScrollForMore';
+import bgimg from '../../images/bgimg.jpg'
+import './aboutmore.css'
+import ScrollForMore from '../../components/ScrollForMore';
 
 
 const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };

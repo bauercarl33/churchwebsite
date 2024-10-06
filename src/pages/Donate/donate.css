@@ -19,3 +19,20 @@
     padding: var(--space-m);
 }
 
+.donate .container .buttons {
+    width: fit-content;
+    height: fit-content;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    border-radius: 20%/50%;
+}
+
+.donate .container .buttons .button {
+    width: 40px;
+}
+
+.donate .container .buttons .button svg {
+    width: inherit;
+}
