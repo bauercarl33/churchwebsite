@@ -23,7 +23,6 @@ const Navbar = () => {
 
     const closeMenu = (hash) => {
         setClick(false)
-        navigate(`/#${hash}`)   
     }
     const handleClick = () => setClick(!click)
     const handleLink = (link) => setActiveLink('/' + link) 
@@ -114,7 +113,7 @@ const Navbar = () => {
                 </div>
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     {Object.entries(pages).map(([name, link]) => (
-                        <li className='nav-item' key={name} onClick={handleClick}>
+                        <li className='nav-item' key={name} onClick={closeMenu}>
                             {/* <ScrollLink
                                 to={section}
                                 smooth={true}
