@@ -11,9 +11,6 @@ import Footer from './components/Footer/Footer'
 
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
-import AboutMore from './pages/AboutMore/AboutMore'
-import Calendar from './pages/Calendar/Calendar'
-import Bulletin from './pages/Bulletin/Bulletin';
 import Donate from './pages/Donate/Donate';
 
 import { AnimatePresence } from 'framer-motion'
@@ -27,17 +24,8 @@ function App() {
     <div className='app'>
         <Navbar />
         <Routes location={location} key={location.key}>
-          <Route
-            path='/'
-            element={
-              <>
-                <Home />
-                <About  />
-                <Calendar />
-              </>
-            }
-          />
-          <Route exact path='/about' element={<AboutMore />} />
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/about' element={<About />} />
           <Route exact path='/donate' element={<Donate />} />
         </Routes>
         <Footer />

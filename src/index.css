@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400..700&display=swap');
 
 :root {
   --bg-color: rgb(241, 231, 220);
@@ -70,27 +70,28 @@ code {
 
 p {
   font-size: var(--step-0);
-  font-weight: 300;
+  font-weight: 400;
+  opacity: 0.7;
 }
 h6 {
   font-size: var(--step-1);
-  font-weight: 400;
+  font-weight: 500;
 }
 h5 {
   font-size: var(--step-2);
-  font-weight: 400;
+  font-weight: 700;
 }
 h4 {
   font-size: var(--step-3);
-  font-weight: 400;
+  font-weight: 700;
 }
 h3 {
   font-size: var(--step-4);
-  font-weight: 400;
+  font-weight: 500;
 }
 h2 {
   font-size: var(--step-5);
-  font-weight: 400;
+  font-weight: 500;
 }
 h1 {
   font-size: var(--step-6);

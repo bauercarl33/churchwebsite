@@ -85,16 +85,16 @@
 }
 
 .bold {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .footer .container .info span .icon {
     margin: 0 var(--space-2xs) 0 0;
-    min-width: 24px;
 }
 
 .footer .bottom {
     max-width: 1440px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

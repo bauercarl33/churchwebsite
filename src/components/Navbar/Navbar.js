@@ -7,7 +7,11 @@ import { Events, Link as ScrollLink, scroller } from 'react-scroll'
 import { AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
-    const sections = ['home', 'about', 'calendar']
+    const pages = {
+        'Home': '/',
+        'About': '/about',
+        'Calendar': '/calendar'
+    }
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -22,22 +26,22 @@ const Navbar = () => {
         navigate(`/#${hash}`)   
     }
     const handleClick = () => setClick(!click)
-    const handleLink = () => setActiveLink(location.hash.substring(1)) 
+    const handleLink = (link) => setActiveLink('/' + link) 
 
     
-    useEffect(() => {
-        const hash = location.hash.replace('#', '');
-        if (hash) {
-            scroller.scrollTo(hash, {
-                duration: 800,
-                delay: 0,
-                smooth: 'easeInOutQuart',
-                offset: 0,
-            });
-        } else {
-            window.scroll(0, 0);
-        }
-    }, [location]);
+    // useEffect(() => {
+    //     const hash = location.hash.replace('#', '');
+    //     if (hash) {
+    //         scroller.scrollTo(hash, {
+    //             duration: 800,
+    //             delay: 0,
+    //             smooth: 'easeInOutQuart',
+    //             offset: 0,
+    //         });
+    //     } else {
+    //         window.scroll(0, 0);
+    //     }
+    // }, [location]);
 
 
     useEffect(() => {
@@ -109,9 +113,9 @@ const Navbar = () => {
                         />)}
                 </div>
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
-                    {sections.map((section, i) => (
-                        <li className='nav-item' key={i} onClick={handleLink}>
-                            <ScrollLink
+                    {Object.entries(pages).map(([name, link]) => (
+                        <li className='nav-item' key={name} onClick={handleClick}>
+                            {/* <ScrollLink
                                 to={section}
                                 smooth={true}
                                 duration={800}
@@ -121,7 +125,8 @@ const Navbar = () => {
                                 activeClass='active'
                             >
                                 {section.substring(0, 1).toUpperCase() + section.substring(1)}
-                            </ScrollLink>
+                            </ScrollLink> */}
+                            <RouterLink to={link}>{name}</RouterLink>
                         </li>
                     ))}
                 </ul>
