@@ -1,12 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400..700&display=swap');
+
 :root {
-  --primary-color: #375eff;
-  --primary-dark: #0435ff;
-  --secondary-color: #c9c9c9;
-  --secondary-dark:#898989;
-  --overlay: rgba(0,0,0,.5);
-  --romania_blue: #002B7F;
-  --romania_yellow: #FFFF00;
-  --romania_red: #CE1126;
+  --bg-color: rgb(241, 231, 220);
+  --text-color: #000;
+  --primary-color: rgb(247, 108, 93);
+  --primary-dark: rgb(196, 68, 54);
+  --secondary-color: rgb(53, 68, 79);
+  --secondary-dark: rgb(26, 44, 55);
+  --overlay: rgba(0,0,0,0.5);
+
+  --step--2: clamp(0.5556rem, 0.7143rem + -0.0992vw, 0.6944rem);
+  --step--1: clamp(0.8333rem, 0.8333rem + 0vw, 0.8333rem);
+  --step-0: clamp(1rem, 0.9643rem + 0.1786vw, 1.25rem);
+  --step-1: clamp(1.2rem, 1.1036rem + 0.4821vw, 1.875rem);
+  --step-2: clamp(1.44rem, 1.2439rem + 0.9804vw, 2.8125rem);
+  --step-3: clamp(1.728rem, 1.3722rem + 1.7791vw, 4.2188rem);
+  --step-4: clamp(2.0736rem, 1.4658rem + 3.0389vw, 6.3281rem);
+  --step-5: clamp(2.4883rem, 1.4878rem + 5.0028vw, 9.4922rem);
+  --step-6: clamp(2.986rem, 1.3785rem + 8.0374vw, 14.2383rem);
+
+/* @link https://utopia.fyi/space/calculator?c=320,16,1.2,2560,20,1.5,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|4,s-l&g=s,l,xl,12 */
+
+  --space-3xs: clamp(0.25rem, 0.2411rem + 0.0446vw, 0.3125rem);
+  --space-2xs: clamp(0.5rem, 0.4821rem + 0.0893vw, 0.625rem);
+  --space-xs: clamp(0.75rem, 0.7232rem + 0.1339vw, 0.9375rem);
+  --space-s: clamp(1rem, 0.9643rem + 0.1786vw, 1.25rem);
+  --space-m: clamp(1.5rem, 1.4464rem + 0.2679vw, 1.875rem);
+  --space-l: clamp(2rem, 1.9286rem + 0.3571vw, 2.5rem);
+  --space-xl: clamp(3rem, 2.8929rem + 0.5357vw, 3.75rem);
+  --space-2xl: clamp(4rem, 3.8571rem + 0.7143vw, 5rem);
+  --space-3xl: clamp(4rem, 3.8571rem + 0.7143vw, 5rem);
+
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.25rem, 0.1964rem + 0.2679vw, 0.625rem);
+  --space-2xs-xs: clamp(0.5rem, 0.4375rem + 0.3125vw, 0.9375rem);
+  --space-xs-s: clamp(0.75rem, 0.6786rem + 0.3571vw, 1.25rem);
+  --space-s-m: clamp(1rem, 0.875rem + 0.625vw, 1.875rem);
+  --space-m-l: clamp(1.5rem, 1.3571rem + 0.7143vw, 2.5rem);
+  --space-l-xl: clamp(2rem, 1.75rem + 1.25vw, 3.75rem);
+  --space-xl-2xl: clamp(3rem, 2.7143rem + 1.4286vw, 5rem);
+  --space-2xl-3xl: clamp(4rem, 3.8571rem + 0.7143vw, 5rem);
+
+  /* Custom pairs */
+  --space-s-l: clamp(1rem, 0.7857rem + 1.0714vw, 2.5rem);
 }
 
 * {
@@ -17,18 +53,49 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.2rem;
-  line-height: 1.2;
+  /* line-height: 1.2; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+  font-size: var(--step-0);
+  font-weight: 400;
+  opacity: 0.7;
+}
+h6 {
+  font-size: var(--step-1);
+  font-weight: 500;
+}
+h5 {
+  font-size: var(--step-2);
+  font-weight: 700;
+}
+h4 {
+  font-size: var(--step-3);
+  font-weight: 700;
+}
+h3 {
+  font-size: var(--step-4);
+  font-weight: 500;
+}
+h2 {
+  font-size: var(--step-5);
+  font-weight: 500;
+}
+h1 {
+  font-size: var(--step-6);
+  font-weight: 500;
 }
 
 ul {
@@ -39,27 +106,12 @@ a {
   text-decoration: none;
 }
 
-.button {
-  padding: 17px 28px;
-  font-size: 1.2rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: #f8f8f8;
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition-duration: 0.4s;
+button {
+  font-family: 'Montserrat', sans-serif;
 }
-
-.button:hover {
-  background-color: var(--primary-dark);
-}
-
 
 .line {
   width: 200px;
   height: 2px;
-  margin: 5px auto;
   background-color: var(--primary-color);
 }

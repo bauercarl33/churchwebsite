@@ -9,10 +9,13 @@ import {
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import About from "./pages/About/About";
 import AboutMore from "./pages/AboutMore";
 import Bulletin from "./pages/Bulletin";
-import Footer from "./pages/Footer";
+import Donate from "./pages/Donate/Donate";
 import AdminPage from "./pages/admin";
+import Footer from "./pages/Footer";
+
 import { AnimatePresence } from "framer-motion";
 
 function App() {
@@ -23,17 +26,9 @@ function App() {
       <Navbar />
       {/* <AnimatePresence mode='wait' initial={false}> */}
       <Routes location={location} key={location.key}>
-        <Route
-          path="/"
-          element={
-            <>
-              <Home />
-              <About />
-              <Bulletin />
-            </>
-          }
-        />
-        <Route exact path="/about" element={<AboutMore />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/donate" element={<Donate />} />
         <Route exact path="/admin" element={<AdminPage />} />
       </Routes>
       <Footer />
