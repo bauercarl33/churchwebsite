@@ -6,14 +6,15 @@ import {
   useLocation
 } from 'react-router-dom'
 
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import About from './pages/About'
-import AboutMore from './pages/AboutMore'
-import Bulletin from './pages/Bulletin';
-import Footer from './pages/Footer'
+import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
+
+import Home from './pages/Home/Home'
+import About from './pages/About/About'
+import Donate from './pages/Donate/Donate';
 
 import { AnimatePresence } from 'framer-motion'
+
 
 
 function App() {
@@ -22,22 +23,12 @@ function App() {
   return (
     <div className='app'>
         <Navbar />
-        {/* <AnimatePresence mode='wait' initial={false}> */}
         <Routes location={location} key={location.key}>
-          <Route
-            path='/'
-            element={
-              <>
-                <Home />
-                <About  />
-                <Bulletin />
-              </>
-            }
-          />
-          <Route exact path='/about' element={<AboutMore />} />
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/about' element={<About />} />
+          <Route exact path='/donate' element={<Donate />} />
         </Routes>
         <Footer />
-        {/* </AnimatePresence> */}
     </div>
   );
 }

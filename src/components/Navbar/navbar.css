@@ -1,0 +1,161 @@
+.header {
+    position: fixed;
+    height: 80px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: .3s ease-in;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.header .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin: auto;
+    height: 100%;
+    padding: 0 var(--space-s);
+}
+
+.header .navbar img {
+    width: 250px;
+    height: auto;
+}
+
+.header .nav-menu {
+    display: flex;
+}
+
+.header .nav-item {
+    padding: var(--space-s);
+}
+
+.header .nav-item a {
+    position: relative;
+    transition: all .5s;
+    color: var(--bg-color);
+    font-weight: 400;
+}
+
+.header .nav-item a:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.header .nav-item a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.header .logo {
+    color: var(--bg-color);
+    font-size: var(--step-1);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.hamburger {
+    height: 100%;
+    width: auto;
+    display: none;
+    color: var(--bg-color);
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+    column-gap: var(--space-m);
+}
+
+.hamburger-icon {
+    color: var(--bg-color);
+    position: relative;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.navbar .button {
+    width: fit-content;
+    padding: 8px 20px;
+    font-weight: 400;
+    font-size: var(--step-0);
+    color: var(--bg-color);
+    background-color: transparent;
+    border: 3px solid var(--primary-color);
+    border-radius: 20%/50%;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.navbar .button:hover {
+    background-color: var(--primary-color);
+}
+
+
+@media screen and (max-width:960px) {
+    .header {
+        max-width: 100%;
+    }
+
+    .header .navbar {
+        max-width: 100%;
+    }
+
+    .navbar .button:last-child {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .header .nav-menu {
+        position: fixed;
+        width: 100%;
+        height: calc(100vh - 80px);
+        top: 80px;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        visibility: hidden;
+        z-index: -5;
+        text-align: center;
+        transition: .4s;
+        padding: var(--space-l) 0;
+    }
+
+    .header .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        background-color: var(--secondary-color);
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .nav-item {
+        margin: 1.5rem 0;
+    }
+
+    .header .navbar img {
+        width: 150px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

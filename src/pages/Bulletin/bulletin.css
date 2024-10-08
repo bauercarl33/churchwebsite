@@ -8,7 +8,7 @@
 
 .bulletin .parallax-img {
     content: '';
-    background: url('../images/bgimg2.jpg') no-repeat center center/cover;
+    background: url('../../images/bgimg2.jpg') no-repeat center center/cover;
     min-height: 100%;
     width: 100%;
     position: absolute;
@@ -46,13 +46,6 @@
     margin-bottom: 50px;
 }
 
-.bulletin .container .content .title h1 {
-    font-size: 5rem;
-    font-weight: 100;
-    letter-spacing: -2px;
-    padding: 1rem;
-}
-
 .bulletin .container .content ul {
     align-items: top;
     justify-content: left;
@@ -63,13 +56,10 @@
 .bulletin .container .content ul li {
     margin-bottom: 1rem;
 }
-.bulletin .container .content ul li h3 {
-    font-weight: 400;
-}
+
 .bulletin .container .content ul li p {
-    font-weight: 100;
     text-indent: 1rem;
-}
+} 
 
 
 @media screen and (max-width: 1600px) {
