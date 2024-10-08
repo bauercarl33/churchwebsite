@@ -6,15 +6,13 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
-import AboutMore from "./pages/AboutMore";
-import Bulletin from "./pages/Bulletin";
+import Bulletin from "./pages/Bulletin/Bulletin";
 import Donate from "./pages/Donate/Donate";
 import AdminPage from "./pages/admin";
-import Footer from "./pages/Footer";
+import Footer from "./components/Footer/Footer";
 
 import { AnimatePresence } from "framer-motion";
 
