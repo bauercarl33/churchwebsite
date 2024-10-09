@@ -8,7 +8,6 @@ import Welcome from './Welcome/Welcome';
 const Home = () => {
     return (
         <>
-            
             <Hero />
             <Welcome />
             <ColSection />            

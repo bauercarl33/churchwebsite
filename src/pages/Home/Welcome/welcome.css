@@ -29,7 +29,7 @@
 .welcome p {
     max-width: 600px;
     opacity: 0.8;
-    text-align: center;
+    line-height: var(--step-1);
 }
 
 .welcome .container {
@@ -37,7 +37,7 @@
     max-width: 1440px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     column-gap: var(--space-3xl);
     row-gap: var(--space-3xl);
@@ -57,10 +57,15 @@
 }
 
 .welcome .container .card .icon {
-    color: rgb(245, 204, 69);
+    /* color: rgb(245, 204, 69); */
     margin-bottom: var(--space-l);
 }
 
 .welcome .container .card h5 {
     margin-bottom: var(--space-s);
+    white-space: nowrap;
+}
+
+.welcome .container .card p {
+    text-align: left;
 }

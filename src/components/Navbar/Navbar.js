@@ -19,28 +19,29 @@ const Navbar = () => {
     const [click, setClick] = useState(false)
     const [scrollY, setScrollY] = useState(0)
     const [navColor, setNavColor] = useState('transparent')
-    const [activeLink, setActiveLink] = useState('#home')
+    const [activeLink, setActiveLink] = useState('/')
 
-    const closeMenu = (hash) => {
+    const closeMenu = (link) => {
         setClick(false)
     }
     const handleClick = () => setClick(!click)
     const handleLink = (link) => setActiveLink('/' + link) 
 
     
-    // useEffect(() => {
-    //     const hash = location.hash.replace('#', '');
-    //     if (hash) {
-    //         scroller.scrollTo(hash, {
-    //             duration: 800,
-    //             delay: 0,
-    //             smooth: 'easeInOutQuart',
-    //             offset: 0,
-    //         });
-    //     } else {
-    //         window.scroll(0, 0);
-    //     }
-    // }, [location]);
+    useEffect(() => {
+        // const hash = location.hash.replace('#', '');
+        // if (hash) {
+        //     scroller.scrollTo(hash, {
+        //         duration: 800,
+        //         delay: 0,
+        //         smooth: 'easeInOutQuart',
+        //         offset: 0,
+        //     });
+        // } else {
+        setActiveLink(location.pathname)
+            window.scroll(0, 0);
+        // }
+    }, [location]);
 
 
     useEffect(() => {
@@ -113,7 +114,11 @@ const Navbar = () => {
                 </div>
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     {Object.entries(pages).map(([name, link]) => (
-                        <li className='nav-item' key={name} onClick={closeMenu}>
+                        <li 
+                            key={name}
+                            className='nav-item' 
+                            onClick={() => closeMenu(link)}
+                        >
                             {/* <ScrollLink
                                 to={section}
                                 smooth={true}
@@ -125,7 +130,12 @@ const Navbar = () => {
                             >
                                 {section.substring(0, 1).toUpperCase() + section.substring(1)}
                             </ScrollLink> */}
-                            <RouterLink to={link}>{name}</RouterLink>
+                            <RouterLink 
+                                className={activeLink === link ? 'active' : ''} 
+                                to={link}
+                            >
+                                {name}
+                            </RouterLink>
                         </li>
                     ))}
                 </ul>

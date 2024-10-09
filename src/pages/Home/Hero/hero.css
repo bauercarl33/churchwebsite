@@ -1,60 +1,42 @@
 .hero {
-    background-color: var(--overlay);
-    color: var(--bg-color);
     height: 100vh;
-    width: 100%;
     position: relative;
+    display: flex;
 }
 
-.e-with-fixed-bg {
-    width: 100%;
+.hero .bg {
+    --parallax-speed: 5;
     height: 100%;
-    position: relative;
-}
-  
-.bg-wrap {
-    clip: rect(0, auto, auto, 0);
+    width: 100%;
+    z-index: -99;
+    object-fit: cover;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
-  
-.bg {
-    position: fixed;
-    display: block;
-    top: 0;
-    left: 0;
+
+.hero .overlay {
+    --parallax-speed: 5;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center center;
-    background-image: url('../../../images/church-home.jpg');
-    transform: translateZ(0);
-    will-change: transform;
-}  
+    position: absolute;
+    background-color: var(--overlay);
+}
 
 .hero .content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: var(--space-m);
-    background-color: var(--overlay);
+    width: fit-content;
+    height: fit-content;
+    --parallax-speed: 4;
+    color: var(--bg-color);
+    margin: auto;
+    text-align: center;
 }
 
-@media screen and (max-width: 960px) {
-    .hero .content {
-        justify-content: center;
-        align-items: center;
-    }
+.hero > * {
+    animation: parallax linear;
+    animation-timeline: scroll();
+}
 
-    .hero .content .welcome {
-        width: 100%;
-        max-width: 600px;
+@keyframes parallax {
+    to {
+        transform: translateY(calc(var(--parallax-speed) * 200px));
     }
 }
