@@ -12,8 +12,8 @@ const Footer = () => {
       <div className='container'>
           <div className='logo'>
             <Link to='/' aria-label='Go back to home page'>
-              <h3>St. Mary</h3>
-              <h4>Orthodox Church</h4>
+              <h4>St. Mary</h4>
+              <h5>Orthodox Church</h5>
             </Link>
           </div>
           <div className='info'>

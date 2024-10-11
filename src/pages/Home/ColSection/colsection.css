@@ -1,6 +1,6 @@
 .col-section {
     background-color: var(--bg-color);
-    padding: 8rem 0 ;
+    padding: 8rem 0 8rem;
     width: 100%;
     height: 100%;
     display: flex;
@@ -62,10 +62,13 @@
 
 .image {
     width: 100%;
-    height: 360px;
+    /* height: 360px; */
+    aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 8px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 50%;
+    /* border: 8px var(--secondary-color) solid; */
+    box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+    /* box-shadow: rgba(0, 0, 0, 0.5) -20px 20px; */
 }
 
 .col-section .row .col .button {
@@ -104,7 +107,7 @@
     }
 
     .col-section .row {
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 
     .col-section .row .col {
@@ -119,8 +122,8 @@
         margin-bottom: var(--space-m);
     }
 
-    .col-section .row .col .image {
-        max-height: 300px;
-        margin-bottom: var(--space-l);
+    .col-section .row .col:nth-child(odd) {
+        max-width: 500px;
+        margin-top: var(--space-l);
     }
 }
