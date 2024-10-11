@@ -11,7 +11,7 @@ const Hero = () => {
             <div className='overlay' />
             <div className='content'>
                 <h2>St. Mary</h2>
-                <h4>Orthodox Church</h4>
+                <h3>Orthodox Church</h3>
             </div>
         </div>
     )

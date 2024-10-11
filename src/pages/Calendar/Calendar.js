@@ -1,13 +1,52 @@
 import { useEffect, useState } from 'react'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { useQuery, useMutation } from '@tanstack/react-query'
+
 import './calendar.css'
 
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+const url = "https://ritymdmzg4.execute-api.us-east-1.amazonaws.com/prod/getChurchCalendar";
 
 const Calendar = () => {
     const [timeFrame, setTimeFrame] = useState('month');
     const [grid, setGrid] = useState([6, 7]);
     const [calendarDays, setCalendarDays] = useState([]);
     const [offset, setOffset] = useState(0);
+    // const {data, isLoading} = useQuery({
+    //     queryFn: () => fetch(url),
+    //     queryKey: ["calendar"]
+    // });
+
+    const mutation = useMutation({
+        mutationFn: () => {fetch(url)}
+    })
+    console.log(mutation)
+
+    
+
+
+    // async function getData() {
+    //     try {
+    //         const response = await fetch(url, {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //                 startDate: "2025-09-01",
+    //                 endDate: "2025-09-08",
+    //             }),
+    //         });
+    //         if (!response.ok) {
+    //             throw new Error("STATUS: ", response.status)
+    //         }
+
+    //         const json = await response.json();
+    //         console.log(json)
+    //     } catch (error) {
+    //         console.error(error.message);
+    //     }
+    // }
+    // getData();
 
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 
@@ -47,7 +86,6 @@ const Calendar = () => {
         
         return false;
     }
-
     
     const handleCalendarDays = (mOffset = 0) => {
         let date = new Date();
@@ -126,6 +164,9 @@ const Calendar = () => {
 
     return (
         <div className='calendar'>
+            {/* {data?.map((item) => {
+                console.log(item);
+            })} */}
             <div className='container'>
                 <div className='head'>
                     <h5 id='cal-title'>
@@ -190,11 +231,11 @@ const Calendar = () => {
                                 {day.number}
                                 {checkEvent(day.year, day.month, day.number) ?
                                 <div className='event'>
-                                    {events[day.year][day.month][day.number].map((item) => {
+                                    {/* {events[day.year][day.month][day.number].map((item) => {
                                         return(
                                             <p key={item}>{item}</p>
                                         )
-                                    })}
+                                    })} */}
                                 </div> : ''}
                             </div>
                         )

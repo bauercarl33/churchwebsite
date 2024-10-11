@@ -18,12 +18,17 @@ const ColSection = () => {
                     <div className='row' key={key}>
                         <div className='col'>
                             <div className='image'>
-                                <img className='image' src={value.image} />
+                                <img 
+                                    className='image' 
+                                    src={value.image} 
+                                    loading='lazy' 
+                                    alt={key} 
+                                />
                             </div>
                         </div>
                         <div className='col'>
                             <div className='text'>
-                                <h5>Our</h5>
+                                <span className='h5'>Our</span>
                                 <h4>{key}</h4>
                                 <p>{value.text}</p>
                                 <button 

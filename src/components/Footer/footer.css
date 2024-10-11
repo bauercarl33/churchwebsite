@@ -88,6 +88,10 @@
     font-weight: 700;
 }
 
+.no-bold {
+    display: hidden;
+}
+
 .footer .container .info span .icon {
     margin: 0 var(--space-2xs) 0 0;
     min-width: 24px;

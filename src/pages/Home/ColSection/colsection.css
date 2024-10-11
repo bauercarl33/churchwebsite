@@ -53,9 +53,9 @@
     color: var(--secondary-color);
 }
 
-.col-section .row .col h5 {
+.col-section .row .col .h5 {
     font-size: var(--step-0);
-    /* font-weight: 700; */
+    font-weight: 500;
     margin-bottom: 0;
     color: var(--secondary-color);
 }
