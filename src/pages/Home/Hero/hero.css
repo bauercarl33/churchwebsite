@@ -1,5 +1,5 @@
 .hero {
-    height: 100vh;
+    min-height: 60vh;
     position: relative;
     display: flex;
 }
@@ -28,6 +28,11 @@
     color: var(--bg-color);
     margin: auto;
     text-align: center;
+    padding: var(--space-xs);
+}
+
+.hero .content p {
+    margin: var(--space-s);
 }
 
 .hero > * {
@@ -35,8 +40,21 @@
     animation-timeline: scroll();
 }
 
+.hero .curve {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    z-index: 5;
+}
+
 @keyframes parallax {
     to {
         transform: translateY(calc(var(--parallax-speed) * 200px));
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .hero {
+        min-height: 90vh;
     }
 }
