@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import AwsImage from "../components/AwsImage";
 
 const FolderImages = () => {
   const { folderId } = useParams();
   const [images, setImages] = useState([]);
-  const apiKey = "AIzaSyBvRHQRNAiG-_orWVTyh54a-7IiI0lT8eo";
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const apiKey = process.env.API_KEY; // Access the API key from the .env file (in the root dir of the project)
 
   const fetchImages = async () => {
     const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${apiKey}&fields=files(id,name,mimeType)`;
@@ -23,6 +25,9 @@ const FolderImages = () => {
       }
     } catch (error) {
       console.error("Error fetching images:", error);
+      setError("Failed to load images.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,19 +35,26 @@ const FolderImages = () => {
     fetchImages();
   }, [folderId]);
 
+  if (loading) return <CircularProgress />;
+  if (error) return <Typography color="error">{error}</Typography>;
+
   return (
     <Box>
-      {images.map((image) => (
-        <Box key={image.id} mb={2}>
-          <AwsImage
-            imageId={image.id}
-            style={{
-              width: "100%", // Make the image fit the width of the screen
-              height: "auto", // Maintain aspect ratio
-            }}
-          />
-        </Box>
-      ))}
+      {images.length > 0 ? (
+        images.map((image) => (
+          <Box key={image.id} mb={2}>
+            <AwsImage
+              imageId={image.id}
+              style={{
+                width: "100%", // This ensures the image fits the width of the screen
+                height: "auto", // for the aspect ratio
+              }}
+            />
+          </Box>
+        ))
+      ) : (
+        <Typography>No images found in this folder.</Typography>
+      )}
     </Box>
   );
 };
