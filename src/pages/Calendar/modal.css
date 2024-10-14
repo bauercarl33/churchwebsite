@@ -1,0 +1,30 @@
+.modal {
+    width: fit-content;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    position: absolute;
+    padding: var(--space-s) var(--space-xs);
+    box-shadow: rgba(149, 157, 165, 0.4) 0px 8px 24px;
+    transition: 0.3s;
+    translate: 4px calc(1.2rem - 100%);
+}
+
+.modal .close {
+    position: absolute;
+    top: var(--space-xs);
+    right: var(--space-xs);
+    background: transparent;
+    border: transparent;
+    border-radius: 50%;
+    color: rgb(125, 125, 125);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.modal .close:hover {
+    color: rgb(201, 201, 201);
+}
+
+.modal > h6 {
+    margin-right: var(--space-2xl);
+}

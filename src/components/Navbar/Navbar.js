@@ -70,19 +70,22 @@ const Navbar = () => {
         };
       }, [click]);
 
-
     useEffect(() => {
+        const preventDefault = (e) => e.preventDefault();
+    
         if (click) {
             document.body.style.overflow = 'hidden';
+            document.body.addEventListener('touchmove', preventDefault, { passive: false });
         } else {
             document.body.style.overflow = '';
+            document.body.removeEventListener('touchmove', preventDefault);
         }
-
+    
         return () => {
             document.body.style.overflow = '';
+            document.body.removeEventListener('touchmove', preventDefault);
         };
     }, [click]);
-
 
     return (
         <div 

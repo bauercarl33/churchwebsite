@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import './welcome.css'
-import { FaCalendar, FaChevronRight, FaLocationDot } from 'react-icons/fa6'
-import { FaDoorOpen } from 'react-icons/fa'
+import { FaChevronRight } from 'react-icons/fa6'
 
 const Welcome = () => {
   return (

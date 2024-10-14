@@ -3,88 +3,71 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { useQuery, useMutation } from '@tanstack/react-query'
 
 import './calendar.css'
+import MonthView from './MonthView';
+import { months } from './CalVars'
 
 const url = "https://ritymdmzg4.execute-api.us-east-1.amazonaws.com/prod/getChurchCalendar";
 
 const Calendar = () => {
     const [timeFrame, setTimeFrame] = useState('month');
-    const [grid, setGrid] = useState([6, 7]);
     const [calendarDays, setCalendarDays] = useState([]);
     const [offset, setOffset] = useState(0);
-    // const {data, isLoading} = useQuery({
-    //     queryFn: () => fetch(url),
-    //     queryKey: ["calendar"]
-    // });
-
-    const mutation = useMutation({
-        mutationFn: () => {fetch(url)}
-    })
-    console.log(mutation)
-
-    
+    const [formattedData, setFormattedData] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
 
 
-    // async function getData() {
-    //     try {
-    //         const response = await fetch(url, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify({
-    //                 startDate: "2025-09-01",
-    //                 endDate: "2025-09-08",
-    //             }),
-    //         });
-    //         if (!response.ok) {
-    //             throw new Error("STATUS: ", response.status)
-    //         }
-
-    //         const json = await response.json();
-    //         console.log(json)
-    //     } catch (error) {
-    //         console.error(error.message);
-    //     }
-    // }
-    // getData();
-
-    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-        'July', 'August', 'September', 'October', 'November', 'December'];
-
-    const events = {
-        2024 : {
-            8: {
-                30: [
-                    'Event A',
-                    'Event B',
-                    'Event C'
-                ]
-            },
-            9: {
-                1: [
-                    'Event A',
-                    'Event B',
-                    'Event C'
-                ],
-                10: [
-                    'Event A alksdhfkljahsdkljhf',
-                    'Event C'
-                ]
+    async function getData(year) {
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    startDate: `${year}-01-01`,
+                    endDate: `${year}-12-31`,
+                }),
+            });
+            if (!response.ok) {
+                throw new Error("STATUS: ", response.status)
             }
+
+            const json = await response.json();
+            let newJson = formatCalendarJson(json.body)
+            setFormattedData(newJson)
+            setIsLoaded(true)
+        } catch (error) {
+            console.error(error.message);
         }
     }
 
-    const checkEvent = (year, month, day) => {
-        if (year in events) {
-            if (month in events[year]) {
-                if (day in events[year][month]) {
-                    return true;
-                }
-        }
-        }
-        
-        return false;
+    const formatCalendarJson = (json) => {
+        let newJson = {}
+        json.map((item) => {
+            let summary = item.summary
+            let startDate = item.start.dateTime
+            let endDate = item.end.datetime
+            let timezone = "America/Chicago"
+            let location = item.location
+
+            let date = new Date(startDate)
+            let yy = date.getFullYear()
+            let mm = date.getMonth()
+            let dd = date.getDate()
+
+            if (!newJson[yy]) {
+                newJson[yy] = {}
+            }
+            if (!newJson[yy][mm]) {
+                newJson[yy][mm] = {}
+            }
+            if (!newJson[yy][mm][dd]) {
+                newJson[yy][mm][dd] = { events: [] }
+            }
+            newJson[yy][mm][dd].events.push(summary)
+        })
+
+        return newJson;
     }
     
     const handleCalendarDays = (mOffset = 0) => {
@@ -108,7 +91,7 @@ const Calendar = () => {
                 currentMonth: (firstDayOfMonth.getMonth() === date.getMonth()),
                 date: (new Date(firstDayOfMonth)),
                 month: firstDayOfMonth.getMonth(),
-                number: firstDayOfMonth.getDate(),
+                day: firstDayOfMonth.getDate(),
                 selected: (firstDayOfMonth.toDateString() === date.toDateString()),
                 year: firstDayOfMonth.getFullYear()
             };
@@ -125,21 +108,6 @@ const Calendar = () => {
 
         setCalendarDays(currentDays);
     }    
-
-    const handleTimeFrame = (id) => {
-        if (id === timeFrame) {
-            return;
-        }
-
-        setTimeFrame(id)
-        if (id === 'month') {
-            setGrid([6, 7]);
-        } else if (id === 'week') {
-            setGrid([1, 7]);
-        } else {
-            setGrid([1, 1]);
-        }
-    }
 
     const handleToday = () => {
         setOffset(0);
@@ -162,86 +130,35 @@ const Calendar = () => {
         handleCalendarDays(offset);
     }, [])
 
+    useEffect(() => {
+        getData(2024);
+    }, [])
+
     return (
         <div className='calendar'>
-            {/* {data?.map((item) => {
-                console.log(item);
-            })} */}
-            <div className='container'>
-                <div className='head'>
-                    <h5 id='cal-title'>
-                        {calendarDays.length > 15 ? `${months[calendarDays[15].month]} ${calendarDays[15].year}` : 'Loading...'}
-                    </h5>
-                    <div className='buttons'>
-                        <button className='button' onClick={handlePreviousMonth}>
-                            <FaAngleLeft />
-                        </button>
-                        <button className='button' onClick={handleToday}>
-                            Today
-                        </button>
-                        <button className='button' onClick={handleNextMonth}>
-                            <FaAngleRight />
-                        </button>
+            {isLoaded ?
+                <div className='container'>
+                    <div className='head'>
+                        <h5 id='cal-title'>
+                            {calendarDays.length > 15 ? `${months[calendarDays[15].month]} ${calendarDays[15].year}` : 'Loading...'}
+                        </h5>
+                        <div className='buttons'>
+                            <button className='button' onClick={handlePreviousMonth}>
+                                <FaAngleLeft />
+                            </button>
+                            <button className='button' onClick={handleToday}>
+                                Today
+                            </button>
+                            <button className='button' onClick={handleNextMonth}>
+                                <FaAngleRight />
+                            </button>
+                        </div>
                     </div>
-                    {/* <div className='buttons' id='time-span'>
-                        <button 
-                            onClick={() => handleTimeFrame('month')}
-                            className={timeFrame === 'month' ? 'selected' : 'button'}
-                        >
-                            Month
-                        </button>
-                        <button 
-                            onClick={() => handleTimeFrame('week')}
-                            className={timeFrame === 'week' ? 'selected' : 'button'}
-                        >
-                            Week
-                        </button>
-                        <button
-                            onClick={() => handleTimeFrame('day')}
-                            className={timeFrame === 'day' ? 'selected' : 'button'}
-                        >
-                            Day
-                        </button>
-                    </div> */}
+                    <MonthView calendarDays={calendarDays} formattedData={formattedData} />
                 </div>
-                <div className='week-header'>
-                    {daysOfWeek.map((day) => {
-                        if (timeFrame === 'month') {
-                            return (
-                                <div className='day-header' key={day}>{day}</div>
-                            )
-                        } else if (timeFrame === 'week') {
-                            return (
-                                <div className='day-header' key={day}>{day}</div>
-                            )
-                        }                      
-                    })}
-                </div>
-                <div className='grid'>
-                    {calendarDays.map((day, index) =>  {
-                        return (
-                            <div 
-                                className={
-                                    day.month !== calendarDays[15].month ? 
-                                        'cell not-curr' : day.selected ? 
-                                        'cell selected' : 'cell'
-                                } 
-                                key={index}
-                            >
-                                {day.number}
-                                {checkEvent(day.year, day.month, day.number) ?
-                                <div className='event'>
-                                    {/* {events[day.year][day.month][day.number].map((item) => {
-                                        return(
-                                            <p key={item}>{item}</p>
-                                        )
-                                    })} */}
-                                </div> : ''}
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
+                    :
+                <div>Loading...</div>
+            }
         </div>
     )
 }
