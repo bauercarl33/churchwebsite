@@ -29,11 +29,10 @@ const ColSection = () => {
                         </div>
                         <div className='col'>
                             <div className='text'>
-                                <span className='h5'>Our</span>
-                                <h4>{key}</h4>
+                                <h4>&nbsp;{key}</h4>
                                 <p>{value.text}</p>
                                 <button 
-                                    className='button' 
+                                    className='button empty' 
                                     onClick={() => navigate(`/about`)}
                                 >
                                     Learn More

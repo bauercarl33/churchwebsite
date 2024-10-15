@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: var(--secondary-color);
+    background-color: var(--bg-color);
     padding: var(--space-l);
 }
 
@@ -79,8 +79,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondary-dark);
-    color: var(--bg-color);
+    color: var(--text-color);
     border-left: 1px solid rgba(149, 157, 165, 0.7);
     border-top: 1px solid rgba(149, 157, 165, 0.7);
     border-bottom: 1px solid rgba(149, 157, 165, 0.7);
@@ -118,7 +117,7 @@
 }
 
 .calendar .container .grid .cell.selected {
-    background-color: rgb(247, 108, 93, 0.6);
+    background-color: #e7a95a88;
 }
 
 .calendar .container .grid .cell .event {
@@ -139,7 +138,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     opacity: 1;
 }
 

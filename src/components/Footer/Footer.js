@@ -31,7 +31,7 @@ const Footer = () => {
               )
             })}
             <button 
-              className='button' 
+              className='button filled' 
               onClick={() => navigate('/donate')}
               aria-label='Go to donation page'
             >

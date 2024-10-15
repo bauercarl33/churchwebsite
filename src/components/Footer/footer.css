@@ -1,15 +1,15 @@
 .footer {
     width: 100%;
     height: 100%;
-    background-color: var(--secondary-dark);
+    background-color: var(--primary-dark);
+    color: var(--bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
     align-self: flex-end;
-    color: white;
-    padding: 100px var(--space-xl);
+    padding: 100px var(--space-m);
 }
 
 .footer p {
@@ -20,10 +20,10 @@
     max-width: 1440px;
     display: flex;
     flex-direction: row;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    padding: var(--space-xl);
-    margin: 0 0 8px;
+    border-top: 1px solid var(--bg-color);
+    border-bottom: 1px solid var(--bg-color);
+    padding: var(--space-l) 0;
+    margin: 0 0 var(--space-l);
 }
 
 .footer .container .logo {
@@ -54,24 +54,6 @@
     margin-bottom: var(--space-s);
 }
 
-.footer .button {
-    width: fit-content;
-    padding: 8px 20px;
-    font-weight: 400;
-    font-size: var(--step-0);
-    color: var(--bg-color);
-    background-color: transparent;
-    border: 3px solid var(--primary-color);
-    border-radius: 20%/50%;
-    cursor: pointer;
-    transition-duration: 0.4s;
-    margin: var(--space-m) 0 0 0;
-}
-
-.footer .button:hover {
-    background-color: var(--primary-color);
-}
-
 .footer .container .info .item {
     display: inline-flex;
     column-gap: var(--space-2xs);
@@ -81,7 +63,11 @@
 }
 
 .footer .container .info .item:hover {
-    color: var(--primary-color);
+    color: var(--accent);
+}
+
+.footer .container .info .button {
+    margin-top: var(--space-m);
 }
 
 .bold {

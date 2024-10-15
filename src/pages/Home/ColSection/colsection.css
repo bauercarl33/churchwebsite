@@ -44,20 +44,18 @@
 
 .col-section .row .col p {
     margin-bottom: var(--space-l);
-    color: var(--secondary-color);
+    color: var(--text-color);
 }
 
 .col-section .row .col h4 {
     /* font-weight: 700; */
     margin-bottom: var(--space-s);
-    color: var(--secondary-color);
+    color: var(--accent);
 }
 
-.col-section .row .col .h5 {
-    font-size: var(--step-0);
-    font-weight: 500;
-    margin-bottom: 0;
-    color: var(--secondary-color);
+.col-section .row .col h4::before {
+    content: "Our";
+    color: var(--text-color);
 }
 
 .image {
@@ -71,17 +69,7 @@
 }
 
 .col-section .row .col .button {
-    width: fit-content;
-    padding: 12px 20px;
-    font-weight: 500;
-    font-size: var(--step-0);
-    color: var(--secondary-dark);
-    background-color: var(--bg-color);
-    border: solid 3px;
-    border-color: var(--primary-color);
-    border-radius: 20%/50%;
-    cursor: pointer;
-    transition-duration: 0.4s;
+    color: var(--text-color);
 }
 
 .col-section .row .col .button:hover {

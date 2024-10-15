@@ -116,7 +116,7 @@ const MonthView = ({ calendarDays, formattedData }) => {
                         style={{
                             top: `${modalPosition.top}px`, 
                             left: `${modalPosition.left}px`,
-                            translate: `${modalPosition.translateX} calc(1.2rem - 100%)`
+                            translate: `${modalPosition.translateX} calc(1rem - 100%)`
                         }}
                     />}
             </div>

@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: var(--bg-color);
     padding: var(--space-l);
 }
@@ -16,9 +16,10 @@
     max-width: 1440px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-3xl);
+    gap: var(--space-2xl);
     margin: var(--space-2xl) 0;
     z-index: 1;
+    column-rule: 1px solid var(--bg-color);
 }
 
 .welcome .container .card {
@@ -28,17 +29,17 @@
     max-height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: left;
     text-align: left;
+    border-left: 1px solid var(--bg-color);
+    padding: var(--space-2xs) var(--space-l);
 }
 
 .welcome .container .card .icon {
     margin-bottom: var(--space-s);
 }
 
-.welcome .container .card h5 {
+.welcome .container .card h6 {
     margin-bottom: var(--space-s);
-    white-space: nowrap;
 }
 
 .welcome .container .card p {
@@ -47,7 +48,7 @@
 }
 
 .welcome .container .card a {
-    color: var(--primary-color);
+    color: var(--accent);
     cursor: pointer;
 }
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa'
 
 import './navbar.css'
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
@@ -18,13 +17,15 @@ const Navbar = () => {
 
     const [click, setClick] = useState(false)
     const [scrollY, setScrollY] = useState(0)
-    const [navColor, setNavColor] = useState('transparent')
+    const [navColor, setNavColor] = useState({bg: 'transparent', text: 'var(--bg-color)'})
     const [activeLink, setActiveLink] = useState('/')
 
     const closeMenu = (link) => {
-        setClick(false)
+        setClick(false);
     }
-    const handleClick = () => setClick(!click)
+    const handleClick = () => {
+        setClick(!click);
+    }
     const handleLink = (link) => setActiveLink('/' + link) 
 
     
@@ -39,7 +40,7 @@ const Navbar = () => {
         //     });
         // } else {
         setActiveLink(location.pathname)
-            window.scroll(0, 0);
+        window.scroll(0, 0);
         // }
     }, [location]);
 
@@ -50,15 +51,15 @@ const Navbar = () => {
           setScrollY(scrollY);
 
           if (scrollY > window.innerHeight * 0.2) {
-            setNavColor('var(--secondary-dark)');
+            setNavColor({bg: 'var(--bg-color)', text: 'var(--bg-color)'});
           } else {
-            setNavColor('transparent');
+            setNavColor({bg: 'transparent', text: 'var(--bg-color)'});
           }
 
         };
 
         if (click && (window.innerWidth <= 960)) {
-            setNavColor('var(--secondary-dark)');
+            setNavColor('var(--bg-color)');
         } else if (scrollY < window.innerHeight * 0.2) {
             setNavColor('transparent')
         }
@@ -88,38 +89,26 @@ const Navbar = () => {
     }, [click]);
 
     return (
-        <div 
-            className='header'
-            style={{
-                backgroundColor: navColor,
-                transition: '0.5s'
-            }}    
-        >
-            <nav className='navbar'>
+        <header>
+            <nav>
                 <RouterLink to='/' onClick={closeMenu} className='logo'>
-                    St. Mary
+                    <h6>St. Mary</h6>
                 </RouterLink>
-                <div className='hamburger'>
-                    <button className='button' onClick={() => navigate('/donate')}>
+                <div className='button-wrapper'>
+                    <button id='mobile' className='button filled' onClick={() => navigate('/donate')}>
                         Donate
                     </button>
-                    {click ? 
-                        (<FaTimes 
-                            className='hamburger-icon'
-                            onClick={handleClick}
-                            size={30}
-                        />) : 
-                        (<FaBars 
-                            className='hamburger-icon'
-                            onClick={handleClick}
-                            size={30}
-                        />)}
+                    <div className='hamburger' onClick={handleClick}>
+                        {click ?
+                            <div className='hamburger-icon active'/> :
+                            <div className='hamburger-icon' />
+                        }
+                    </div>
                 </div>
-                <ul className={click ? "nav-menu active" : "nav-menu"}>
+                <ul className={click ? "active" : ""}>
                     {Object.entries(pages).map(([name, link]) => (
                         <li 
                             key={name}
-                            className='nav-item' 
                             onClick={() => closeMenu(link)}
                         >
                             {/* <ScrollLink
@@ -142,11 +131,11 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                <button className='button' onClick={() => navigate('/donate')}>
+                <button id='fullscreen' className='button filled' onClick={() => navigate('/donate')}>
                     Donate
                 </button>
             </nav>
-        </div>
+        </header>
     )
 }
 

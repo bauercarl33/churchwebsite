@@ -6,7 +6,6 @@
     padding: var(--space-s) var(--space-xs);
     box-shadow: rgba(149, 157, 165, 0.4) 0px 8px 24px;
     transition: 0.3s;
-    translate: 4px calc(1.2rem - 100%);
 }
 
 .modal .close {

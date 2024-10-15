@@ -10,7 +10,7 @@ const Welcome = () => {
         <div className='container'>
             <div className='card'>
                 {/* <FaLocationDot size={24} className='icon' /> */}
-                <h5>Temporary Location</h5>
+                <h6>Temporary Location</h6>
                 <p>13740 Research Boulevard, 1 Lake Creek Office Park Suite W, Austin, TX 78759</p>
                 <a 
                     href='https://www.google.com/maps/search/13740+Research+Boulevard,+1+Lake+Creek+Office+Park+Suite+W,+Austin,+TX+78759/@30.4591469,-97.7973402,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI0MTAwMi4xIKXMDSoASAFQAw%3D%3D'
@@ -22,7 +22,7 @@ const Welcome = () => {
             </div>
             <div className='card'>
                 {/* <FaCalendar size={24} className='icon' /> */}
-                <h5>Divine Services</h5>
+                <h6>Divine Services</h6>
                 <p>Orthros on Sundays at 9:30am followed by the Divine Liturgy of St. John Chrysostom at 10:30am. Check the calendar for more.</p>
                 <Link
                     to='/calendar' 
@@ -33,7 +33,7 @@ const Welcome = () => {
             </div>
             <div className='card'>
                 {/* <FaDoorOpen size={24} className='icon' /> */}
-                <h5>Visitors Welcome</h5>
+                <h6>Visitors Welcome</h6>
                 <p>Please come, we love visitors! If you have any questions, please see the FAQ.</p>
                 <Link
                     to='/faq' 
