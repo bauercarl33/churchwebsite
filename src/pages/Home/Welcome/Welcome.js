@@ -1,27 +1,46 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './welcome.css'
-import { FaLocationDot } from 'react-icons/fa6'
-import { FaDoorOpen } from 'react-icons/fa'
+import { FaChevronRight } from 'react-icons/fa6'
 
 const Welcome = () => {
   return (
     <div className='welcome'>
-        <div className='heading'>
-            <h3>Welcome</h3>
-            <p>It would be a blessing for you to join us in worship of the the Most Holy Trinity.</p>
-        </div>
-        
         <div className='container'>
             <div className='card'>
-                <FaLocationDot size={160} className='icon' color='var(--primary-color' />
-                <h5>Temporary Location</h5>
+                {/* <FaLocationDot size={24} className='icon' /> */}
+                <h6>Temporary Location</h6>
                 <p>13740 Research Boulevard, 1 Lake Creek Office Park Suite W, Austin, TX 78759</p>
+                <a 
+                    href='https://www.google.com/maps/search/13740+Research+Boulevard,+1+Lake+Creek+Office+Park+Suite+W,+Austin,+TX+78759/@30.4591469,-97.7973402,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI0MTAwMi4xIKXMDSoASAFQAw%3D%3D'
+                    aria-label='Map to church'
+                    target='_blank'
+                >
+                    Map<span><FaChevronRight size={12} /></span>
+                </a>
             </div>
             <div className='card'>
-                <FaDoorOpen size={160} className='icon' />
-                <h5>Visitors Welcome</h5>
-                <p>Plese come, we love visitors! If you have any questions, please see the FAQ.</p>
+                {/* <FaCalendar size={24} className='icon' /> */}
+                <h6>Divine Services</h6>
+                <p>Orthros on Sundays at 9:30am followed by the Divine Liturgy of St. John Chrysostom at 10:30am. Check the calendar for more.</p>
+                <Link
+                    to='/calendar' 
+                    aria-label='Church calendar'
+                >
+                    Calendar<span><FaChevronRight size={12} /></span>
+                </Link>
+            </div>
+            <div className='card'>
+                {/* <FaDoorOpen size={24} className='icon' /> */}
+                <h6>Visitors Welcome</h6>
+                <p>Please come, we love visitors! If you have any questions, please see the FAQ.</p>
+                <Link
+                    to='/faq' 
+                    aria-label='Frequently asked questions'
+                >
+                    FAQ<span><FaChevronRight size={12} /></span>
+                </Link>
             </div>
         </div>
     </div>

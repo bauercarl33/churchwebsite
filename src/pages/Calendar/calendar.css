@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: white;
+    background-color: var(--bg-color);
     padding: var(--space-l);
 }
 
@@ -16,7 +16,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* padding: var(--space-m); */
+    background-color: var(--bg-color);
+    padding: var(--space-l);
+    border-radius: 12px;
+    margin: var(--space-2xl) 0;
 }
 
 .calendar .container .head {
@@ -25,12 +28,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-l);
+    margin-bottom: var(--space-s);
 }   
 
 .calendar .container .head .buttons {
     display: flex;
-    /* border-radius: 20px; */
     overflow: hidden;
     column-gap: var(--space-2xs);
 }
@@ -44,9 +46,8 @@
     font-weight: 400;
     font-size: var(--step-0);
     color: var(--secondary-dark);
-    border: none;
+    border: transparent;
     border-radius: 16px;
-    border-color: var(--primary-color);
     cursor: pointer;
     transition-duration: 0.4s;
 }
@@ -78,8 +79,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondary-dark);
-    color: var(--bg-color);
+    color: var(--text-color);
     border-left: 1px solid rgba(149, 157, 165, 0.7);
     border-top: 1px solid rgba(149, 157, 165, 0.7);
     border-bottom: 1px solid rgba(149, 157, 165, 0.7);
@@ -101,6 +101,7 @@
 .calendar .container .grid .cell {
     width: 100%;
     height: 100%;
+    position: relative;
     min-height: 150px;
     display: flex;
     flex-direction: column;
@@ -114,12 +115,9 @@
 .calendar .container .grid .cell.not-curr {
     background-color: rgba(149, 157, 165, 0.5);
 }
-.calendar .container .grid .cell.not-curr .event {
-    opacity: 0.7;
-}
 
 .calendar .container .grid .cell.selected {
-    background-color: rgb(247, 108, 93, 0.6);
+    background-color: #e7a95a88;
 }
 
 .calendar .container .grid .cell .event {
@@ -129,8 +127,9 @@
     flex-direction: column;
     row-gap: var(--space-2xs);
     color: var(--bg-color);
+    position: relative;
+    margin-bottom: var(--space-2xs);
 }
-
 
 .calendar .container .grid .cell .event p {
     text-align-last: left;
@@ -139,10 +138,31 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    opacity: 1;
+}
+
+.calendar .container .grid .cell .event .event-button {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+    background: transparent;
+    border: transparent;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1100px) {
+    .calendar {
+        padding: var(--space-2xs);
+    }
+
+    .calendar .container {
+        padding: var(--space-s);
+    }
+
     .calendar .container .head {
         flex-direction: column;
         row-gap: var(--space-m);

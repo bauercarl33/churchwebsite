@@ -1,60 +1,145 @@
-.hero {
-    background-color: var(--overlay);
-    color: var(--bg-color);
-    height: 100vh;
-    width: 100%;
+/* .hero {
+    min-height: 100vh;
     position: relative;
+    display: flex;
 }
 
-.e-with-fixed-bg {
+.hero .bg {
+    --parallax-speed: 5;
+    height: 100%;
+    width: 100%;
+    z-index: -99;
+    object-fit: cover;
+    position: absolute;
+}
+
+.hero .overlay {
+    --parallax-speed: 5;
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
+    background-color: var(--overlay);
 }
-  
-.bg-wrap {
-    clip: rect(0, auto, auto, 0);
+
+.hero .content {
+    width: fit-content;
+    height: fit-content;
+    --parallax-speed: 4;
+    color: var(--bg-color);
+    margin: auto;
+    text-align: center;
+    padding: var(--space-xs);
+    text-shadow: 0 0 40px black;
+}
+
+.hero .content h4::after {
+    content: "Orthodox Church";
+    color: var(--accent);
+}
+
+.hero .content p {
+    margin: var(--space-s);
+}
+
+.hero > * {
+    animation: parallax linear;
+    animation-timeline: scroll();
+}
+
+.hero .curve {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    z-index: 5;
+}
+
+@keyframes parallax {
+    to {
+        transform: translateY(calc(var(--parallax-speed) * 200px));
+    }
+} */
+
+.hero {
+    height: 100vh;
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero .content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.hero .content .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--overlay);
+    z-index: 1;
+}
+
+.hero .content img {
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
-  
-.bg {
-    position: fixed;
-    display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center center;
-    background-image: url('../../../images/church-home.jpg');
-    transform: translateZ(0);
-    will-change: transform;
-}  
 
-.hero .content {
-    width: 100%;
-    height: 100%;
+.hero .title {
+    color: var(--text-color);
+    z-index: 2;
+    margin-top: 80px;
+    padding: var(--space-2xl);
+}
+
+.hero .title h4::after {
+    content: "Orthodox Church";
+    color: var(--accent);
+    display: block;
+    margin-bottom: var(--space-s);
+    white-space: nowrap;
+}
+
+.hero .title p {
+    margin-bottom: var(--space-xl);
+}
+
+.hero .title .buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: var(--space-m);
-    background-color: var(--overlay);
+    column-gap: var(--space-xs);
+    margin: var(--space-l) 0;
+}
+
+.hero .title .buttons .button.empty {
+    color: var(--text-color);
+}
+
+.hero .title .buttons .button.empty:hover {
+    color: var(--bg-color);
 }
 
 @media screen and (max-width: 960px) {
-    .hero .content {
-        justify-content: center;
-        align-items: center;
+    .hero {
+        padding: 0;
+        flex-direction: column;
     }
 
-    .hero .content .welcome {
+    .hero .content {
+        margin-top: 0px;
         width: 100%;
-        max-width: 600px;
+        border-radius: 0;
+        height: 100%;
+    }
+
+    .hero .title {
+        padding: var(--space-2xl) var(--space-l);
     }
 }
