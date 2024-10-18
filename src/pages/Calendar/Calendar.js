@@ -44,16 +44,40 @@ const Calendar = () => {
     const formatCalendarJson = (json) => {
         let newJson = {}
         json.map((item) => {
+            
             let summary = item.summary
-            let startDate = item.start.dateTime
-            let endDate = item.end.datetime
+            let startDateTime = item.start.dateTime
+            let endDateTime = item.end.dateTime
             let timezone = "America/Chicago"
             let location = item.location
 
-            let date = new Date(startDate)
-            let yy = date.getFullYear()
-            let mm = date.getMonth()
-            let dd = date.getDate()
+            let startDate = new Date(startDateTime)
+            let yy = startDate.getFullYear();
+            let mm = startDate.getMonth()
+            let dd = startDate.getDate()
+            let startTime = new Date(startDate.getTime()).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            let endDate = new Date(endDateTime)
+            let endTime = new Date(endDate.getTime()).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            let eventDetails = {
+                startDate: startDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                }),
+                startTime: startTime,
+                endDate: endDate,
+                endTime: endTime,
+                timezone: timezone,
+                summary: summary
+            }
 
             if (!newJson[yy]) {
                 newJson[yy] = {}
@@ -64,7 +88,8 @@ const Calendar = () => {
             if (!newJson[yy][mm][dd]) {
                 newJson[yy][mm][dd] = { events: [] }
             }
-            newJson[yy][mm][dd].events.push(summary)
+
+            newJson[yy][mm][dd].events.push(eventDetails)
         })
 
         return newJson;

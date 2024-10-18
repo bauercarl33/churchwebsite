@@ -2,17 +2,14 @@
 
 :root {
   --bg-color: #f8f8f8;
+  --bg-dark: #f2f2f2;
   --text-color: #020301;
-  --primary-color: #683540;
-  --primary-dark: #432028;
+  --primary-color: #063970;
+  /* --primary-color: #683540; */
+  --primary-dark: #0A142F;
+  /* --primary-dark: #432028; */
   --accent: #e7a95a;
-  /* --bg-color: rgb(252, 250, 248);
-  --bg-dark: rgb(241, 231, 220);
-  --text-color: #000;
-  --primary-color: rgb(247, 108, 93);
-  --primary-dark: rgb(196, 68, 54);
-  --secondary-color: rgb(53, 68, 79);
-  --secondary-dark: rgb(26, 44, 55); */
+  --accent-dark: #c58634;
   --overlay: rgba(0,0,0,0.6);
 
   --step--2: clamp(0.5556rem, 0.7143rem + -0.0992vw, 0.6944rem);
@@ -130,7 +127,8 @@ a {
 
 .button.empty {
   background-color: transparent;
-  border: 2px solid var(--primary-color);
+  border: 3px solid var(--primary-color);
+  color: var(--primary-color);
 }
 
 .button.filled:hover {
@@ -139,4 +137,5 @@ a {
 
 .button.empty:hover {
   background-color: var(--primary-color);
+  color: var(--bg-color);
 }

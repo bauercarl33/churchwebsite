@@ -4,8 +4,10 @@ import Modal from './Modal';
 
 const MonthView = ({ calendarDays, formattedData }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [selectedEvents, setSelectedEvents] = useState(null);
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0, translateX: 0 });
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const [curButtonKey, setCurButtonKey] = useState(null)
 
     const modalRef = useRef(null);
     const buttonRefs = useRef({});
@@ -14,11 +16,16 @@ const MonthView = ({ calendarDays, formattedData }) => {
         return formattedData[year]?.[month]?.[day] ? true : false;
     }
 
-    const openModal = (event, buttonKey) => {
-        setSelectedEvent(event);
+    const openModal = (events, buttonKey) => {
+        setSelectedEvents(events);
         setIsOpen(true);
+        calcModalPos(buttonKey);
+    }
 
+    const calcModalPos = (buttonKey) => {
         const buttonRef = buttonRefs.current[buttonKey];
+        setCurButtonKey(buttonKey);
+        
         if (buttonRef) {
             const rect = buttonRef.getBoundingClientRect();
             const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -43,7 +50,7 @@ const MonthView = ({ calendarDays, formattedData }) => {
 
     const closeModal = () => {
         setIsOpen(false);
-        setSelectedEvent(null);
+        setSelectedEvents(null);
         buttonRefs.current = {};
     }
 
@@ -65,6 +72,34 @@ const MonthView = ({ calendarDays, formattedData }) => {
         };
     }, [isOpen]);
 
+    useEffect(() => {
+        const handleResize = () => { 
+            const width = window.innerWidth;
+            setScreenWidth(width);
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            document.body.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(max-width: 600px)');
+
+        const handleMediaQueryChange = () => {
+            setIsOpen(false)
+            closeModal();
+        };
+
+        mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+        return () => {
+            mediaQuery.removeEventListener('change', handleMediaQueryChange);
+        };
+    }, []);
+
     return (
         <>
             <div className='week-header'>
@@ -82,10 +117,18 @@ const MonthView = ({ calendarDays, formattedData }) => {
                         } 
                         key={dayIndex}
                     >
-                        {day.day}
+                        <p className='day'>{day.day}</p>
                         {checkEvent(day.year, day.month, day.day) &&
                             formattedData[day.year][day.month][day.day].events.map((item, eventIndex) => {
-                                const buttonKey = `${dayIndex}-${eventIndex}`; // Create a unique key
+                                const buttonKey = `${dayIndex}-${eventIndex}`;
+                                let events = {}
+                                let startTime = item.startTime
+                                let summary = item.summary
+                                if (screenWidth > 600) {
+                                    events = item
+                                } else {
+                                    events = formattedData[day.year][day.month][day.day].events
+                                }
 
                                 return (
                                     eventIndex > 1 ?
@@ -93,33 +136,34 @@ const MonthView = ({ calendarDays, formattedData }) => {
                                         :
                                         <div key={buttonKey} className='event' >
                                             <button
-                                                ref={(el) => (buttonRefs.current[buttonKey] = el)} // Store ref in the object
+                                                ref={(el) => (buttonRefs.current[buttonKey] = el)}
                                                 className='event-button'
                                                 onClick={(e) => {
-                                                    openModal(item, buttonKey); // Pass the unique key to openModal
-                                                    e.stopPropagation();    
+                                                    openModal(events, buttonKey);
+                                                    e.stopPropagation();   
                                                 }} 
                                             >
                                             </button>
-                                            <p>{item}</p>
+                                            <p>{startTime} - {summary}</p>
                                         </div>
                                 );
                             })
                         }
                     </div>
                 ))}
-                {isOpen && 
-                    <Modal 
-                        closeModal={closeModal} 
-                        event={selectedEvent} 
-                        ref={modalRef}
-                        style={{
-                            top: `${modalPosition.top}px`, 
-                            left: `${modalPosition.left}px`,
-                            translate: `${modalPosition.translateX} calc(1rem - 100%)`
-                        }}
-                    />}
             </div>
+            {isOpen && 
+                <Modal 
+                    closeModal={closeModal} 
+                    events={selectedEvents} 
+                    ref={modalRef}
+                    screenWidth={screenWidth}
+                    style={{
+                        top: `${modalPosition.top}px`, 
+                        left: `${modalPosition.left}px`,
+                        translate: `${modalPosition.translateX} calc(1rem - 100%)`
+                    }}
+            />}
         </>
     );
 }

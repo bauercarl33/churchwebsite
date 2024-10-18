@@ -19,6 +19,7 @@ const Navbar = () => {
     const [scrollY, setScrollY] = useState(0)
     const [navColor, setNavColor] = useState({bg: 'transparent', text: 'var(--bg-color)'})
     const [activeLink, setActiveLink] = useState('/')
+    const [windowSize, setWindowSize] = useState(window.innerWidth)
 
     const closeMenu = (link) => {
         setClick(false);
@@ -44,33 +45,6 @@ const Navbar = () => {
         // }
     }, [location]);
 
-
-    useEffect(() => {
-        const handleScroll = () => {
-          const scrollY = window.scrollY || document.documentElement.scrollTop;
-          setScrollY(scrollY);
-
-          if (scrollY > window.innerHeight * 0.2) {
-            setNavColor({bg: 'var(--bg-color)', text: 'var(--bg-color)'});
-          } else {
-            setNavColor({bg: 'transparent', text: 'var(--bg-color)'});
-          }
-
-        };
-
-        if (click && (window.innerWidth <= 960)) {
-            setNavColor('var(--bg-color)');
-        } else if (scrollY < window.innerHeight * 0.2) {
-            setNavColor('transparent')
-        }
-    
-        window.addEventListener('scroll', handleScroll);
-    
-        return () => {
-          window.removeEventListener('scroll', handleScroll);
-        };
-      }, [click]);
-
     useEffect(() => {
         const preventDefault = (e) => e.preventDefault();
     
@@ -87,6 +61,23 @@ const Navbar = () => {
             document.body.removeEventListener('touchmove', preventDefault);
         };
     }, [click]);
+
+    useEffect(() => {
+        const handleResize = () => { 
+            const width = window.innerWidth;
+            setWindowSize(width);
+
+            if (width > 960) {
+                setClick(false);
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            document.body.removeEventListener('resize', handleResize);
+        };
+    }, [])
 
     return (
         <header>

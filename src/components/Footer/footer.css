@@ -38,7 +38,7 @@
 }
 
 .footer .container .logo a:hover {
-    color: var(--primary-color);
+    color: var(--accent);
 }
 
 .footer .container .info {
@@ -112,7 +112,7 @@
 }
 
 .footer .bottom li:hover {
-    color: var(--primary-color);
+    color: var(--accent);
 }
 
 .footer .bottom .social li {
@@ -127,6 +127,15 @@
     text-decoration: none;
     color: inherit;
     width: fit-content;
+}
+
+.footer .button.filled {
+    background-color: var(--accent);
+    color: var(--primary-dark);
+}
+
+.footer .button.filled:hover {
+    background-color: var(--accent-dark);
 }
 
 @media screen and (max-width: 960px) {

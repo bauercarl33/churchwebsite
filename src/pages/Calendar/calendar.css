@@ -1,5 +1,4 @@
 .calendar {
-    width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -10,6 +9,7 @@
 }
 
 .calendar .container {
+    max-width: 1050px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -91,7 +91,6 @@
 
 .calendar .container .grid {
     width: 100%;
-    height: 100%;
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
     column-rule: 1px solid rgba(149, 157, 165, 0.7);
@@ -99,17 +98,17 @@
 }
 
 .calendar .container .grid .cell {
-    width: 100%;
-    height: 100%;
+    aspect-ratio: 1;
+    max-width: 150px;
     position: relative;
-    min-height: 150px;
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-    align-items: top;
     padding: 4px;
     border-right: 1px solid rgba(149, 157, 165, 0.7);
     border-bottom: 1px solid rgba(149, 157, 165, 0.7);
+}
+
+.calendar .container .grid .cell .day {
+    text-align: right;
+    margin-bottom: var(--space-2xs);
 }
 
 .calendar .container .grid .cell.not-curr {
@@ -125,13 +124,13 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    row-gap: var(--space-2xs);
     color: var(--bg-color);
     position: relative;
-    margin-bottom: var(--space-2xs);
+    margin-bottom: 4px;
 }
 
 .calendar .container .grid .cell .event p {
+    font-size: var(--step--1);
     text-align-last: left;
     padding: 0 var(--space-2xs);
     border-radius: 8px;
@@ -154,6 +153,14 @@
     cursor: pointer;
 }
 
+.calendar .container .grid .cell .button {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: transparent;
+    display: none;
+}
+
 @media screen and (max-width: 1100px) {
     .calendar {
         padding: var(--space-2xs);
@@ -168,4 +175,39 @@
         row-gap: var(--space-m);
         padding: var(--space-l) 0;
     }
+}
+
+@media screen and (max-width: 600px) {
+    .calendar .container .grid .cell .event {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: var(--space-2xs);
+    }
+    
+    .calendar .container .grid .cell .event p {
+        height: 10px;
+        width: 10px;
+        padding: 0;
+        border-radius: 50%;
+        font-size: 0;
+    }
+
+    .calendar .container .grid .cell .event p:nth-child(1) {
+        display: none;
+    }
+
+    .calendar .container .grid .cell .button {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
 } 
+

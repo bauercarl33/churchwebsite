@@ -29,7 +29,10 @@ const ColSection = () => {
                         </div>
                         <div className='col'>
                             <div className='text'>
-                                <h4>&nbsp;{key}</h4>
+                                <h4>
+                                    Our&nbsp;
+                                    <span className='highlight'>{key}</span>
+                                </h4>
                                 <p>{value.text}</p>
                                 <button 
                                     className='button empty' 
