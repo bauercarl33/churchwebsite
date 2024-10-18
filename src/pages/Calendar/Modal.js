@@ -23,7 +23,6 @@ const Modal = forwardRef(({ closeModal, events, style, screenWidth }, ref) => {
                     {events && Array.isArray(events) && events.map((item, index) => {
                         return (
                             <>
-                                <h5>{events[0].startDate}</h5>
                                 <div key={index} className='modal-mobile'>
                                     <h6>{item.summary}</h6>
                                     <p>{item.startTime} - {item.endTime}</p>
