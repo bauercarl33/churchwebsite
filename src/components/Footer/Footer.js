@@ -1,11 +1,10 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { footerLinks, pageLinks, socialLinks } from './footerVars'
 import './footer.css'
 
 const Footer = () => {
-  const navigate = useNavigate()
 
   return (
     <div className='footer'>
@@ -30,13 +29,12 @@ const Footer = () => {
                 </a>
               )
             })}
-            <button 
+            <Link to='/donate'
               className='button filled' 
-              onClick={() => navigate('/donate')}
               aria-label='Go to donation page'
             >
               Donate
-            </button>
+            </Link>
           </div>
       </div>
       <div className='bottom'>

@@ -13,6 +13,7 @@ import About from './pages/About/About'
 import Calendar from './pages/Calendar/Calendar'
 import Donate from './pages/Donate/Donate';
 import Footer from "./components/Footer/Footer";
+import Media from "./pages/Media/Media";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,8 @@ function App() {
             <Route exact path='/' element={<Home />} />
             <Route exact path='/about' element={<About />} />
             <Route exact path='/calendar' element={<Calendar />} />
+            <Route exact path='/media' element={<Media />} />
+            <Route path='/media/:id' element={<Media />} />
             <Route exact path='/donate' element={<Donate />} />
           </Routes>
           <Footer />

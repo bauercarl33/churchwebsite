@@ -1,0 +1,69 @@
+.media {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: calc(var(--space-2xl) + 80px) 0;
+}
+
+.media h4 {
+    padding: var(--space-xl) 0;
+    width: 80%;
+    align-self: center;
+}
+
+.media .folders {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.media .folders .folder {
+    width: 100%;
+    height: 20vh;
+    max-height: 200px;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 var(--space-2xl);
+}
+
+.media .folders .folder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+}
+
+.media .folder .button-link {
+    width: 100%;
+    height: 100%;
+}
+
+.media .images {
+    align-self: center;
+    max-width: 80%;
+    columns: 300px;
+    gap: var(--space-2xs);
+}
+
+.media .images img {
+    width: 100%;
+    margin-bottom: var(--space-2xs);
+}
+
+.loading {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

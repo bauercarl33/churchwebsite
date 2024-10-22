@@ -23,8 +23,7 @@
 }
 
 .welcome .container .card {
-    width: auto;
-    height: auto;
+    position: relative;
     max-width: 400px;
     max-height: 400px;
     display: flex;
@@ -44,12 +43,14 @@
 
 .welcome .container .card p {
     text-align: left;
-    margin-bottom: var(--space-s);
+    margin-bottom: var(--space-l);
 }
 
 .welcome .container .card a {
     color: var(--accent);
     cursor: pointer;
+    position: absolute;
+    bottom: 0;
 }
 
 .welcome .container .card a span {

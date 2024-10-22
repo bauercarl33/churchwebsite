@@ -9,7 +9,9 @@ const Navbar = () => {
     const pages = {
         'Home': '/',
         'About': '/about',
-        'Calendar': '/calendar'
+        'Calendar': '/calendar',
+        'Media': '/media',
+        'Visitors': '/visitors',
     }
 
     const location = useLocation()
@@ -86,9 +88,9 @@ const Navbar = () => {
                     <h6>St. Mary</h6>
                 </RouterLink>
                 <div className='button-wrapper'>
-                    <button id='mobile' className='button filled' onClick={() => navigate('/donate')}>
+                    <RouterLink to='/donate' id='mobile' className='button filled'>
                         Donate
-                    </button>
+                    </RouterLink>
                     <div className='hamburger' onClick={handleClick}>
                         {click ?
                             <div className='hamburger-icon active'/> :
@@ -122,9 +124,9 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                <button id='fullscreen' className='button filled' onClick={() => navigate('/donate')}>
+                <RouterLink to='/donate' id='fullscreen' className='button filled'>
                     Donate
-                </button>
+                </RouterLink>
             </nav>
         </header>
     )

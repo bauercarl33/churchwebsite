@@ -64,16 +64,6 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.col-section .row .col .button {
-    color: var(--text-color);
-}
-
-.col-section .row .col .button:hover {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-}
-
-
 .col-section .curve {
     position: absolute;
     top: -1px;

@@ -124,21 +124,21 @@ nav ul li a.active::after {
     rotate: -45deg;
 }
 
-nav button {
-    display: none;
-}
-
 #fullscreen {
     display: block;
 }
 
-@media screen and (max-width: 960px) {
-    nav button {
-        display: block;
-    }
+#mobile {
+    display: none;
+}
 
+@media screen and (max-width: 960px) {
     #fullscreen {
         display: none;
+    }
+    
+    #mobile {
+        display: block;
     }
 
     nav ul {
