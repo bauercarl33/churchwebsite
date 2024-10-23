@@ -29,7 +29,7 @@ function App() {
             <Route exact path='/about' element={<About />} />
             <Route exact path='/calendar' element={<Calendar />} />
             <Route exact path='/media' element={<Media />} />
-            <Route path='/media/:id' element={<Media />} />
+            <Route path='/media/:name/:id' element={<Media />} />
             <Route exact path='/donate' element={<Donate />} />
           </Routes>
           <Footer />

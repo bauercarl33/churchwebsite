@@ -1,38 +1,72 @@
 .media {
     min-height: 100vh;
+    width: 100%;
     background-color: var(--bg-color);
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    padding: calc(var(--space-2xl) + 80px) 0;
 }
 
 .media h4 {
-    padding: var(--space-xl) 0;
-    width: 80%;
+    padding: var(--space-l) var(--space-2xs);
     align-self: center;
+    text-align: center;
+    margin-top: 80px;
 }
 
 .media .folders {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-2xs);
+    padding: var(--space-2xs);
 }
 
 .media .folders .folder {
+    position: relative;
     width: 100%;
-    height: 20vh;
-    max-height: 200px;
+    aspect-ratio: 1;
     background-color: var(--primary-color);
     color: var(--bg-color);
     border: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 var(--space-2xl);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.media .folders .folder .image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+}
+
+.media .folders .folder .image-wrapper:hover {
+    transform: scale(1.1);
+}
+
+.media .folders .folder .overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.media .folders .folder img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.media .folders .folder h6 {
+    position: absolute;
+    bottom: var(--space-s);
+    left: var(--space-s);
+    z-index: 3;
 }
 
 .media .folders .folder img {
@@ -49,15 +83,26 @@
 }
 
 .media .images {
-    align-self: center;
-    max-width: 80%;
+    max-width: 100%;
     columns: 300px;
     gap: var(--space-2xs);
+    padding: var(--space-2xs);
 }
 
-.media .images img {
+.media .images .img-wrapper {
     width: 100%;
     margin-bottom: var(--space-2xs);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.media .images .img-wrapper img {
+    transition: 0.5s;
+}
+
+.media .images .img-wrapper img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 .loading {
@@ -66,4 +111,91 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.media .media-modal {
+    position: fixed;
+    top: calc(50% + 40px);
+    left: 50%;
+    translate: -50% -50%;
+    min-width: 100%;
+    height: calc(100% - 80px);
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.media .media-modal img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 12px;
+}
+
+.media .close-media-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    width: fit-content;
+    padding: var(--space-2xs);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: transparent;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+.media .close-media-modal:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.media .prev, .next {
+    position: absolute;
+    top: 50%;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: fit-content;
+    padding: var(--space-2xs);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+.media .prev {
+    left: 20px;
+    padding-right: 12px;
+}
+
+.media .next {
+    right: 20px;
+    padding-left: 12px;
+}
+
+.media .prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (pointer: coarse) and (max-width: 960px) {
+    .media-modal img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .media .prev, .next {
+        top: 85%;
+    }
 }
