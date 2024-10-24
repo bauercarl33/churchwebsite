@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { FaTimes } from 'react-icons/fa';
+
+import ImageSlider from './ImageSlider';
+
 import './media.css';
-import { FaChevronRight } from 'react-icons/fa';
-import { FaChevronLeft, FaTimes } from 'react-icons/fa';
+
 
 const Media = () => {
   const { id, name } = useParams();
-  const [selectedImageIndex, setSelectedImageIndex] = useState(null); // Track the current image index for modal
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getImageFolders = async (query = "") => {
     const url = "https://uju8i8tktb.execute-api.us-east-1.amazonaws.com/prod/listFoldersInGoogleDrive";
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+    return json;
+  };
+
+  const getImages = async (id) => {
+    let url = `https://5as4ejxxn4.execute-api.us-east-1.amazonaws.com/prod/listFileIdsInFolder/${id}`;
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -27,19 +43,6 @@ const Media = () => {
     queryFn: () => getImageFolders(),
     queryKey: ["folders"]
   });
-
-  const getImages = async (id) => {
-    let url = `https://5as4ejxxn4.execute-api.us-east-1.amazonaws.com/prod/listFileIdsInFolder/${id}`;
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const json = await response.json();
-    return json;
-  };
 
   const { data: images, isLoading: isLoadingImages } = useQuery({
     queryFn: () => getImages(id),
@@ -87,18 +90,6 @@ const Media = () => {
 
   const closeModal = () => setIsModalOpen(false);
 
-  const showNextImage = () => {
-    setSelectedImageIndex((prevIndex) =>
-      prevIndex === images.body.files.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const showPrevImage = () => {
-    setSelectedImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.body.files.length - 1 : prevIndex - 1
-    );
-  };
-
   return (
     <div className='media'>
       <h4>{name}</h4>
@@ -127,9 +118,7 @@ const Media = () => {
       {isModalOpen && (
         <div className='media-modal'>
           <button className='close-media-modal' onClick={closeModal}><FaTimes size={24} /></button>
-          <button className='cycle prev' onClick={showPrevImage}><FaChevronLeft  size={24}/></button>
-          <img src={`https://saintmarychurch.s3.amazonaws.com/images/${images.body.files[selectedImageIndex].id}`} alt='' />
-          <button className='cycle next' onClick={showNextImage}><FaChevronRight size={24} /></button>
+          <ImageSlider images={images.body.files} index={selectedImageIndex} />
         </div>
       )}
     </div>
