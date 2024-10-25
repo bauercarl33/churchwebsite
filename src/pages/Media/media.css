@@ -92,7 +92,7 @@
 .media .images .img-wrapper {
     width: 100%;
     margin-bottom: var(--space-2xs);
-    border-radius: 8px;
+    /* border-radius: 8px; */
     overflow: hidden;
 }
 
@@ -149,5 +149,37 @@
 }
 
 .media .close-media-modal:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.media .prev, .next {
+    position: absolute;
+    top: 50%;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: fit-content;
+    padding: var(--space-2xs);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    z-index: 100;
+}
+
+.media .prev {
+    left: 20px;
+    padding-right: 12px;
+}
+
+.media .next {
+    right: 20px;
+    padding-left: 12px;
+}
+
+.media .prev:hover, .next:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }

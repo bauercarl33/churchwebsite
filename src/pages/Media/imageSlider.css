@@ -25,10 +25,9 @@
 }
   
 .slider .slider-container .image-wrapper img {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 12px;
-    object-fit: cover;
+    width: 90%;
+    height: 80%;
+    object-fit: contain;
 }
   
 .cycle {

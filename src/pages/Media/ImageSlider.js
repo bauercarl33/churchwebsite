@@ -47,7 +47,7 @@ const ImageSlider = ({ images, index }) => {
     const handleTouchEnd = () => {
         if (isTransitioning) return;
         const swipeDistance = touchMoveX - touchStartX;
-        const swipeThreshold = 50;
+        const swipeThreshold = 30;
 
         if (Math.abs(swipeDistance) > swipeThreshold) {
             if (swipeDistance < 0) handleNextImage();
@@ -68,10 +68,12 @@ const ImageSlider = ({ images, index }) => {
             setIsSliding(false);
             setDirection(0);
             setIsTransitioning(false);
-        }, 200 * (1 / (1 + velocity)));
+        }, 300 * (1 / (1 + velocity)));
 
         return () => clearTimeout(timeout);
     }, [isSliding, direction, velocity]);
+
+    const transitionSpeed = 0.3 * (1 / (1 + velocity))
 
     return (
         <div 
@@ -86,7 +88,7 @@ const ImageSlider = ({ images, index }) => {
                 ref={sliderRef}
                 className='slider-container'
                 style={{
-                    transition: isSliding ? `transform 0.2s` : 'none',
+                    transition: isSliding ? `transform ${transitionSpeed}s` : 'none',
                     transform: `translateX(calc(${direction} * -100%))`,
                 }}
             >

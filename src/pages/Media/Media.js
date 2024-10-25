@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import { FaTimes } from 'react-icons/fa';
 
 import ImageSlider from './ImageSlider';
-
 import './media.css';
 
 
