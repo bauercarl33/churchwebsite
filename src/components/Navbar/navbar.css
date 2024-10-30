@@ -37,19 +37,16 @@ nav .logo {
 
 nav ul {
     display: flex;
+    justify-content: center;
     margin: auto;
 }
 
 nav ul li {
-    padding: var(--space-xs);
-}
-
-nav ul li a {
-    color: var(--text-color);
+    margin:  var(--space-m) var(--space-xs);
     position: relative;
 }
 
-nav ul li a::after {
+nav ul li::after {
     content: "";
     width: 0%;
     height: 1px;
@@ -60,9 +57,25 @@ nav ul li a::after {
     transition: width 0.3s ease-in-out;
 }
 
-nav ul li a:hover::after, 
-nav ul li a.active::after {
+nav ul li:hover::after, 
+nav ul li.active::after {
     width: 100%;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a .icon {
+    display: none;
+    font-size: 18px;
+    color: var(--text-color);
+    opacity: 0.5;
+    margin-right: var(--space-xs);
 }
 
 .button-wrapper {
@@ -77,6 +90,7 @@ nav ul li a.active::after {
     display: flex;
     align-items: center;
     cursor: pointer;
+    z-index: 999;
 }
 
 .hamburger-icon {
@@ -117,11 +131,15 @@ nav ul li a.active::after {
 .hamburger-icon.active::before {
     top: 0px;
     rotate: 45deg;
+    background-color: var(--text-color);
+    opacity: 0.7;
 }
 
 .hamburger-icon.active::after {
     bottom: 0px;
     rotate: -45deg;
+    background-color: var(--text-color);
+    opacity: 0.7;
 }
 
 #fullscreen {
@@ -142,23 +160,54 @@ nav ul li a.active::after {
     }
 
     nav ul {
-        width: 50%;
+        width: 70%;
+        max-width: 400px;
         height: 100vh;
         position: absolute;
         top: 80px;
-        left: -55%;
+        right: -70%;
         background-color: var(--bg-color);
         flex-direction: column;
+        justify-content: flex-start;
+        overflow: auto;
         transition: 0.5s;
-        box-shadow: 0 8px 4px 4px rgba(0, 0, 0, 0.2);
+        padding: var(--space-m) var(--space-s);
+        box-shadow: 2px 8px 4px 4px rgba(0, 0, 0, 0.2);
+
     }
 
     nav ul.active {
-        left: 0;
+        right: 0;
     }
 
-    nav ul li {
-        padding: var(--space-xs) var(--space-m);
+    nav ul li { 
+        padding: var(--space-xs);
+        margin: 0;
+        border-radius: 8px;
+    }
+
+    nav ul li:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul li.active {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul li:last-child {
+        margin-bottom: 160px;
+    }
+    
+    nav ul li a {
+        color: rgba(2, 3, 1, 0.6);
+    }
+
+    nav ul li a .icon {
+        display: inline;
+    }
+
+    nav ul li::after {
+        display: none;
     }
 
     .hamburger-icon {

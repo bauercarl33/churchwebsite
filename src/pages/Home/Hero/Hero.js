@@ -10,7 +10,7 @@ const Hero = () => {
             <div className='title-wrapper'>
                 <div className='title'>
                     <h4>St. Mary<span className='highlight'>Orthodox Church</span></h4>
-                    <p>A Romanian Orthodox Christian parish in Austin, TX.</p>
+                    <p>An Orthodox Christian parish in Austin, TX.</p>
                     <div className='buttons'>
                         <Link to='/donate' className='button filled'>New Building Plan</Link>
                         <Link to='/visitors' className='button empty'>Visitors</Link>

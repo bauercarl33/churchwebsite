@@ -1,6 +1,6 @@
 export const colSectionVars = {
     'Church': {
-        'text': 'St. Mary Orthodox Church comes from humble beginnings under the Romanian Orthodox Metropolia of the Americas, bringing together a loving community of Orthodox Christians who worship God together, serving God and each other with joy.',
+        'text': 'St. Mary Orthodox Church comes from humble beginnings and brings together a loving community of Orthodox Christians who worship God together, serving God and each other with joy.',
         'image': '/pictures/about/church-about.jpg'
     },
     'Faith': {
