@@ -47,7 +47,7 @@
 .about {
   --padding-inline: 1rem;
   --content-max-width: 700px;
-  --breakout-max-width: 1000px;
+  --breakout-max-width: 850px;
 
   --breakout-size: calc(
     (var(--breakout-max-width) - var(--content-max-width)) / 2
@@ -70,15 +70,19 @@
     position: relative;
     z-index: 1;
     color: var(--text-color);
-    background-color: var(--bg-color);
+    background-color: var(--color);
 }
 
 .about h5 {
-  margin: 0 0 var(--space-m) 0;
+  margin: 0 0 var(--space-s) 0;
 }
 
 .about p {
-  margin: var(--space-2xs) 0;
+  margin: 0 0 var(--space-2xs) 0;
+}
+
+.about section {
+  margin: 0 0 var(--space-l) 0;
 }
 
 .about img {
@@ -96,6 +100,10 @@
 
 .about > .breakout {
   grid-column: breakout;
+}
+
+p.breakout {
+  margin-bottom: var(--space-2xl);
 }
 
 .about > .full-width {

@@ -4,12 +4,32 @@ import './navbar.css'
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
 import { Events, Link as ScrollLink, scroller } from 'react-scroll'
 import { AnimatePresence } from 'framer-motion'
+import { GrHomeRounded, GrCircleInformation, GrCalendar, GrCamera } from "react-icons/gr";
+import { LuDoorOpen } from "react-icons/lu";
+
 
 const Navbar = () => {
     const pages = {
-        'Home': '/',
-        'About': '/about',
-        'Calendar': '/calendar'
+        'Home': {
+            link: '/',
+            icon: <GrHomeRounded className='icon'/>
+        },
+        'About': {
+            link: '/about',
+            icon: <GrCircleInformation className='icon' />
+        },
+        'Calendar': {
+            link: '/calendar',
+            icon: <GrCalendar className='icon' />
+        },
+        'Media': {
+            link: '/media',
+            icon: <GrCamera className='icon' />
+        },
+        'Visitors': {
+            link: '/visitors',
+            icon: <LuDoorOpen className='icon' />
+        }
     }
 
     const location = useLocation()
@@ -45,20 +65,15 @@ const Navbar = () => {
         // }
     }, [location]);
 
-    useEffect(() => {
-        const preventDefault = (e) => e.preventDefault();
-    
+    useEffect(() => {    
         if (click) {
             document.body.style.overflow = 'hidden';
-            document.body.addEventListener('touchmove', preventDefault, { passive: false });
         } else {
             document.body.style.overflow = '';
-            document.body.removeEventListener('touchmove', preventDefault);
         }
     
         return () => {
             document.body.style.overflow = '';
-            document.body.removeEventListener('touchmove', preventDefault);
         };
     }, [click]);
 
@@ -86,9 +101,9 @@ const Navbar = () => {
                     <h6>St. Mary</h6>
                 </RouterLink>
                 <div className='button-wrapper'>
-                    <button id='mobile' className='button filled' onClick={() => navigate('/donate')}>
+                    <RouterLink to='/donate' id='mobile' className='button filled'>
                         Donate
-                    </button>
+                    </RouterLink>
                     <div className='hamburger' onClick={handleClick}>
                         {click ?
                             <div className='hamburger-icon active'/> :
@@ -97,10 +112,11 @@ const Navbar = () => {
                     </div>
                 </div>
                 <ul className={click ? "active" : ""}>
-                    {Object.entries(pages).map(([name, link]) => (
+                    {Object.entries(pages).map(([name, data]) => (
                         <li 
                             key={name}
-                            onClick={() => closeMenu(link)}
+                            onClick={() => closeMenu(data.link)}
+                            className={activeLink === data.link ? 'active' : ''} 
                         >
                             {/* <ScrollLink
                                 to={section}
@@ -113,18 +129,15 @@ const Navbar = () => {
                             >
                                 {section.substring(0, 1).toUpperCase() + section.substring(1)}
                             </ScrollLink> */}
-                            <RouterLink 
-                                className={activeLink === link ? 'active' : ''} 
-                                to={link}
-                            >
-                                {name}
+                            <RouterLink to={data.link}>
+                                {data.icon}{name}
                             </RouterLink>
                         </li>
                     ))}
                 </ul>
-                <button id='fullscreen' className='button filled' onClick={() => navigate('/donate')}>
+                <RouterLink to='/donate' id='fullscreen' className='button filled'>
                     Donate
-                </button>
+                </RouterLink>
             </nav>
         </header>
     )

@@ -14,8 +14,12 @@ const About = () => {
           <div className='overlay' />
         </div>
         <div className='about'>
-          <h5>A Brief History</h5>
-          <p>Magna labore laboris officia aliquip. Incididunt fugiat id minim aute amet reprehenderit adipisicing proident ut sunt irure velit aliquip sint. Adipisicing et aliquip eu sunt sint ex fugiat pariatur magna elit pariatur elit eu aliqua. Adipisicing pariatur sit sint labore nostrud minim dolore ad dolore sint aliquip. Incididunt mollit sint ut eiusmod adipisicing consequat</p>
+          <section>
+            <h5>Who we are</h5>
+            <p>St. Mary Orthodox Church is a tight-knit, loving community of parishioners who partake in the traditions of the Orthodox Faith. We seek to grow in faith together through the Most Holy Trinity and warmly welcome people from all backgrounds to join us.</p>
+          </section>
+          
+          <h5>Our Parish's History</h5>
           <p>Magna labore laboris officia aliquip. Incididunt fugiat id minim aute amet reprehenderit adipisicing proident ut sunt irure velit aliquip sint. Adipisicing et aliquip eu sunt sint ex fugiat pariatur magna elit pariatur elit eu aliqua. Adipisicing pariatur sit sint labore nostrud minim dolore ad dolore sint aliquip. Incididunt mollit sint ut eiusmod adipisicing consequat</p>
           <img src={bgimg} alt='bg' />
           <p>Magna labore laboris officia aliquip. Incididunt fugiat id minim aute amet reprehenderit adipisicing proident ut sunt irure velit aliquip sint. Adipisicing et aliquip eu sunt sint ex fugiat pariatur magna elit pariatur elit eu aliqua. Adipisicing pariatur sit sint labore nostrud minim dolore ad dolore sint aliquip. Incididunt mollit sint ut eiusmod adipisicing consequat</p>

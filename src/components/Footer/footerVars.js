@@ -11,12 +11,12 @@ export const footerLinks = {
         content: "13740 Research Boulevard, 1 Lake Creek Office Park Suite W, Austin, TX 78759"
     },
     truckParking: {
-        link: 'https://www.google.com/maps/place/11111+Lakeline+Blvd,+Austin,+TX+78717/@30.4788245,-97.798764,17z/data=!3m1!4b1!4m6!3m5!1s0x865b32a7ff7d7151:0x773487c9ebcceaee!8m2!3d30.4788245!4d-97.7961891!16s%2Fg%2F11bw435mbp?entry=ttu&g_ep=EgoyMDI0MTAwMi4xIKXMDSoASAFQAw%3D%3D',
+        link: 'https://www.google.com/maps/place/11301+Lakeline+Blvd,+Austin,+TX+78717/@30.479393,-97.8018903,17z/data=!3m1!4b1!4m6!3m5!1s0x865b2d0092e8ed89:0xc7cf0d2a879a27bf!8m2!3d30.479393!4d-97.7993154!16s%2Fg%2F11k58c2jc_?entry=ttu&g_ep=EgoyMDI0MTAyNy4wIKXMDSoASAFQAw%3D%3D',
         label: 'Map of semi-truck parking',
         icon: <FaTruck size={24} className='icon' />,
         bold: 'bold',
-        boldContent: "Semi-truck parking:",
-        content: "11111 Lakeline Blvd, Austin, TX 78717"
+        boldContent: "Semi-truck parking (Home Depot):",
+        content: "11301 Lakeline Blvd, Austin, TX 78717"
     },
     phone: {
         link: 'tel: 7374004458',

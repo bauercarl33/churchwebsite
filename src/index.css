@@ -110,13 +110,14 @@ a {
 }
 
 .button {
+  position: relative;
   width: fit-content;
   padding: 8px 20px;
   font-size: var(--step-0);
   border: 1px solid transparent;
   border-radius: 8px;
   cursor: pointer;
-  transition-duration: 0.4s;
+  transition: 0.4s;
   color: var(--bg-color);
   font-family: 'Montserrat';
 }
@@ -131,11 +132,12 @@ a {
   color: var(--primary-color);
 }
 
-.button.filled:hover {
-  background-color: var(--primary-dark);
-}
-
 .button.empty:hover {
   background-color: var(--primary-color);
   color: var(--bg-color);
 }
+
+.button.filled:hover {
+  background-color: var(--primary-dark);
+}
+
