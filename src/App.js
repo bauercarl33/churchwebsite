@@ -14,6 +14,7 @@ import Calendar from './pages/Calendar/Calendar'
 import Donate from './pages/Donate/Donate';
 import Footer from "./components/Footer/Footer";
 import Media from "./pages/Media/Media";
+import Visitors from "./pages/Visitors/Visitors";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ function App() {
             <Route exact path='/calendar' element={<Calendar />} />
             <Route exact path='/media' element={<Media />} />
             <Route path='/media/:name/:id' element={<Media />} />
+            <Route exact path='/visitors' element={<Visitors />} />
             <Route exact path='/donate' element={<Donate />} />
           </Routes>
           <Footer />

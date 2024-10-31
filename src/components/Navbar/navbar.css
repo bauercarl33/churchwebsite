@@ -42,7 +42,7 @@ nav ul {
 }
 
 nav ul li {
-    margin:  var(--space-m) var(--space-xs);
+    margin: 0 var(--space-xs);
     position: relative;
 }
 
@@ -171,7 +171,7 @@ nav ul li a .icon {
         justify-content: flex-start;
         overflow: auto;
         transition: 0.5s;
-        padding: var(--space-m) var(--space-s);
+        padding: var(--space-xs) var(--space-s);
         box-shadow: 2px 8px 4px 4px rgba(0, 0, 0, 0.2);
 
     }
