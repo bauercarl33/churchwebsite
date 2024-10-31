@@ -74,11 +74,11 @@
 }
 
 .about h5 {
-  margin: 0 0 var(--space-s) 0;
+  margin: var(--space-s) 0;
 }
 
 .about p {
-  margin: 0 0 var(--space-2xs) 0;
+  margin: 0 0 var(--space-s) 0;
 }
 
 .about section {

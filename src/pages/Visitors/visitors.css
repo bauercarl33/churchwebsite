@@ -25,6 +25,7 @@
     border: transparent;
     cursor: pointer;
     position: relative;
+    font-family: 'Montserrat';
 }
 
 .visitors .accordion .item button h6 {
@@ -33,7 +34,7 @@
 
 .visitors .accordion .item button::before {
     content: "";
-    width: 20px;
+    width: 15px;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
@@ -45,10 +46,10 @@
 .visitors .accordion .item button::after {
     content: "";
     width: 1px;
-    height: 20px;
+    height: 15px;
     background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
-    right: calc(var(--space-m) + 9px);
+    right: calc(var(--space-m) + 7px);
     top: 50%;
     translate: 0 -50%;
     transition: 0.5s;
