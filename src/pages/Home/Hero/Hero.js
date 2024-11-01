@@ -6,6 +6,7 @@ import './hero.css'
 
 const Hero = () => {
     const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0';
+    console.log("St. Mary")
 
     return (
         <div className='hero'>
@@ -22,7 +23,7 @@ const Hero = () => {
                 </div>
             </div>
             <div className='image-wrapper'>
-                <img src={`${process.env.PUBLIC_URL}/images/home/nativity_of_the_theotokos.webp`} alt='Icon of the Nativity of the Theotokos' />
+                <img src={'/images/home/nativity_of_the_theotokos.webp'} alt='Icon of the Nativity of the Theotokos' />
             </div>
         </div>
     );
