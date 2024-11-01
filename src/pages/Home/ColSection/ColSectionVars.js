@@ -1,6 +1,10 @@
-import image1 from '../../../images/home/new_church_plan.webp'
-import image2 from '../../../images/home/altar.webp'
-import image3 from '../../../images/home/mt_athos_group.webp'
+// import image1 from '../../../images/home/new_church_plan.webp'
+// import image2 from '../../../images/home/altar.webp'
+// import image3 from '../../../images/home/mt_athos_group.webp'
+
+const image1 = require('../../../images/home/new_church_plan.webp')
+const image2 = require('../../../images/home/altar.webp')
+const image3 = require('../../../images/home/mt_athos_group.webp')
 
 export const colSectionVars = {
     'Church': {

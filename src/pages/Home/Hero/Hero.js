@@ -6,6 +6,7 @@ import './hero.css'
 
 
 const Hero = () => {
+    console.log("Loading hero")
     const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0'
 
     return (

@@ -19,7 +19,6 @@ const About = () => {
         </div>
         <div className='about'>
           {Object.entries(sections).map((item, index) => {
-            console.log(item[1])
             return (
               <section key={item[1].heading}>
                 <h5>{item[1].heading}</h5>
