@@ -1,10 +1,11 @@
 import React from 'react'
-
-import './hero.css'
 import { Link } from 'react-router-dom'
 
+import homeimg from '../../../images/home/nativity_of_the_theotokos.webp'
+import './hero.css'
+
+
 const Hero = () => {
-    const homeimg = '/pictures/home/nativity_of_the_theotokos.webp'
     const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0'
 
     return (
