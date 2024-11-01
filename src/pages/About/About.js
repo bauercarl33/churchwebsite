@@ -6,9 +6,10 @@ import './about.css'
 
 import { sections } from './AboutVars';
 
+import bgimg from '../../images/home/nativity_of_the_theotokos.webp'
+
 
 const About = () => {
-    const bgimg = '/pictures/home/nativity_of_the_theotokos.webp'
 
     return (
       <>
