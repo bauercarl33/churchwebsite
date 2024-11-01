@@ -1,6 +1,6 @@
 header {
     position: fixed;
-    height: 60px;
+    height: 80px;
     width: 100%;
     top: 0;
     left: 0;
@@ -46,7 +46,7 @@ nav ul li {
     position: relative;
 }
 
-/* nav ul li::after {
+nav ul li::after {
     content: "";
     width: 0%;
     height: 1px;
@@ -55,7 +55,7 @@ nav ul li {
     left: 0;
     background-color: var(--text-color);
     transition: width 0.3s ease-in-out;
-} */
+}
 
 nav ul li:hover::after, 
 nav ul li.active::after {
@@ -159,6 +159,10 @@ nav ul li a .icon {
     
     #mobile {
         display: block;
+    }
+
+    header {
+        height: 60px;
     }
 
     nav ul {

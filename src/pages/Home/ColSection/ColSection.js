@@ -18,7 +18,7 @@ const ColSection = () => {
                                     className='image' 
                                     src={value.image} 
                                     loading='lazy' 
-                                    alt={key} 
+                                    alt={value.alt} 
                                 />
                             </div>
                         </div>
@@ -29,7 +29,7 @@ const ColSection = () => {
                                     <span className='highlight'>{key}</span>
                                 </h4>
                                 <p>{value.text}</p>
-                                <Link to='/about' className='button filled'>
+                                <Link to='/about' className='button filled' aria-label='To about page'>
                                     Learn More
                                 </Link>
                             </div>

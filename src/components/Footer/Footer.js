@@ -5,6 +5,7 @@ import { footerLinks, pageLinks, socialLinks } from './footerVars'
 import './footer.css'
 
 const Footer = () => {
+  const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0'
 
   return (
     <div className='footer'>
@@ -29,12 +30,15 @@ const Footer = () => {
                 </a>
               )
             })}
-            <Link to='/donate'
+            {/* <Link to='/donate'
               className='button filled' 
               aria-label='Go to donation page'
             >
               Donate
-            </Link>
+            </Link> */}
+            <a href={donationLink} target='_blank' aria-label='To donation page.' className='button filled'>
+                Donate
+            </a>
           </div>
       </div>
       <div className='bottom'>
