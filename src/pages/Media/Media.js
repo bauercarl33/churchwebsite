@@ -6,11 +6,13 @@ import { FaArrowLeft, FaShare, FaTimes } from 'react-icons/fa';
 import ImageSlider from './ImageSlider';
 import './media.css';
 
-import homeimg from '../../images/church-home.jpg'
 import { GoArrowLeft, GoShare } from 'react-icons/go';
 
 
 const Media = () => {
+
+  const homeimg = '/pictures/home/nativity_of_the_theotokos.webp'
+
   const { id, name } = useParams();
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -19,7 +19,7 @@
 }
 
 .media .header .overlay {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--overlay);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -136,7 +136,7 @@
     align-items: center;
     padding: 0 var(--space-l);
     position: sticky;
-    top: 60px;
+    top: 80px;
     background-color: #f8f8f8ee;
     z-index: 1;
 }
@@ -263,5 +263,11 @@
     .media .folders {
         padding: var(--space-l) var(--space-s);
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .media .buttons {
+        top: 60px;
     }
 }
