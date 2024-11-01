@@ -1,10 +1,12 @@
 import React from 'react'
 
 import './hero.css'
-import homeimg from '../../../images/church-home.jpg'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {
+    const homeimg = '/pictures/home/nativity_of_the_theotokos.webp'
+    const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0'
+
     return (
         <div className='hero'>
             <div className='title-wrapper'>
@@ -12,13 +14,15 @@ const Hero = () => {
                     <h4>St. Mary<span className='highlight'>Orthodox Church</span></h4>
                     <p>An Orthodox Christian parish in Austin, TX.</p>
                     <div className='buttons'>
-                        <Link to='/donate' className='button filled'>New Building Plan</Link>
+                        <a href={donationLink} target='_blank' aria-label='To donation page.' className='button filled'>
+                            Donate
+                        </a>
                         <Link to='/visitors' className='button empty'>Visitors</Link>
                     </div>
                 </div>
             </div>
             <div className='image-wrapper'>
-                <img src={homeimg} alt='St. Mary' />
+                <img src={homeimg} alt='Icon of the Nativity of the Theotokos' />
             </div>
         </div>
     )

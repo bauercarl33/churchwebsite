@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import { motion, useTransform, useScroll } from "framer-motion";
 
-import bgimg from '../../images/church-home.jpg'
 import './about.css'
 
 import { sections } from './AboutVars';
 
 
 const About = () => {
+    const bgimg = '/pictures/home/nativity_of_the_theotokos.webp'
+
     return (
       <>
         <div className='heading'>

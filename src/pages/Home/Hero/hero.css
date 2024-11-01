@@ -8,7 +8,6 @@
 }
 
 .hero .title-wrapper {
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,7 +20,6 @@
 }
 
 .hero .title-wrapper .title h4 {
-    /* text-shadow: 2px 2px 10px rgba(0,0,0,0.2); */
     font-weight: 400;
 }
 
@@ -55,21 +53,21 @@
 
 @media (max-width: 1200px) {
     .hero .title-wrapper {
-        padding: var(--space-xl) var(--space-l);
+        padding: var(--space-l);
     }
 }
 
 @media (max-width: 960px) {
     .hero {
         flex-direction: column-reverse;
+        min-height: 100%;
     }
 
     .hero .image-wrapper {
-        min-height: 40vh;
-        max-height: 60vh;
+        min-height: 45vh;
     }
 
     .hero .title-wrapper {
-        min-height: 50vh;
+        min-height: 45vh;
     }
 }

@@ -9,6 +9,8 @@ import { LuDoorOpen } from "react-icons/lu";
 
 
 const Navbar = () => {
+    const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0'
+
     const pages = {
         'Home': {
             link: '/',
@@ -101,9 +103,12 @@ const Navbar = () => {
                     <h6>St. Mary</h6>
                 </RouterLink>
                 <div className='button-wrapper'>
-                    <RouterLink to='/donate' id='mobile' className='button filled'>
+                    <a href={donationLink} target='_blank' aria-label='To donation page' id='mobile' className='button filled'>
                         Donate
-                    </RouterLink>
+                    </a>
+                    {/* <RouterLink to='/donate' id='mobile' className='button filled'>
+                        Donate
+                    </RouterLink> */}
                     <div className='hamburger' onClick={handleClick}>
                         {click ?
                             <div className='hamburger-icon active'/> :
@@ -135,9 +140,12 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                <RouterLink to='/donate' id='fullscreen' className='button filled'>
+                {/* <RouterLink to='/donate' id='fullscreen' className='button filled'>
                     Donate
-                </RouterLink>
+                </RouterLink> */}
+                <a href={donationLink} target='_blank' id='fullscreen' aria-label='To donation page.' className='button filled'>
+                    Donate
+                </a>
             </nav>
         </header>
     )

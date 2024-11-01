@@ -1,11 +1,10 @@
 .heading {
-  height: 30vh;
+  height: 360px;
   position: relative;
   display: flex;
 }
 
 .heading .bg {
-  --parallax-speed: 1;
   height: 100%;
   width: 100%;
   z-index: -99;
@@ -14,9 +13,6 @@
 }
 
 .heading .content {
-  width: fit-content;
-  height: fit-content;
-  --parallax-speed: 0.5;
   color: var(--bg-color);
   margin: auto;
   text-align: center;
@@ -24,24 +20,11 @@
 }
 
 .heading .overlay {
-  --parallax-speed: 1;
   width: 100%;
   height: 100%;
   position: absolute;
   background-color: var(--overlay);
   z-index: 0;
-}
-
-.heading > * {
-  grid-area: stack;
-  animation: parallax linear;
-  animation-timeline: scroll();
-}
-
-@keyframes parallax {
-  to {
-      transform: translateY(calc(var(--parallax-speed) * 200px));
-  }
 }
 
 .about {
@@ -74,7 +57,7 @@
 }
 
 .about h5 {
-  margin: var(--space-s) 0;
+  margin: 0 0 var(--space-s) 0;
 }
 
 .about p {

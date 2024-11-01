@@ -37,7 +37,8 @@
     margin-bottom: var(--space-s);
 }
 
-.welcome .container .card h6 {
+.welcome .container .card h5 {
+    font-size: var(--step-1);
     margin-bottom: var(--space-s);
 }
 
