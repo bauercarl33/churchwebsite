@@ -5,6 +5,8 @@ import { motion, useTransform, useScroll } from "framer-motion";
 import bgimg from '../../images/church-home.jpg'
 import './about.css'
 
+import { sections } from './AboutVars';
+
 
 const About = () => {
     return (
@@ -14,16 +16,20 @@ const About = () => {
           <div className='overlay' />
         </div>
         <div className='about'>
-          <section>
-            <h5>Who we are</h5>
-            <p>St. Mary Orthodox Church is a tight-knit, loving community of parishioners who partake in the traditions of the Orthodox Faith. We seek to grow in faith together through the Most Holy Trinity and warmly welcome people from all backgrounds to join us.</p>
-          </section>
-          
-          <h5>Our Parish's History</h5>
-          <p>Magna labore laboris officia aliquip. Incididunt fugiat id minim aute amet reprehenderit adipisicing proident ut sunt irure velit aliquip sint. Adipisicing et aliquip eu sunt sint ex fugiat pariatur magna elit pariatur elit eu aliqua. Adipisicing pariatur sit sint labore nostrud minim dolore ad dolore sint aliquip. Incididunt mollit sint ut eiusmod adipisicing consequat</p>
-          <img src={bgimg} alt='bg' />
-          <p>Magna labore laboris officia aliquip. Incididunt fugiat id minim aute amet reprehenderit adipisicing proident ut sunt irure velit aliquip sint. Adipisicing et aliquip eu sunt sint ex fugiat pariatur magna elit pariatur elit eu aliqua. Adipisicing pariatur sit sint labore nostrud minim dolore ad dolore sint aliquip. Incididunt mollit sint ut eiusmod adipisicing consequat</p>
-        </div>
+          {Object.entries(sections).map((item, index) => {
+            console.log(item[1])
+            return (
+              <section key={item[1].heading}>
+                <h5>{item[1].heading}</h5>
+                {Object.entries(item[1].paragraphs).map((para, index) => {
+                  return (
+                    <p key={index}>{para[1]}</p>
+                  )
+                })}
+              </section>
+            )
+          })}
+          </div>
       </>
       
     )

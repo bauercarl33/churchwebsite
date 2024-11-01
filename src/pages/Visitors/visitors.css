@@ -1,0 +1,80 @@
+.visitors {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 160px var(--space-m);
+}
+
+.visitors .accordion {
+    width: 100%;
+    max-width: 800px;
+}
+
+.visitors .accordion .item {
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.visitors .accordion .item button {
+    width: 100%;
+    text-align: left;
+    padding: var(--space-m);
+    background-color: var(--bg-color);
+    border: transparent;
+    cursor: pointer;
+    position: relative;
+    font-family: 'Montserrat';
+}
+
+.visitors .accordion .item button h6 {
+    width: 85%;
+}
+
+.visitors .accordion .item button::before {
+    content: "";
+    width: 15px;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    right: var(--space-m);
+    top: 50%;
+    translate: 0 -50%;
+}
+
+.visitors .accordion .item button::after {
+    content: "";
+    width: 1px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    right: calc(var(--space-m) + 7px);
+    top: 50%;
+    translate: 0 -50%;
+    transition: 0.5s;
+}
+
+.visitors .accordion .item.open button::after {
+    transform: rotate(90deg);
+}
+
+.visitors .accordion .item:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.visitors .accordion .item h6 {
+    height: fit-content;
+}
+
+.visitors .accordion .item p {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    padding: 0 var(--space-m);
+}
+
+.visitors .accordion .item.open p {
+    max-height: 100px;
+    padding: 0 var(--space-m) var(--space-m);
+}

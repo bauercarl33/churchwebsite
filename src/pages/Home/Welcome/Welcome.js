@@ -36,10 +36,10 @@ const Welcome = () => {
                 <h6>Visitors Welcome</h6>
                 <p>Please come, we love visitors! If you have any questions, please see the FAQ.</p>
                 <Link
-                    to='/faq' 
+                    to='/visitors' 
                     aria-label='Frequently asked questions'
                 >
-                    FAQ<span><FaChevronRight size={12} /></span>
+                    Visitors<span><FaChevronRight size={12} /></span>
                 </Link>
             </div>
         </div>

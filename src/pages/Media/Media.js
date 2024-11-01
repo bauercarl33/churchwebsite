@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaShare, FaTimes } from 'react-icons/fa';
 
 import ImageSlider from './ImageSlider';
 import './media.css';
+
+import homeimg from '../../images/church-home.jpg'
+import { GoArrowLeft, GoShare } from 'react-icons/go';
 
 
 const Media = () => {
@@ -56,7 +59,11 @@ const Media = () => {
   if (!id) {
     return (
       <div className='media'>
-        <h4>Media</h4>
+        <div className='header'>
+          <div className='overlay' />
+          <img src={homeimg} alt="Church" />
+          <h4>Media Gallery</h4>
+        </div>
         <div className='folders'>
           {Object.entries(folders.body.folders).map((item) => {
             let url = "https://saintmarychurch.s3.amazonaws.com/images/" + item[1].firstImageInFolder;
@@ -91,7 +98,13 @@ const Media = () => {
 
   return (
     <div className='media'>
-      <h4>{name}</h4>
+      <div className='title'>
+        <h4>{name}</h4>
+      </div>
+      <div className='buttons'>
+          <Link to='/media'><GoArrowLeft size={24} className='icon' /></Link>
+          <button><GoShare size={24} className='icon'/></button>
+        </div>
       <div className='images'>
         {Object.entries(images.body.files).map((item, index) => {
           let alt = null;
