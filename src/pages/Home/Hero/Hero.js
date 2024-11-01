@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import homeimg from '../../../images/home/nativity_of_the_theotokos.webp'
 import './hero.css'
 
 
 const Hero = () => {
-    console.log("Loading hero")
-    const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0'
+    const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0';
 
     return (
         <div className='hero'>
@@ -24,10 +22,10 @@ const Hero = () => {
                 </div>
             </div>
             <div className='image-wrapper'>
-                <img src={homeimg} alt='Icon of the Nativity of the Theotokos' />
+                <img src={`${process.env.PUBLIC_URL}/images/home/nativity_of_the_theotokos.webp`} alt='Icon of the Nativity of the Theotokos' />
             </div>
         </div>
-    )
+    );
 }
 
-export default Hero
+export default Hero;

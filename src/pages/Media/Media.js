@@ -5,7 +5,6 @@ import { FaArrowLeft, FaShare, FaTimes } from 'react-icons/fa';
 
 import ImageSlider from './ImageSlider';
 import './media.css';
-import homeimg from '../../images/home/nativity_of_the_theotokos.webp'
 
 import { GoArrowLeft, GoShare } from 'react-icons/go';
 
@@ -62,7 +61,7 @@ const Media = () => {
       <div className='media'>
         <div className='header'>
           <div className='overlay' />
-          <img src={homeimg} alt="Church" />
+          <img src={`${process.env.PUBLIC_URL}/images/home/nativity_of_the_theotokos.webp`} alt="Church" />
           <h4>Media Gallery</h4>
         </div>
         <div className='folders'>

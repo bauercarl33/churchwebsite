@@ -6,15 +6,12 @@ import './about.css'
 
 import { sections } from './AboutVars';
 
-import bgimg from '../../images/home/nativity_of_the_theotokos.webp'
-
-
 const About = () => {
 
     return (
       <>
         <div className='heading'>
-          <img className='bg' src={bgimg} alt='bg' />
+          <img className='bg' src={`${process.env.PUBLIC_URL}/images/home/nativity_of_the_theotokos.webp`} alt='bg' />
           <div className='overlay' />
         </div>
         <div className='about'>
