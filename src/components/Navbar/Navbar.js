@@ -97,7 +97,7 @@ const Navbar = () => {
     }, [])
 
     return (
-        <header>
+        <header className='navbar'>
             <nav>
                 <RouterLink to='/' onClick={closeMenu} className='logo'>
                     <h6>St. Mary</h6>
