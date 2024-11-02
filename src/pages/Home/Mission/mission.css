@@ -1,0 +1,21 @@
+.mission {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    padding: var(--space-m) 0;
+}
+
+.mission .statement {
+    width: 100%;
+    height: max(40vh, 300px);
+    max-width: 1000px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-m);
+}

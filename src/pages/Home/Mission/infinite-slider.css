@@ -1,0 +1,58 @@
+.infinite-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.infinite-wrapper:before,
+.infinite-wrapper:after {
+  position: absolute;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.infinite-wrapper:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(248, 248, 248, 0), var(--bg-color));
+}
+
+.infinite-wrapper:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(248, 248, 248, 0), var(--bg-color));
+}
+
+.infinite-wrapper .infinite-slider {
+    display: flex;
+    animation: slide 40s linear infinite;
+    width: max-content;
+}
+
+.infinite-wrapper .infinite-slider img {
+    max-height: 240px;
+    margin: 0 4px;
+}
+
+.infinite-wrapper .infinite-slider.reverse {
+    animation: slide-reverse 40s linear infinite;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes slide-reverse {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
