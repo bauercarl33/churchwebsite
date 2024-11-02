@@ -1,0 +1,15 @@
+.calendar {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 160px var(--space-m);
+    position: relative;
+}
+
+.sx-react-calendar-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    height: 800px;
+}
