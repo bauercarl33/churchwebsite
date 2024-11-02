@@ -26,6 +26,7 @@
     cursor: pointer;
     position: relative;
     font-family: 'Montserrat';
+    color: var(--text-color);
 }
 
 .visitors .accordion .item button h6 {

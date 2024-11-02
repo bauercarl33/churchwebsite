@@ -161,10 +161,6 @@ nav ul li a .icon {
         display: block;
     }
 
-    header {
-        height: 60px;
-    }
-
     nav ul {
         width: 70%;
         max-width: 400px;
