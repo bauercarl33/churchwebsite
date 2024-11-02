@@ -1,6 +1,11 @@
 import { useEffect } from 'react'
 import { useCalendarApp, ScheduleXCalendar } from '@schedule-x/react'
-import { createViewMonthGrid } from '@schedule-x/calendar'
+import { 
+    createViewMonthGrid, 
+    createViewDay, 
+    createViewMonthAgenda, 
+    createViewWeek 
+} from '@schedule-x/calendar'
 import { createEventsServicePlugin } from '@schedule-x/events-service'
 import { createEventModalPlugin } from '@schedule-x/event-modal'
  
@@ -17,7 +22,7 @@ function CalendarApp({ data }) {
             church: {
                 colorName: 'church',
                 lightColors: {
-                    main: 'var(--accent)',
+                    main: 'var(--primary-dark)',
                     container: 'var(--primary-color)',
                     onContainer: 'var(--bg-color)',
                 }
@@ -31,10 +36,9 @@ function CalendarApp({ data }) {
     }, [])
 
     const calendar = useCalendarApp({
-        views: [createViewMonthGrid()],
+        views: [createViewMonthGrid(), createViewMonthAgenda()],
         events: data,
         firstDayOfWeek: config.firstDayOfWeek,
-        calendars: config.calendars
     }, plugins)
 
     return (
