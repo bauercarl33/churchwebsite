@@ -13,7 +13,7 @@ const Welcome = () => {
                 <h5>Temporary Location</h5>
                 <p>13740 Research Boulevard, 1 Lake Creek Office Park Suite W, Austin, TX 78759</p>
                 <a 
-                    href='https://www.google.com/maps/search/13740+Research+Boulevard,+1+Lake+Creek+Office+Park+Suite+W,+Austin,+TX+78759/@30.4591469,-97.7973402,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI0MTAwMi4xIKXMDSoASAFQAw%3D%3D'
+                    href='https://www.google.com/maps/place/Lake+Creek+Office+Park/@30.4591469,-97.7973402,17z/data=!3m1!4b1!4m6!3m5!1s0x865b32b9e1ff20fd:0xd66a56166d2469ea!8m2!3d30.4591469!4d-97.7947653!16s%2Fg%2F11c5z_w2ng?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D'
                     aria-label='Map to church'
                     target='_blank'
                 >

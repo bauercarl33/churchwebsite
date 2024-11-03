@@ -1,23 +1,45 @@
 import { Paper } from "@mui/material";
 import { useState, useEffect } from "react";
-
+import PutImageComponent from "./uploadcontent";
 const AdminPage = () => {
   const [apiData1, setApiData1] = useState(null);
   const [apiData2, setApiData2] = useState(null);
-
+  const [apiData3, setApiData3] = useState(null);
   // Fetch the list of files in a specific folder
-  const getFilesInFolder = async () => {
-    const url2 =
-      "https://5as4ejxxn4.execute-api.us-east-1.amazonaws.com/prod/listFileIdsInFolder";
 
-    const response = await fetch(url2, {
+  const getCalendarEvents = async () => {
+    const url =
+      "https://ritymdmzg4.execute-api.us-east-1.amazonaws.com/prod/getChurchCalendar";
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        folderId: "1O6SVu7YLs4C1uU2du6kw6RTNvjtVY7Ke", // Stringify the body
+        startDate: "2025-09-01",
+        endDate: "2025-09-08",
       }),
+    });
+    if (!response.ok) {
+      console.error("Error fetching calendar");
+      return null;
+    }
+
+    const data = await response.json();
+    console.log("Calendar events:", JSON.stringify(data, null, 2));
+    return data;
+  };
+  const getFilesInFolder = async () => {
+    const folderId = "1O6SVu7YLs4C1uU2du6kw6RTNvjtVY7Ke";
+    var url2 =
+      "https://5as4ejxxn4.execute-api.us-east-1.amazonaws.com/prod/listFileIdsInFolder/" +
+      folderId;
+
+    const response = await fetch(url2, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     if (!response.ok) {
@@ -61,6 +83,9 @@ const AdminPage = () => {
       // Fetch files in a specific folder
       const result2 = await getFilesInFolder();
       setApiData2(result2);
+
+      const result3 = await getCalendarEvents();
+      setApiData3(result3);
     };
 
     fetchData();
@@ -94,6 +119,12 @@ const AdminPage = () => {
       ) : (
         <p>Loading getFilesInFolder...</p>
       )}
+      {apiData3 ? (
+        <pre>{JSON.stringify(apiData3, null, 2)}</pre>
+      ) : (
+        <p>Loading calendar...</p>
+      )}
+      <PutImageComponent />
     </div>
   );
 };

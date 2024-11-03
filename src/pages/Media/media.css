@@ -185,11 +185,11 @@
 
 .media .media-modal {
     position: fixed;
-    top: calc(50% + 30px);
+    top: calc(50% + 40px);
     left: 50%;
     translate: -50% -50%;
     min-width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - 80px);
     background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;

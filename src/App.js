@@ -10,11 +10,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
-import Calendar from './pages/Calendar/Calendar'
+// import Calendar from './pages/Calendar/Calendar'
 import Donate from './pages/Donate/Donate';
 import Footer from "./components/Footer/Footer";
 import Media from "./pages/Media/Media";
 import Visitors from "./pages/Visitors/Visitors";
+import Calendar from "./pages/ScheduleX/Calendar";
 
 const queryClient = new QueryClient();
 
