@@ -2,18 +2,7 @@ import React from 'react'
 
 import './infinite-slider.css'
 
-const InfiniteSlider = ({ reverse }) => {
-    const images = [
-        '/images/home/image1.jpeg',
-        '/images/home/image2.jpeg',
-        '/images/home/image3.jpeg',
-        '/images/home/image4.jpeg',
-        '/images/home/image5.jpeg',
-        '/images/home/image6.jpeg',
-        '/images/home/image7.jpeg',
-        '/images/home/image8.jpeg'
-    ]
-
+const InfiniteSlider = ({ images, reverse }) => {
     return (
         <div className='infinite-wrapper'>
             <div className={
@@ -21,12 +10,20 @@ const InfiniteSlider = ({ reverse }) => {
             }>
                 {images.map((image, index) => {
                     return (
-                        <img src={image} key={index} />
+                        <img 
+                            src={`https://saintmarychurch.s3.amazonaws.com/images/${image.id}`} 
+                            key={image.id}
+                            alt='Images of our community.'   
+                        />
                     )
                 })}
                 {images.map((image, index) => {
                     return (
-                        <img src={image} key={index} />
+                        <img 
+                            src={`https://saintmarychurch.s3.amazonaws.com/images/${image.id}`} 
+                            key={image.id + '2'}
+                            alt='Images of our community.'       
+                        />
                     )
                 })}
             </div>

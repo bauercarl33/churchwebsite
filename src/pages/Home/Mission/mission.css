@@ -1,12 +1,11 @@
 .mission {
-    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: var(--bg-color);
-    padding: var(--space-m) 0;
+    padding: 80px 0;
 }
 
 .mission .statement {
@@ -18,4 +17,51 @@
     align-items: center;
     justify-content: center;
     padding: var(--space-m);
+}
+
+.mission .image-wrapper {
+    width: 150px;
+    aspect-ratio: 1;
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.mission .image-wrapper:nth-child(1) {
+    top: 20%;
+    left: 10%;
+}
+.mission .image-wrapper:nth-child(2) {
+    top: 10%;
+    left: 35%;
+}
+.mission .image-wrapper:nth-child(3) {
+    top: 15%;
+    left: 60%;
+}
+.mission .image-wrapper:nth-child(4) {
+    top: 25%;
+    left: 80%;
+}
+.mission .image-wrapper:nth-child(5) {
+    top: 60%;
+    left: 15%;
+}
+.mission .image-wrapper:nth-child(6) {
+    top: 70%;
+    left: 35%;
+}
+.mission .image-wrapper:nth-child(7) {
+    top: 65%;
+    left: 55%;
+}
+.mission .image-wrapper:nth-child(8) {
+    top: 75%;
+    left: 75%;
+}
+
+.mission .image-wrapper img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }

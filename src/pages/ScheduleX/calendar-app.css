@@ -6,6 +6,7 @@
     align-items: center;
     padding: 160px var(--space-m);
     position: relative;
+    background-color: var(--bg-color);
 }
 
 .sx-react-calendar-wrapper {
