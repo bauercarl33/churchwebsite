@@ -15,7 +15,6 @@ const ColSection = () => {
                         <div className='col'>
                             <div className='image'>
                                 <img 
-                                    className='image' 
                                     src={value.image} 
                                     loading='lazy' 
                                     alt={value.alt} 

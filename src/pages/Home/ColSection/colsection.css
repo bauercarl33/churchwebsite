@@ -1,45 +1,38 @@
 .col-section {
     background-color: var(--bg-color);
-    padding: 8rem 0 8rem;
-    width: 100%;
-    height: 100%;
+    padding: 8rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 80px;
+    row-gap: 160px;
     position: relative;
 }
 
 .col-section .row {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: var(--space-xl);
-    padding: var(--space-s) 0;
 }
 
 .col-section .row .col {
-    max-width: 600px;
-    width: 50%;
-    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 var(--space-m);
+    padding: 0 var(--space-xl);
 }
 
 .col-section .row .col .text {
-    height: 100%;
-    width: 100%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     text-align: left;
-    align-items: left;
 }
 
 .col-section .row .col p {
@@ -56,12 +49,20 @@
     color: var(--accent);
 }
 
-.image {
+.col-section .row .col .image {
+    height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.col-section .row .col .image img {
     aspect-ratio: 1.5;
     object-fit: cover;
     border-radius: 8px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
 }
 
 .col-section .curve {
@@ -70,7 +71,7 @@
     left: 0;
 }
 
-@media screen and (min-width:960px) {
+@media screen and (min-width:1200px) {
     .col-section .row:nth-child(even) {
         flex-direction: row;
     }
@@ -80,10 +81,9 @@
     }
 }
 
-@media screen and (max-width:960px) {
+@media screen and (max-width:1200px) {
     .col-section {
-        padding: 5rem 0;
-        row-gap: 80px;
+        row-gap: var(--space-2xl);
     }
 
     .col-section .row {
@@ -91,7 +91,7 @@
     }
 
     .col-section .row .col {
-        width: 100%;
+        padding: 0 var(--space-m);
     }
 
     .col-section .row .col .text h4 {
@@ -102,8 +102,8 @@
         margin-bottom: var(--space-m);
     }
 
-    .col-section .row .col:nth-child(odd) {
-        max-width: 500px;
+    .col-section .row .col .image {
+        max-width: 600px;
         margin-top: var(--space-l);
     }
 }

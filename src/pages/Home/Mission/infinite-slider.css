@@ -62,7 +62,7 @@
 
 @media screen and (max-width: 700px) {
     .infinite-wrapper .infinite-slider img {
-        max-height: 160px;
-        margin: 0 30px;
+        max-height: 120px;
+        margin: 0 20px;
     }
 }
