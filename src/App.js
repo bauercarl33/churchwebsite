@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
+import About2 from './pages/About/About2'
 // import Calendar from './pages/Calendar/Calendar'
 import Donate from './pages/Donate/Donate';
 import Footer from "./components/Footer/Footer";
@@ -28,7 +29,7 @@ function App() {
           <Navbar />
           <Routes location={location} key={location.key}>
             <Route exact path='/' element={<Home />} />
-            <Route exact path='/about' element={<About />} />
+            <Route exact path='/about' element={<About2 />} />
             <Route exact path='/calendar' element={<Calendar />} />
             <Route exact path='/media' element={<Media />} />
             <Route path='/media/:name/:id' element={<Media />} />

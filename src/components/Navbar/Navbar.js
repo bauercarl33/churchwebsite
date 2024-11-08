@@ -98,8 +98,8 @@ const Navbar = () => {
         const rect = element.getBoundingClientRect();
         const navRect = navRef.current.getBoundingClientRect();
         setPillStyle({
-            top: rect.top - navRect.top - 6,
-            left: rect.left - navRect.left - 16,
+            top: rect.top - navRect.top - 7,
+            left: rect.left - navRect.left - 17,
             width: rect.width + 32,
         });
     };

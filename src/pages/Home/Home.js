@@ -1,9 +1,11 @@
 import React from 'react';
 
 import Hero from './Hero/Hero';
-import ColSection from './ColSection/ColSection';
+import ColSection from '../../components/ColSection/ColSection';
 import Welcome from './Welcome/Welcome';
 import Mission from './Mission/Mission';
+
+import { colSectionVars } from './ColSectionVars';
 
 const Home = () => {
     return (
@@ -11,7 +13,7 @@ const Home = () => {
             <Hero />
             <Mission />
             <Welcome />
-            <ColSection />            
+            <ColSection colSectionVars={colSectionVars} />            
         </>
     )
 }

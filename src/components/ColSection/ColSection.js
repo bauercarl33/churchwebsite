@@ -1,12 +1,10 @@
 import React from 'react'
 import {  Link } from 'react-router-dom'
 
-import { colSectionVars } from './ColSectionVars'
-
 import './colsection.css'
 
 
-const ColSection = () => {     
+const ColSection = ({ colSectionVars }) => {     
     return (
         <div className='col-section'>
             {Object.entries(colSectionVars).map(([key, value]) => {

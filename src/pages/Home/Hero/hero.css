@@ -41,11 +41,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: var(--space-s);
+    padding: var(--space-l);
 }
 
 .hero .image-wrapper img {
-    /* width: 100%; */
+    width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
