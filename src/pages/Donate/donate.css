@@ -1,38 +1,163 @@
 .donate {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     background-color: var(--secondary-color);
-    /* padding: var(--space-2xl); */
+    padding: var(--space-2xl);
 }
 
-.donate .container {
+.donate .col {
     width: 100%;
     height: 100%;
+    min-height: 50vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    padding: var(--space-m);
-}
-
-.donate .container .buttons {
-    width: fit-content;
-    height: fit-content;
-    display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
-    border-radius: 20%/50%;
 }
 
-.donate .container .buttons .button {
-    width: 40px;
+.donate .col .tithely {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 80px 0;
 }
 
-.donate .container .buttons .button svg {
-    width: inherit;
+.donate .col .divider {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 80px;
+}
+
+.donate .col .divider::before,
+.donate .col .divider::after {
+    content: "";
+    width: 25%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+}
+
+.donate .col .divider::before {
+    left: 20%;
+}
+
+.donate .col .divider::after {
+    right: 20%;
+}
+
+.donate .col .text {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+}
+
+.donate .col .text h4 {
+    margin-bottom: var(--space-s);
+}
+
+.donate .col .text p {
+    margin-bottom: var(--space-s);
+}
+
+.donate .col .qrs {
+    width: 100%;
+    max-width: 400px;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-s);
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.donate .col .qrs .selector {
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.donate .col .qrs .selector .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: transparent;
+    background-color: transparent;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--text-color);
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.donationpill {
+    position: absolute;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    z-index: -1;
+}
+
+.donate .col .qrs .selector .item.selected {
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+.donate .col .qrs .qr {
+    margin-top: var(--space-s);
+    display: none;
+}
+
+.donate .col .qrs .qr.selected {
+    display: flex;
+    width: 100%;
+    max-width: 300px;
+}
+
+.donate .col .qrs .qr.selected img {
+    width: 100%;
+}
+
+@media screen and (max-width: 960px) {
+    .donate {
+        flex-direction: column;
+        padding: 5rem var(--space-m);
+    }
+
+    .donate .col .divider::before,
+    .donate .col .divider::after {
+        content: "";
+        width: 40%;
+        height: 2px;
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 50%;
+        translate: 0 -50%;
+    }
+
+    .donate .col .divider::before {
+        left: 0%;
+    }
+
+    .donate .col .divider::after {
+        right: 0%;
+    }
 }
