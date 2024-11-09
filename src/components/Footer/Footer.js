@@ -30,15 +30,12 @@ const Footer = () => {
                 </a>
               )
             })}
-            {/* <Link to='/donate'
+            <Link to='/donate'
               className='button filled' 
               aria-label='Go to donation page'
             >
               Donate
-            </Link> */}
-            <a href={donationLink} target='_blank' aria-label='To donation page.' className='button filled'>
-                Donate
-            </a>
+            </Link>
           </div>
       </div>
       <div className='bottom'>
