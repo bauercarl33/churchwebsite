@@ -100,11 +100,13 @@ const Donate = () => {
       </div> */}
       <div className='col'>
         <a href={tithelyLink} target='_blank' className='tithely'>
+          <p>Click here to donate with Tithely.</p>
           <img src={tihely} alt='tithely link image' />
         </a>
         <div className='divider'>
           <h5>Or</h5>
         </div>
+        <p>Select a QR code and scan/click the link.</p>
         <div className='qrs'>
           <div className='selector' ref={selectorRef}>
             <div className='donationpill' style={donationpillStyle}/>
