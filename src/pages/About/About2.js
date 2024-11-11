@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, color } from 'framer-motion';
 import './about2.css';
 import { sections } from './AboutVars';
 
@@ -29,6 +29,7 @@ const About2 = () => {
                 {Object.entries(sections).map((item, index) => (
                     <div className='desktop-content-section' key={index}>
                         <div className='desktop-content'>
+                            <span style={{color: "var(--accent)"}}>2002</span>
                             <h4>{item[1].heading}</h4>
                             {item[1].paragraphs.map((para, paraIndex) => (
                                 <p key={paraIndex}>{para}</p>

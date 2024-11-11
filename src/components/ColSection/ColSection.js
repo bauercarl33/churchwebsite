@@ -2,6 +2,7 @@ import React from 'react'
 import {  Link } from 'react-router-dom'
 
 import './colsection.css'
+import { FaChevronRight } from 'react-icons/fa6'
 
 
 const ColSection = ({ colSectionVars }) => {     
@@ -26,8 +27,8 @@ const ColSection = ({ colSectionVars }) => {
                                     <span className='highlight'>{key}</span>
                                 </h4>
                                 <p>{value.text}</p>
-                                <Link to='/about' className='button filled' aria-label='To about page'>
-                                    Learn More
+                                <Link to='/about' className='link' aria-label='To about page'>
+                                    Learn More<span><FaChevronRight size={12} /></span>
                                 </Link>
                             </div>
                         </div>
