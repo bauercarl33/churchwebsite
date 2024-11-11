@@ -5,8 +5,6 @@ import { GrHomeRounded, GrCircleInformation, GrCalendar, GrCamera } from "react-
 import { LuDoorOpen } from "react-icons/lu";
 
 const Navbar = () => {
-    const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0';
-
     const pages = {
         'Home': {
             link: '/',
@@ -33,7 +31,7 @@ const Navbar = () => {
     const location = useLocation();
     const [click, setClick] = useState(false);
     const [activeLink, setActiveLink] = useState('/');
-    const [pillStyle, setPillStyle] = useState({ top: 0, left: 0, width: 0 });
+    const [navpillStyle, setnavpillStyle] = useState({ top: 0, left: 0, width: 0 });
     const navRef = useRef(null);
 
     const closeMenu = () => {
@@ -73,7 +71,7 @@ const Navbar = () => {
                 setClick(false);
             }
 
-            // Recalculate the pill position and size based on the active link on resize
+            // Recalculate the navpill position and size based on the active link on resize
             const activeElement = navRef.current?.querySelector('.active a');
             if (activeElement) {
                 updatePillPosition(activeElement);
@@ -88,6 +86,10 @@ const Navbar = () => {
     }, []);
 
     useEffect(() => {
+        if (activeLink === '/donate') {
+            setnavpillStyle({ display: 'none' });
+            return
+        }
         const activeElement = navRef.current?.querySelector('.active a');
         if (activeElement) {
             updatePillPosition(activeElement);
@@ -97,7 +99,7 @@ const Navbar = () => {
     const updatePillPosition = (element) => {
         const rect = element.getBoundingClientRect();
         const navRect = navRef.current.getBoundingClientRect();
-        setPillStyle({
+        setnavpillStyle({
             top: rect.top - navRect.top - 7,
             left: rect.left - navRect.left - 17,
             width: rect.width + 32,
@@ -112,7 +114,10 @@ const Navbar = () => {
     };
 
     const handleMouseLeave = () => {
-        // Reset the pill to the active link position
+        if (activeLink === '/donate') {
+            setnavpillStyle({ opacity: 0 })
+            return
+        }
         const activeElement = navRef.current?.querySelector('.active a');
         if (activeElement) {
             updatePillPosition(activeElement);
@@ -126,15 +131,15 @@ const Navbar = () => {
                     <h6>St. Mary</h6>
                 </RouterLink>
                 <div className='button-wrapper'>
-                    <a href={donationLink} target='_blank' aria-label='To donation page' id='mobile' className='button filled'>
+                    <RouterLink to='/donate' id='mobile' className='button filled'>
                         Donate
-                    </a>
+                    </RouterLink>
                     <div className='hamburger' onClick={handleClick}>
                         <div className={click ? 'hamburger-icon active' : 'hamburger-icon'} />
                     </div>
                 </div>
                 <ul className={click ? "active" : ""}>
-                    <div className="pill" style={pillStyle} />
+                    <div className="navpill" style={navpillStyle} />
                     {Object.entries(pages).map(([name, data]) => (
                         <li
                             key={name}
@@ -149,9 +154,9 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                <a href={donationLink} target='_blank' id='fullscreen' aria-label='To donation page' className='button filled'>
+                <RouterLink to='/donate' id='fullscreen' className='button filled'>
                     Donate
-                </a>
+                </RouterLink>
             </nav>
         </header>
     );

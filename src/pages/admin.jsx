@@ -90,6 +90,18 @@ const AdminPage = () => {
 
     fetchData();
   }, []); // Run once on component mount
+  const cashapp =
+    "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1T1EgRBGJ5SBLLcNR3DLIHusUkkKoYigh";
+  const venmo =
+    "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1a15SPoeT62u9xoY6-D7xxqcxCkggTUow";
+  const paypal =
+    "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/16ayX3AeW9dFMMmopqE4SqNxraGqhi5Rh";
+  const gofundme =
+    "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BgtiL3oU34seQLd8tFM_0rgBSQhheibE";
+  const zelle =
+    "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1cjCe9XhuzTk_UocT9Nu73t-E8nbzcLCf";
+  const tihely =
+    "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BkJiqWi-0Qf4fzECI23QfyJT2U3uIUGm";
 
   return (
     <div>
@@ -106,7 +118,12 @@ const AdminPage = () => {
         height={500}
         width={500}
       />
-
+      <img src={cashapp} alt="Description of the image" height={500} />{" "}
+      <img src={venmo} alt="Description of the image" height={500} />{" "}
+      <img src={paypal} alt="Description of the image" height={500} />{" "}
+      <img src={gofundme} alt="Description of the image" height={500} />{" "}
+      <img src={zelle} alt="Description of the image" height={500} />{" "}
+      <img src={tihely} alt="Description of the image" height={500} />
       {/* Display API data */}
       {apiData1 ? (
         <pre>{JSON.stringify(apiData1, null, 2)}</pre>

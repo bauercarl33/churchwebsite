@@ -16,14 +16,13 @@ const Hero = () => {
           </h4>
           <p>An Orthodox Christian parish in Austin, TX.</p>
           <div className="buttons">
-            <a
-              href={donationLink}
-              target="_blank"
+            <Link
+              to='/donate'
               aria-label="To donation page."
               className="button filled"
             >
               Donate
-            </a>
+            </Link>
             <Link to="/visitors" className="button empty">
               Visitors
             </Link>
