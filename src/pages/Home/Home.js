@@ -11,9 +11,9 @@ const Home = () => {
     return (
         <>
             <Hero />
-            <Mission />
             <Welcome />
-            <ColSection colSectionVars={colSectionVars} />            
+            <ColSection colSectionVars={colSectionVars} /> 
+            <Mission />           
         </>
     )
 }

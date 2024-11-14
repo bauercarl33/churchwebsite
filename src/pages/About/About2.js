@@ -26,19 +26,6 @@ const About2 = () => {
     return (
         <div className='about'>
             <div className='left'>
-                {Object.entries(sections).map((item, index) => (
-                    <div className='desktop-content-section' key={index}>
-                        <div className='desktop-content'>
-                            <span style={{color: "var(--accent)"}}>2002</span>
-                            <h4>{item[1].heading}</h4>
-                            {item[1].paragraphs.map((para, paraIndex) => (
-                                <p key={paraIndex}>{para}</p>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <div className='right'>
                 <div className='desktop-photos'>
                     <AnimatePresence>
                         {Object.entries(sections).map((item, index) => (
@@ -56,6 +43,20 @@ const About2 = () => {
                         ))}
                     </AnimatePresence>
                 </div>
+                
+            </div>
+            <div className='right'>
+                {Object.entries(sections).map((item, index) => (
+                    <div className='desktop-content-section' key={index}>
+                        <div className='desktop-content'>
+                            <span style={{color: "var(--accent)"}}>2002</span>
+                            <h4>{item[1].heading}</h4>
+                            {item[1].paragraphs.map((para, paraIndex) => (
+                                <p key={paraIndex}>{para}</p>
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

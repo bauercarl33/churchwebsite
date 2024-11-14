@@ -5,7 +5,8 @@
     align-items: center;
     position: relative;
     background-color: var(--bg-color);
-    margin-top: 80px;
+    padding-top: 80px;
+    /* padding-bottom: 80px; */
 }
 
 .hero .title-wrapper {
@@ -54,22 +55,26 @@
 @media (max-width: 1400px) {
     .hero {
         flex-direction: column;
+        padding-bottom: 0;
     }
 
     .hero .image-wrapper {
         height: 100%;
-        padding: 0 80px;
+        padding: var(--space-l);
+    }
+
+    .hero .image-wrapper img {
+        border-radius: 20px;
     }
 
     .hero .title-wrapper { 
         padding: var(--space-2xl) var(--space-s);
-        margin-bottom: var(--space-l);
     }
 }
 
 @media screen and (max-width: 960px) {
     .hero .image-wrapper {
-        padding: 0 var(--space-s);
+        padding: var(--space-s);
     }
 }
 

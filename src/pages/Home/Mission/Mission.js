@@ -1,55 +1,29 @@
 import React from 'react'
-import { useQuery } from "@tanstack/react-query";
 
 import './mission.css'
 import InfiniteSlider from './InfiniteSlider'
 
 
 const Mission = () => {
-    const folderId1 = "1yMb36XjQbYFwmtUB9vtCpjukzkRvgpto"
-    const folderId2 = "1O6SVu7YLs4C1uU2du6kw6RTNvjtVY7Ke"
-    
-    const getImages = async (id) => {
-        let url = `https://5as4ejxxn4.execute-api.us-east-1.amazonaws.com/prod/listFileIdsInFolder/${id}`;
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        const json = await response.json();
-        return json;
-    };
-    
-    const { data: top, isLoading: isLoadingTop } = useQuery({
-        queryFn: () => getImages(folderId1),
-        queryKey: ['top']
-    });
-
-    const { data: bottom, isLoading: isLoadingBottom } = useQuery({
-        queryFn: () => getImages(folderId2),
-        queryKey: ['bottom']
-    });
-
-    if (isLoadingTop || isLoadingBottom) {
-        return (
-            <div className='mission'>Loading...</div>
-        )
-    }
-
-    const imageArr1 = top.body.files.slice(0, 8);
-    const imageArr2 = bottom.body.files.slice(0, 8);
+    const images = [
+        "1uuK_CTkF2t7zoa4ApJiYFN_kB1f-FuzT",
+        "1edY29V8tPqq0LbetBujJ7HZiS06vaeJq",
+        "1IHC06XtLEkFz57I4DzfXD_P7nRBFF3OA",
+        "1LtuDhQSwXLI6QQZOCEMRosXoyTQEAmt2",
+        "1frW7TdxVYaNUqe7D8UsDGNJ-aVwNFdwd",
+        "1iaQYjJaX-OdyZsruM2ti9bfFbTQnBPJx",
+        "1SimxkZIw-pvA7fdhQ-trW4LcBuovsaBk",
+        "15kZH16bjYkLLN4w7tz509tMXvFLpqr3x"
+    ]
 
     return (
         <div className='mission'>
-            <InfiniteSlider images={imageArr1} />
             <div className='statement'>
                 <h5>
                     St. Mary Orthodox Church aims to provide a spiritual home for anyone who desires salvation through Christ.
                 </h5>
             </div>
-            <InfiniteSlider images={imageArr2} reverse={true} />
+            <InfiniteSlider images={images} />
         </div>
     )
 }

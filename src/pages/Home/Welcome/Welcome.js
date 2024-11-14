@@ -9,7 +9,6 @@ const Welcome = () => {
     <div className='welcome'>
         <div className='container'>
             <div className='card'>
-                {/* <FaLocationDot size={24} className='icon' /> */}
                 <h5>Temporary Location</h5>
                 <p>13740 Research Boulevard, 1 Lake Creek Office Park Suite W, Austin, TX 78759</p>
                 <a 
@@ -21,7 +20,6 @@ const Welcome = () => {
                 </a>
             </div>
             <div className='card'>
-                {/* <FaCalendar size={24} className='icon' /> */}
                 <h5>Divine Services</h5>
                 <p>Orthros on Sundays at 9:30am followed by the Divine Liturgy of St. John Chrysostom at 10:30am. Check the calendar for more.</p>
                 <Link
@@ -32,7 +30,6 @@ const Welcome = () => {
                 </Link>
             </div>
             <div className='card'>
-                {/* <FaDoorOpen size={24} className='icon' /> */}
                 <h5>Visitors Welcome</h5>
                 <p>Please come, we love visitors! If you have any questions, please see the FAQ.</p>
                 <Link

@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
-import About from './pages/About/About'
+import About2 from './pages/About/About2'
 import Donate from './pages/Donate/Donate';
 import Footer from "./components/Footer/Footer";
 import Media from "./pages/Media/Media";

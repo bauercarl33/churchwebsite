@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { FaArrowLeft, FaShare, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 import ImageSlider from "./ImageSlider";
 import "./media.css";
