@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, color } from 'framer-motion';
-import './about2.css';
-import { sections } from './AboutVars';
+import { motion, AnimatePresence } from 'framer-motion';
+import './who-we-are.css';
+import { sections } from '../AboutVars';
 
-const About2 = () => {
+const WhoWeAre = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const arr = ['red', 'green', 'blue', 'pink']
-
-    // Track scroll position to update the active index
     useEffect(() => {
         const handleScroll = () => {
             const sectionElements = document.querySelectorAll('.desktop-content-section');
@@ -62,4 +59,4 @@ const About2 = () => {
     );
 };
 
-export default About2;
+export default WhoWeAre;

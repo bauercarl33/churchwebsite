@@ -18,6 +18,7 @@ const Mission = () => {
 
     return (
         <div className='mission'>
+            <div className='decoration'/>
             <div className='statement'>
                 <h5>
                     St. Mary Orthodox Church aims to provide a spiritual home for anyone who desires salvation through Christ.

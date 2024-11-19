@@ -8,6 +8,9 @@ import { FaChevronRight } from 'react-icons/fa6'
 const ColSection = ({ colSectionVars }) => {     
     return (
         <div className='col-section'>
+            <div className='decoration' />
+            <div className='decoration' />
+            <div className='decoration' />
             {Object.entries(colSectionVars).map(([key, value]) => {
                 return (
                     <div className='row' key={key}>

@@ -1,15 +1,14 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   Routes,
   Route,
-  BrowserRouter as Router,
   useLocation
 } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
-import About2 from './pages/About/About2'
+import About from './pages/About/About'
 import Donate from './pages/Donate/Donate';
 import Footer from "./components/Footer/Footer";
 import Media from "./pages/Media/Media";
@@ -27,7 +26,7 @@ function App() {
           <Navbar />
           <Routes location={location} key={location.key}>
             <Route exact path='/' element={<Home />} />
-            <Route exact path='/about' element={<About2 />} />
+            <Route exact path='/about' element={<About />} />
             <Route exact path='/calendar' element={<Calendar />} />
             <Route exact path='/media' element={<Media />} />
             <Route path='/media/:name/:id' element={<Media />} />
