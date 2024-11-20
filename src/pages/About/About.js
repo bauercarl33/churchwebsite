@@ -2,7 +2,7 @@ import React from "react";
 
 import "./about.css";
 
-import WhoWeAre from "./WhoWeAre/WhoWeAre";
+import Timeline from "./Timeline/Timeline";
 import Intro from "./Intro/Intro";
 import Clergy from "./Clergy/Clergy";
 
@@ -11,7 +11,7 @@ const About = () => {
     <>
       <Intro />
       <Clergy />
-      <WhoWeAre />
+      <Timeline />
     </>
   );
 };

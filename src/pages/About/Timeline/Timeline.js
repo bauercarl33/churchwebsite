@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './who-we-are.css';
-import { sections } from '../AboutVars';
+import './timeline.css';
+import { timeline } from '../AboutVars';
 
-const WhoWeAre = () => {
+const Timeline = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
@@ -21,11 +21,11 @@ const WhoWeAre = () => {
     }, []);
 
     return (
-        <div className='about'>
+        <div className='timeline'>
             <div className='left'>
                 <div className='desktop-photos'>
                     <AnimatePresence>
-                        {Object.entries(sections).map((item, index) => (
+                        {Object.entries(timeline).map((item, index) => (
                             index === activeIndex && (
                                 <motion.img
                                     key={index}
@@ -43,15 +43,19 @@ const WhoWeAre = () => {
                 
             </div>
             <div className='right'>
-                {Object.entries(sections).map((item, index) => (
+                {Object.entries(timeline).map((item, index) => (
                     <div className='desktop-content-section' key={index}>
                         <div className='desktop-content'>
-                            <span style={{color: "var(--accent)"}}>2002</span>
+                            <span style={{color: "var(--accent)"}}>{item[1].span}</span>
                             <h4>{item[1].heading}</h4>
                             {item[1].paragraphs.map((para, paraIndex) => (
                                 <p key={paraIndex}>{para}</p>
                             ))}
+                            <div className='mobile-photo'>
+                                <img src={item[1].image} alt='timeline moment' />
+                            </div>
                         </div>
+                        
                     </div>
                 ))}
             </div>
@@ -59,4 +63,4 @@ const WhoWeAre = () => {
     );
 };
 
-export default WhoWeAre;
+export default Timeline;
