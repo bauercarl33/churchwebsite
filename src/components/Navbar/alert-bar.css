@@ -14,5 +14,10 @@
 .alert a {
     color: var(--bg-color);
     font-size: var(--step--1);
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: 1px solid var(--bg-color);
+    max-width: 50%;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -1,12 +1,35 @@
 import React from 'react'
 
 import './clergy.css'
+import { useQuery } from '@tanstack/react-query';
 
 const Clergy = () => {
+
+    const getImages = async (id) => {
+        let url = `https://5as4ejxxn4.execute-api.us-east-1.amazonaws.com/prod/listFileIdsInFolder/`;
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const json = await response.json();
+        return json;
+    }
+
+    const { data: images, isLoading: isLoadingImages } = useQuery({
+        queryFn: () => getImages(),
+        queryKey: ['images'],
+      });
+
+
+    if (!isLoadingImages) {
+        console.log(images)
+    }
     return (
         <div className='clergy'>
             <div className='decoration' />
-            {/* <div className='decoration' /> */}
             <div className='col'>
                 <h4>Our Clergy</h4>
                 <p>
