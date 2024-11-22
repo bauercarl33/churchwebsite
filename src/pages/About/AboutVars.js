@@ -12,7 +12,7 @@ export const timeline = [
         paragraphs: [
             'Our journey began on September 8, 2002, when Fr. Iulian Anitei led the first Divine Liturgy here in Austin. In our early days, Fr. Iulian, together with founding members Dan Stiurca, Cristian Tiu, Aurelian Dumitru, and Octavian Herescu, established our first Parish Council. Over the years, our community has been blessed with the guidance of five dedicated priests: Fr. Iulian Anitei, Fr. Vichentie Punguta, Fr. Florin Craioveanu, Fr. Dumitru Ilies, and, currently, Fr. Gabriel-Teofil Ilies.',
         ],
-        image: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1u3NLx9IFP5YM1WtSJctaKV_du9Svwqx_"
+        image: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1CaD4tWqWQYvnOpsJLnXmyoEgjNa6NJhn"
     },
     {
         span: 'Parish History',
@@ -35,6 +35,6 @@ export const timeline = [
         paragraphs: [
             'We are currently undertaking an exciting new chapter—building a permanent church for our community. With faith and dedication, we began this process on our Feast Day, the Nativity of the Theotokos, in 2024. Each step brings us closer to creating a sacred space for worship and community gatherings — a home that will serve both our current members and future generations.'
         ],
-        image: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1Ls9IYg5eX1gHZhF6c6qoQAbX3VyUt04M",
+        image: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1308nUMEa5nDW_i_7O_Vn98di0MJzzMjX",
     },
 ]

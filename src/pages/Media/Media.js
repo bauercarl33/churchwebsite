@@ -55,8 +55,6 @@ const Media = () => {
     return <div className="loading">Loading...</div>;
   }
 
-  console.log(images)
-
   if (!id) {
     return (
       <div className="media">
