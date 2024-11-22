@@ -5,6 +5,8 @@ import './clergy.css'
 const Clergy = () => {
     return (
         <div className='clergy'>
+            <div className='decoration' />
+            {/* <div className='decoration' /> */}
             <div className='col'>
                 <h4>Our Clergy</h4>
                 <p>
@@ -18,7 +20,6 @@ const Clergy = () => {
                     src="https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1Ls9IYg5eX1gHZhF6c6qoQAbX3VyUt04M"
                 /> 
                 </div>
-                
             </div>
         </div>
     )

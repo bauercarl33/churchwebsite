@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import './intro.css'
 
-import { images1, images2 } from './IntroVars'
+import { images1 } from './IntroVars'
 
 const Intro = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % images1.length);
-        }, 3000); // Change active image every 3 seconds
-
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <div className='intro'>
+            <div className='decoration' />
+            <div className='decoration' />
             <div className='col'>
                 <h4>Who We Are</h4>
                 <p>

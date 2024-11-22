@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 var(--space-s);
+    padding: 0 var(--space-m);
     z-index: 100;
 }
 

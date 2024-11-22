@@ -52,6 +52,12 @@
     border-radius: 20px;
 }
 
+.hero .decoration {
+    top: 80px;
+    left: 0;
+    translate: -50% -50%;
+}
+
 @media (max-width: 1400px) {
     .hero {
         flex-direction: column;

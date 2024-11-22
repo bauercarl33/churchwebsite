@@ -29,7 +29,7 @@
     align-items: stretch;
     padding: 0 var(--space-xl);
     z-index: 1;
-    text-shadow: rgba(149, 157, 165, 0.2) 0px 0px 24px;
+    text-shadow: var(--bg-color) 0px 0px 40px;
 }
 
 .col-section .row .col .text {

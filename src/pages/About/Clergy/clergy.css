@@ -5,7 +5,7 @@
     flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
-    background-color: var(--bg-dark);
+    background-color: var(--bg-color);
     position: relative;
     overflow: hidden;
     padding: 8rem 0;
@@ -45,9 +45,24 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.clergy .decoration:nth-child(1) {
+    top: 0;
+    right: 0;
+    translate: 50% -50%;
+}
+.intro .decoration:nth-child(2) {
+    bottom: 0;
+    right: 0;
+    translate: 50% 50%;
+}
+
 @media screen and (max-width:960px) {
     .clergy {
         flex-direction: column;
+        min-height: 0;
+        height: 100%;
+        padding: 4rem 0;
+        padding-bottom: 160px;
     }
 
     .clergy .col {
