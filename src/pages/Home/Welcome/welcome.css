@@ -9,6 +9,7 @@
     background-color: var(--primary-color);
     color: var(--bg-color);
     padding: var(--space-l);
+    z-index: 100;
 }
 
 .welcome .container {
@@ -49,9 +50,26 @@
 
 .welcome .container .card a {
     color: var(--accent);
+    font-weight: 500;
     cursor: pointer;
     position: absolute;
     bottom: 0;
+    font-size: var(--step-0);
+}
+
+.welcome .container .card a::after {
+    content: "";
+    width: 0;
+    height: 1px;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent);
+    transition: 0.5s;
+}
+
+.welcome .container .card a:hover::after {
+    width: 100%;
 }
 
 .welcome .container .card a span {

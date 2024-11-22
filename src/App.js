@@ -1,8 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   Routes,
   Route,
-  BrowserRouter as Router,
   useLocation
 } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'

@@ -1,21 +1,22 @@
 import React from 'react'
 import {  Link } from 'react-router-dom'
 
-import { colSectionVars } from './ColSectionVars'
-
 import './colsection.css'
+import { FaChevronRight } from 'react-icons/fa6'
 
 
-const ColSection = () => {     
+const ColSection = ({ colSectionVars }) => {     
     return (
         <div className='col-section'>
+            <div className='decoration' />
+            <div className='decoration' />
+            <div className='decoration' />
             {Object.entries(colSectionVars).map(([key, value]) => {
                 return (
                     <div className='row' key={key}>
                         <div className='col'>
                             <div className='image'>
                                 <img 
-                                    className='image' 
                                     src={value.image} 
                                     loading='lazy' 
                                     alt={value.alt} 
@@ -29,8 +30,8 @@ const ColSection = () => {
                                     <span className='highlight'>{key}</span>
                                 </h4>
                                 <p>{value.text}</p>
-                                <Link to='/about' className='button filled' aria-label='To about page'>
-                                    Learn More
+                                <Link to='/about' className='link' aria-label='To about page'>
+                                    Learn More<span><FaChevronRight size={12} /></span>
                                 </Link>
                             </div>
                         </div>

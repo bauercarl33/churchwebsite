@@ -1,0 +1,18 @@
+.alert {
+    height: 32px;
+    width: 100%;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    background-color: rgb(223, 54, 54);
+    z-index: 999;
+}
+
+.alert a {
+    color: var(--bg-color);
+    font-size: var(--step--1);
+    text-decoration: underline;
+}
