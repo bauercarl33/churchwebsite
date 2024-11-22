@@ -4,6 +4,10 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { GrHomeRounded, GrCircleInformation, GrCalendar, GrCamera } from "react-icons/gr";
 import { LuDoorOpen } from "react-icons/lu";
 
+import AlertBar from './AlertBar';
+import { FaTimes } from 'react-icons/fa';
+
+
 const Navbar = () => {
     const pages = {
         'Home': {
@@ -29,9 +33,12 @@ const Navbar = () => {
     };
 
     const location = useLocation();
+
     const [click, setClick] = useState(false);
     const [activeLink, setActiveLink] = useState('/');
     const [navpillStyle, setnavpillStyle] = useState({ top: 0, left: 0, width: 0 });
+    const [alertActive, setAlertActive] = useState(true);
+
     const navRef = useRef(null);
 
     const closeMenu = () => {
@@ -124,41 +131,59 @@ const Navbar = () => {
         }
     };
 
+    const closeAlert = () => {
+        setAlertActive(false);
+    }
+
     return (
-        <header className='navbar'>
-            <nav ref={navRef}>
-                <RouterLink to='/' onClick={closeMenu} className='logo'>
-                    <h6>St. Mary</h6>
-                </RouterLink>
-                <div className='button-wrapper'>
-                    <RouterLink to='/donate' id='mobile' className='button filled'>
+        <>
+            <AlertBar active={alertActive} />
+            <button 
+                className='closeAlertBtn'
+                onClick={closeAlert}
+            >
+                <FaTimes />
+            </button>
+            <header 
+                className='navbar'
+                style={{
+                    top: alertActive ? '32px' : 0
+                }}
+            >
+                <nav ref={navRef}>
+                    <RouterLink to='/' onClick={closeMenu} className='logo'>
+                        <h6>St. Mary</h6>
+                    </RouterLink>
+                    <div className='button-wrapper'>
+                        <RouterLink to='/donate' id='mobile' className='button filled'>
+                            Donate
+                        </RouterLink>
+                        <div className='hamburger' onClick={handleClick}>
+                            <div className={click ? 'hamburger-icon active' : 'hamburger-icon'} />
+                        </div>
+                    </div>
+                    <ul className={click ? "active" : ""}>
+                        <div className="navpill" style={navpillStyle} />
+                        {Object.entries(pages).map(([name, data]) => (
+                            <li
+                                key={name}
+                                onMouseEnter={handleMouseEnter}
+                                onMouseLeave={handleMouseLeave}
+                                onClick={() => handleLink(data.link)}
+                                className={activeLink === data.link ? 'active' : ''}
+                            >
+                                <RouterLink to={data.link}>
+                                    {data.icon}{name}
+                                </RouterLink>
+                            </li>
+                        ))}
+                    </ul>
+                    <RouterLink to='/donate' id='fullscreen' className='button filled'>
                         Donate
                     </RouterLink>
-                    <div className='hamburger' onClick={handleClick}>
-                        <div className={click ? 'hamburger-icon active' : 'hamburger-icon'} />
-                    </div>
-                </div>
-                <ul className={click ? "active" : ""}>
-                    <div className="navpill" style={navpillStyle} />
-                    {Object.entries(pages).map(([name, data]) => (
-                        <li
-                            key={name}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                            onClick={() => handleLink(data.link)}
-                            className={activeLink === data.link ? 'active' : ''}
-                        >
-                            <RouterLink to={data.link}>
-                                {data.icon}{name}
-                            </RouterLink>
-                        </li>
-                    ))}
-                </ul>
-                <RouterLink to='/donate' id='fullscreen' className='button filled'>
-                    Donate
-                </RouterLink>
-            </nav>
-        </header>
+                </nav>
+            </header>
+        </>
     );
 };
 
