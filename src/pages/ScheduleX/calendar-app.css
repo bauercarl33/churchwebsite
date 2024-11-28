@@ -1,32 +1,31 @@
 .calendar {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 160px var(--space-m);
-    position: relative;
-    background-color: var(--bg-color);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 160px var(--space-m);
+  position: relative;
+  background-color: #fff;
 }
 
 .sx-react-calendar-wrapper {
+  --sx-color-primary: var(--primary-color);
+  --sx-color-on-primary: #fff;
+  --sx-color-primary-container: #063970cc;
+  --sx-color-on-primary-container: var(--bg-color);
 
-    --sx-color-primary: var(--primary-color);
-    --sx-color-on-primary: #fff;
-    --sx-color-primary-container: #063970cc;
-    --sx-color-on-primary-container: var(--bg-color);
+  --sx-color-surface-dim: #e7a95a77;
+  --sx-color-on-surface: var(--text-color);
 
-    --sx-color-surface-dim: #e7a95a77;
-    --sx-color-on-surface: var(--text-color);
-  
-    width: 100%;
-    max-width: 1200px;
-    height: 800px;
+  width: 100%;
+  max-width: 1200px;
+  height: 800px;
 }
 
 #timedGridEvent:hover,
 #dateGridEvent:hover,
 #monthGridEvent:hover,
 #monthAgendaEvent:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
