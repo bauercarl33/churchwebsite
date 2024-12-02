@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import CalendarApp from "./CalendarApp";
 
 import "./calendar-app.css";
-import CurtainLoadingEffect from "../../components/Curtain/CurtainLoadingEffect";
 
 const url =
   "https://ritymdmzg4.execute-api.us-east-1.amazonaws.com/prod/getChurchCalendar";
@@ -76,16 +75,14 @@ const Calendar = () => {
     queryFn: fetchCalendarData,
   });
 
+  if  (isLoading) {
+    return <div className="calendar">Loading...</div>
+  }
+
   return (
-    <CurtainLoadingEffect isOpen={!isLoading}>
-      {isLoading ? (
+      <div className="calendar">
         <CalendarApp data={formattedData} />
-      ) : (
-        <div>
-          <CalendarApp data={formattedData} />
-        </div>
-      )}
-    </CurtainLoadingEffect>
+      </div>
   );
 };
 
