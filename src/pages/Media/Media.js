@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FaTimes } from "react-icons/fa";
@@ -12,6 +12,17 @@ const Media = () => {
   const { id, name } = useParams();
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 600px)");
+    setIsMobile(mediaQuery.matches);
+
+    const handleResize = () => setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleResize);
+
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
 
   const getImageFolders = async (query = "") => {
     const url =
@@ -141,7 +152,7 @@ const Media = () => {
         })}
       </div>
 
-      {isModalOpen && (
+      {isModalOpen && !isMobile && (
         <div className="media-modal">
           <button className="close-media-modal" onClick={closeModal}>
             <FaTimes size={24} />
