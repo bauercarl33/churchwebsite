@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import CalendarApp from "./CalendarApp";
+import CurtainLoadingEffect from "../../components/Curtain/CurtainLoadingEffect.js";
 
 import "./calendar-app.css";
 
@@ -9,6 +10,17 @@ const url =
   "https://ritymdmzg4.execute-api.us-east-1.amazonaws.com/prod/getChurchCalendar";
 
 const Calendar = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 600px)");
+    setIsMobile(mediaQuery.matches);
+
+    const handleResize = () => setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleResize);
+
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
   const fetchCalendarData = async () => {
     const year = new Date().getFullYear();
     const response = await fetch(url, {
@@ -75,14 +87,28 @@ const Calendar = () => {
     queryFn: fetchCalendarData,
   });
 
-  if  (isLoading) {
-    return <div className="calendar">Loading...</div>
-  }
-
   return (
-      <div className="calendar">
-        <CalendarApp data={formattedData} />
-      </div>
+    <div className="calendar">
+      {isMobile ? (
+        <CurtainLoadingEffect isOpen={!isLoading}>
+          {isLoading ? (
+            <CalendarApp data={formattedData} />
+          ) : (
+            <div>
+              <CalendarApp data={formattedData} />
+            </div>
+          )}
+        </CurtainLoadingEffect>
+      ) : (
+        <div>
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <CalendarApp data={formattedData} />
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 
