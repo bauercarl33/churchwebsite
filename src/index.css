@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400..700&display=swap");
 
 :root {
   --bg-color: #f8f8f8;
@@ -9,7 +9,7 @@
   --primary-light: #33477e;
   --accent: #e7a95a;
   --accent-dark: #c58634;
-  --overlay: rgba(0,0,0,0.6);
+  --overlay: rgba(0, 0, 0, 0.6);
 
   --step--2: clamp(0.5556rem, 0.7143rem + -0.0992vw, 0.6944rem);
   --step--1: clamp(0.8333rem, 0.8333rem + 0vw, 0.8333rem);
@@ -21,7 +21,7 @@
   --step-5: clamp(2.4883rem, 1.4878rem + 5.0028vw, 9.4922rem);
   --step-6: clamp(2.986rem, 1.3785rem + 8.0374vw, 14.2383rem);
 
-/* @link https://utopia.fyi/space/calculator?c=320,16,1.2,2560,20,1.5,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|4,s-l&g=s,l,xl,12 */
+  /* @link https://utopia.fyi/space/calculator?c=320,16,1.2,2560,20,1.5,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|4,s-l&g=s,l,xl,12 */
 
   --space-3xs: clamp(0.25rem, 0.2411rem + 0.0446vw, 0.3125rem);
   --space-2xs: clamp(0.5rem, 0.4821rem + 0.0893vw, 0.625rem);
@@ -58,7 +58,7 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.2rem;
@@ -66,7 +66,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -118,7 +118,7 @@ a {
   cursor: pointer;
   transition: 0.4s;
   color: var(--bg-color);
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 
 .button.filled {
@@ -144,7 +144,7 @@ a {
   max-width: 1000px;
   position: absolute;
   aspect-ratio: 1;
-  background-image: url('./images/checkeredBG.png');
+  background-image: url("./images/checkeredBG.png");
   border-radius: 50%;
   opacity: 0.1;
 }
@@ -155,6 +155,9 @@ a {
   height: 100%;
   position: absolute;
   background: var(--bg-color);
-  background: radial-gradient(circle, rgba(248,248,248,0) 0%, rgba(248,248,248,1) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(248, 248, 248, 0) 0%,
+    rgba(248, 248, 248, 1) 70%
+  );
 }
-
