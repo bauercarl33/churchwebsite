@@ -12,16 +12,8 @@ const Home = () => {
     <>
       <Hero />
       <Welcome />
-      <img
-        src="https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1zZv2ycw36laHYoHQAz3A9lL6W4CUeGFI"
-        style={{ width: 2000, paddingTop: 7 }}
-      />
       <ColSection colSectionVars={colSectionVars} />
       <Mission />
-      <img
-        src="https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1zZv2ycw36laHYoHQAz3A9lL6W4CUeGFI"
-        style={{ width: 2000, paddingTop: 7 }}
-      />
     </>
   );
 };
