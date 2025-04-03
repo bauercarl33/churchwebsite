@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./ShopDivisor.css";
@@ -6,7 +6,14 @@ import { FaChevronRight } from "react-icons/fa6";
 import SearchBar from "./SearchBar/SearchBar";
 import CategorySelector from "./CategorySelector/CategorySelector";
 
-const ShopDivisor = () => {
+const ShopDivisor = ({ categories, onCategorySelect }) => {
+  const [localCategories, setLocalCategories] = useState([]);
+
+  useEffect(() => {
+    if (categories && categories.length > 0) {
+      setLocalCategories(categories);
+    }
+  }, [categories]);
   return (
     <div className="shopDivisor">
       <div className="container">
@@ -33,7 +40,36 @@ const ShopDivisor = () => {
           </Link>
         </div>
       </div>
-      <CategorySelector />
+      <div class="section-with-margin section-with-padding section-four">
+        <ul class="tab-list" role="navigation">
+          <li
+            role="menuitem"
+            class="tab-item tab-link"
+            data-career=""
+            data-current="true"
+            onClick={() => {
+              onCategorySelect("All");
+            }}
+          >
+            All
+          </li>
+          {localCategories.map((category) => (
+            <div>
+              <li
+                role="menuitem"
+                class="tab-item tab-link"
+                data-career="Design"
+                onClick={() => {
+                  onCategorySelect(category);
+                }}
+              >
+                {category}
+              </li>
+            </div>
+          ))}
+        </ul>
+        <ul class="career-list" id="jobListing"></ul>
+      </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { SiZelle } from "react-icons/si";
 
 import "./donate.css";
 import ShopDivisor from "./ShopDivisor/ShopDivisor";
+import ItemsGrid from "./ItemsGrid/ItemsGrid";
 
 const cashapp =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1T1EgRBGJ5SBLLcNR3DLIHusUkkKoYigh";
@@ -53,12 +54,30 @@ const DonateCopy = () => {
     },
   };
 
+  const fetchItems = async () => {
+    const url = `https://7pqvzdqk37.execute-api.us-east-1.amazonaws.com/prod/getDonationItems`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`STATUS: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log("Items DATA: ", data);
+    return data;
+  };
   const [donationOption, setDonationOption] = useState("cashapp");
   const [donationpillStyle, setdonationpillStyle] = useState({
     top: 0,
     left: 0,
     width: 0,
   });
+  const [items, setItems] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(["All"]);
   const selectorRef = useRef(null);
 
   const handleDonation = (option) => {
@@ -75,7 +94,21 @@ const DonateCopy = () => {
         updatePillPosition(activeElement);
       }
     };
+    const fetchData = async () => {
+      const result = await fetchItems();
+      if (result.body.items) {
+        const categories = result.body.items
+          .filter((item) => item.category)
+          .map((item) => item.category);
 
+        // Step 3: Get unique categories
+        const uniqueCategories = [...new Set(categories)];
+        setCategories(uniqueCategories);
+      }
+      setItems(result.body.items);
+    };
+
+    fetchData();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -100,7 +133,10 @@ const DonateCopy = () => {
       height: rect.height,
     });
   };
-
+  const categorySelected = (category) => {
+    console.log("You selected:", category);
+    setSelectedCategory(category);
+  };
   return (
     <>
       <div className="donate">
@@ -152,7 +188,11 @@ const DonateCopy = () => {
           </div>
         </div>
       </div>
-      <ShopDivisor />
+      <ShopDivisor
+        categories={categories}
+        onCategorySelect={categorySelected}
+      />
+      <ItemsGrid items={items} category={selectedCategory} />
     </>
   );
 };
