@@ -15,6 +15,9 @@ const Calendar = () => {
   const [offset, setOffset] = useState(0);
 
   const fetchCalendarData = async () => {
+    const dateobj = new Date();
+    const { start, end } = getPreviousMonthRange(dateobj);
+    console.log("start, end: ", start);
     const year = new Date().getFullYear();
     const response = await fetch(url, {
       method: "POST",
@@ -22,14 +25,15 @@ const Calendar = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        startDate: `${year}-01-01`,
-        endDate: `${year + 1}-12-31`,
+        startDate: start.toISOString().split("T")[0],
+        endDate: end.toISOString().split("T")[0],
       }),
     });
     if (!response.ok) {
       throw new Error(`STATUS: ${response.status}`);
     }
     const data = await response.json();
+    console.log("CALENDAR DATA: ", data);
     return formatCalendarJson(data.body);
   };
 
@@ -81,7 +85,27 @@ const Calendar = () => {
     });
     return newJson;
   };
+  function getPreviousMonthRange(targetDate) {
+    // Start of target month
+    const startOfTargetMonth = new Date(
+      targetDate.getFullYear(),
+      targetDate.getMonth(),
+      1
+    );
 
+    // Start of previous month
+    const startOfPreviousMonth = new Date(startOfTargetMonth);
+    startOfPreviousMonth.setMonth(startOfPreviousMonth.getMonth() - 1);
+
+    // Add 3 months to previous month start
+    const threeMonthsLater = new Date(startOfPreviousMonth);
+    threeMonthsLater.setMonth(threeMonthsLater.getMonth() + 3);
+
+    return {
+      start: startOfPreviousMonth,
+      end: threeMonthsLater,
+    };
+  }
   const handleCalendarDays = (mOffset = 0) => {
     const date = new Date();
     const firstDayOfMonth = new Date(
@@ -156,6 +180,7 @@ const Calendar = () => {
 
   return (
     <div className="calendar">
+      {console.log("HEYEHEYHEYHEYHYHEs")}
       <div className="container">
         <div className="head">
           <h5 id="cal-title">

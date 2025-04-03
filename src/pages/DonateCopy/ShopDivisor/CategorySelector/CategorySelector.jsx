@@ -18,19 +18,19 @@ const CategorySelector = () => {
             class="tab-item tab-link"
             data-career="Customer Support"
           >
-            Customer Support
+            Iconography
           </li>
           <li role="menuitem" class="tab-item tab-link" data-career="Design">
-            Design
+            Iconostasis
           </li>
           <li role="menuitem" class="tab-item tab-link" data-career="Security">
-            Security
+            Fixtures
           </li>
           <li role="menuitem" class="tab-item tab-link" data-career="Tech">
-            Tech
+            Main Hall
           </li>
           <li role="menuitem" class="tab-item tab-link" data-career="Bussines">
-            Bussines
+            Outside Fixtures
           </li>
         </ul>
 
