@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import GridItem from "../GridItem/GridItem";
 
 const ItemsGrid = ({ items, category }) => {
   const [localItems, setLocalItems] = useState([]);
@@ -20,24 +21,10 @@ const ItemsGrid = ({ items, category }) => {
   return (
     <div>
       {localCategory == "All"
-        ? localItems.map((item) => (
-            <div key={item.itemName}>
-              <p>---------------</p>
-              <p>{item.itemName}</p>
-              <p>{item.progress}</p>
-              <p>{item.category}</p>
-            </div>
-          ))
+        ? localItems.map((item) => <GridItem item={item} />)
         : localItems
             .filter((item) => item.category === localCategory)
-            .map((item) => (
-              <div key={item.itemName}>
-                <p>---------------</p>
-                <p>{item.itemName}</p>
-                <p>{item.progress}</p>
-                <p>{item.category}</p>
-              </div>
-            ))}
+            .map((item) => <GridItem item={item} />)}
       <p>---------------</p>
     </div>
   );

@@ -8,6 +8,12 @@ import CategorySelector from "./CategorySelector/CategorySelector";
 
 const ShopDivisor = ({ categories, onCategorySelect }) => {
   const [localCategories, setLocalCategories] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("All");
+
+  const localCatSelect = (category) => {
+    onCategorySelect(category);
+    setCurrentCategory(category);
+  };
 
   useEffect(() => {
     if (categories && categories.length > 0) {
@@ -16,9 +22,9 @@ const ShopDivisor = ({ categories, onCategorySelect }) => {
   }, [categories]);
   return (
     <div className="shopDivisor">
+      <SearchBar />
       <div className="container">
         <div className="card">
-          <SearchBar />
           <a
             href="https://maps.app.goo.gl/emh2KpYtpmYaEc4o8"
             aria-label="Map to church"
@@ -46,9 +52,9 @@ const ShopDivisor = ({ categories, onCategorySelect }) => {
             role="menuitem"
             class="tab-item tab-link"
             data-career=""
-            data-current="true"
+            data-current={currentCategory === "All"}
             onClick={() => {
-              onCategorySelect("All");
+              localCatSelect("All");
             }}
           >
             All
@@ -59,8 +65,9 @@ const ShopDivisor = ({ categories, onCategorySelect }) => {
                 role="menuitem"
                 class="tab-item tab-link"
                 data-career="Design"
+                data-current={currentCategory === category}
                 onClick={() => {
-                  onCategorySelect(category);
+                  localCatSelect(category);
                 }}
               >
                 {category}
