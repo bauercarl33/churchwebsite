@@ -11,8 +11,7 @@ const Welcome = () => {
         <div className="card">
           <h5>Temporary Location</h5>
           <p>
-            13740 Research Boulevard, 1 Lake Creek Office Park Suite W, Austin,
-            TX 78759
+            13740 Research Boulevard, Austin, TX 78750
           </p>
           <a
             href="https://maps.app.goo.gl/emh2KpYtpmYaEc4o8"

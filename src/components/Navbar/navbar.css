@@ -30,7 +30,14 @@ nav {
 }
 
 nav .logo {
-  color: var(--text-color);
+  width: 60px;
+  height: auto;
+}
+
+nav .logo img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 nav ul {

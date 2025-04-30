@@ -12,6 +12,8 @@ import { LuDoorOpen } from "react-icons/lu";
 import AlertBar from "./AlertBar";
 import { FaTimes } from "react-icons/fa";
 
+import logo from '../../images/logo.png'
+
 const Navbar = () => {
   const pages = {
     Home: {
@@ -157,7 +159,7 @@ const Navbar = () => {
       >
         <nav ref={navRef}>
           <RouterLink to="/" onClick={closeMenu} className="logo">
-            <h6>St. Mary</h6>
+            <img src={logo} />
           </RouterLink>
           <div className="button-wrapper">
             <RouterLink to="/donate" id="mobile" className="button filled">

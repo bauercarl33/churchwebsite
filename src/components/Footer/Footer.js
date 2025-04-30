@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { footerLinks, pageLinks, socialLinks } from './footerVars'
 import './footer.css'
+import logo from '../../images/logo.png'
 
 const Footer = () => {
   const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0'
@@ -12,8 +13,7 @@ const Footer = () => {
       <div className='container'>
           <div className='logo'>
             <Link to='/' aria-label='Go back to home page'>
-              <h4>St. Mary</h4>
-              <h5>Orthodox Church</h5>
+              <img src={logo} />
             </Link>
           </div>
           <div className='info'>
