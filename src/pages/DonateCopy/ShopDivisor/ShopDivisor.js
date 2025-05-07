@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import SearchBar from "./SearchBar/SearchBar";
 
 import "./ShopDivisor.css";
-import { FaChevronRight } from "react-icons/fa6";
-import SearchBar from "./SearchBar/SearchBar";
-import CategorySelector from "./CategorySelector/CategorySelector";
 
 const ShopDivisor = ({ categories, onCategorySelect }) => {
   const [localCategories, setLocalCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("All");
+  const [showArrows, setShowArrows] = useState(false);
+  const scrollRef = useRef(null);
 
   const localCatSelect = (category) => {
     onCategorySelect(category);
@@ -20,62 +21,62 @@ const ShopDivisor = ({ categories, onCategorySelect }) => {
       setLocalCategories(categories);
     }
   }, [categories]);
+  useEffect(() => {
+    const handleResize = () => {
+      if (!scrollRef.current) return;
+      setShowArrows(
+        scrollRef.current.scrollWidth > scrollRef.current.clientWidth
+      );
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [localCategories]);
+  const scrollByAmount = 200;
+  const scrollLeft = () => {
+    scrollRef.current.scrollBy({ left: -scrollByAmount, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    scrollRef.current.scrollBy({ left: scrollByAmount, behavior: "smooth" });
+  };
+
   return (
     <div className="shopDivisor">
-      <SearchBar />
-      <div className="container">
-        <div className="card">
-          <a
-            href="https://maps.app.goo.gl/emh2KpYtpmYaEc4o8"
-            aria-label="Map to church"
-            target="_blank"
-          >
-            Map
-            <span>
-              <FaChevronRight size={12} />
-            </span>
-          </a>
-        </div>
-        <div className="card">
-          <h5>Divine Services</h5>
-          <Link to="/calendar" aria-label="Church calendar">
-            Calendar
-            <span>
-              <FaChevronRight size={12} />
-            </span>
-          </Link>
-        </div>
-      </div>
-      <div class="section-with-margin section-with-padding section-four">
-        <ul class="tab-list" role="navigation">
-          <li
-            role="menuitem"
-            class="tab-item tab-link"
-            data-career=""
-            data-current={currentCategory === "All"}
-            onClick={() => {
-              localCatSelect("All");
-            }}
-          >
-            All
-          </li>
-          {localCategories.map((category) => (
-            <div>
+      <div className="tab-scroll-container">
+        {showArrows && (
+          <button className="scroll-arrow left" onClick={scrollLeft}>
+            <FaChevronLeft />
+          </button>
+        )}
+        <div className="tab-list-wrapper" ref={scrollRef}>
+          <ul className="tab-list" role="navigation">
+            <li
+              className={`tab-item ${
+                currentCategory === "All" ? "active" : ""
+              }`}
+              onClick={() => localCatSelect("All")}
+            >
+              All
+            </li>
+            {localCategories.map((category) => (
               <li
-                role="menuitem"
-                class="tab-item tab-link"
-                data-career="Design"
-                data-current={currentCategory === category}
-                onClick={() => {
-                  localCatSelect(category);
-                }}
+                key={category}
+                className={`tab-item ${
+                  currentCategory === category ? "active" : ""
+                }`}
+                onClick={() => localCatSelect(category)}
               >
                 {category}
               </li>
-            </div>
-          ))}
-        </ul>
-        <ul class="career-list" id="jobListing"></ul>
+            ))}
+          </ul>
+        </div>
+        {showArrows && (
+          <button className="scroll-arrow right" onClick={scrollRight}>
+            <FaChevronRight />
+          </button>
+        )}
       </div>
     </div>
   );

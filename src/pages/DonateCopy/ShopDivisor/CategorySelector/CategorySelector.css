@@ -1,6 +1,11 @@
 ul {
   list-style-type: none;
 }
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
 ul li.tab-item {
   padding: 10px 20px;
 }
@@ -186,19 +191,6 @@ ul li.tab-item {
   text-transform: capitalize;
 }
 
-.tab-list {
-  display: none;
-}
-@media (min-width: 767px) {
-  .tab-list {
-    display: flex;
-  }
-}
-
-.tab-item {
-  cursor: pointer;
-  padding-bottom: 12px;
-}
 .tab-item:hover {
   color: #77dd66;
 }
@@ -231,4 +223,31 @@ ul li.tab-item {
 .career-no_second use {
   transform: rotate(90deg);
   transform-origin: 14px 8px;
+}
+
+.tab-list-wrapper {
+  overflow-x: auto; /* Enables horizontal scroll */
+  overflow-y: hidden; /* Prevents vertical scroll */
+  white-space: nowrap; /* Keeps all items on a single line */
+  -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+  padding: 1rem 0;
+}
+.tab-list-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.tab-list {
+  display: inline-flex; /* Enables horizontal layout */
+  gap: 0.75rem; /* Space between items */
+  padding: 0 1rem;
+  max-width: 100%; /* Prevents growing past screen */
+}
+
+.tab-item {
+  flex-shrink: 0; /* Prevent shrinking */
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
 }

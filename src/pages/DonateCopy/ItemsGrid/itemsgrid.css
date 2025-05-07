@@ -1,0 +1,55 @@
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17.3rem, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.item-card {
+  width: 18rem;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.item-img {
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-weight: bold;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.progress-bar {
+  background-color: #e0e0e0;
+  height: 10px;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: var(--progress, 50%);
+  background-color: #4caf50;
+  border-radius: 5px;
+  left: 0;
+  top: 0;
+}
