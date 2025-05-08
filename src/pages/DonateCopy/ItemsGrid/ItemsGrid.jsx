@@ -23,13 +23,15 @@ const ItemsGrid = ({ items, category }) => {
         ? localItems.map((item) => (
             <div className="item-card" key={item.itemName}>
               <img className="item-img" src={item.imgUrl} />
-              <div className="title">{item.itemName} </div>
+              <div className="title">Hand Engraved Chair </div>
               <div
                 className="progress-bar"
                 style={{
                   "--progress": `${(item.progress / item.cost) * 100}%`,
                 }}
-              />
+              >
+                {" "}
+              </div>
             </div>
           ))
         : localItems

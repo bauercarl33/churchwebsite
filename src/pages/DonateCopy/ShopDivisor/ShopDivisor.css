@@ -8,7 +8,8 @@
   align-items: center;
   background-color: var(--primary-color);
   color: var(--bg-color);
-  padding: var(--space-l);
+  padding-top: var(--space-l);
+  padding-bottom: var(--space-l);
   z-index: 100;
 }
 
@@ -371,7 +372,6 @@ ul li.tab-item {
   z-index: 2;
   font-size: 1.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
 }
 
 .scroll-arrow.left {

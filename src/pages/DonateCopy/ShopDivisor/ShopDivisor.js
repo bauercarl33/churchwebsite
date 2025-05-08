@@ -55,23 +55,29 @@ const ShopDivisor = ({ categories, onCategorySelect }) => {
               className={`tab-item ${
                 currentCategory === "All" ? "active" : ""
               }`}
+              data-current={currentCategory === "All"}
               onClick={() => localCatSelect("All")}
             >
               All
             </li>
-            {localCategories.map((category) => (
-              <li
-                key={category}
-                className={`tab-item ${
-                  currentCategory === category ? "active" : ""
-                }`}
-                onClick={() => localCatSelect(category)}
-              >
-                {category}
-              </li>
-            ))}
+
+            {/* only map if categories are available */}
+            {localCategories.length > 0 &&
+              localCategories.map((category) => (
+                <li
+                  key={category}
+                  className={`tab-item ${
+                    currentCategory === category ? "active" : ""
+                  }`}
+                  data-current={currentCategory === category}
+                  onClick={() => localCatSelect(category)}
+                >
+                  {category}
+                </li>
+              ))}
           </ul>
         </div>
+
         {showArrows && (
           <button className="scroll-arrow right" onClick={scrollRight}>
             <FaChevronRight />
