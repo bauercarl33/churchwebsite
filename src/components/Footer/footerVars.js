@@ -8,7 +8,7 @@ export const footerLinks = {
         icon: <FaLocationDot size={24} className='icon' />,
         bold: 'bold',
         boldContent: "NEW Temporary Address:",
-        content: "13740 Research Boulevard, 1 Lake Creek Office Park Suite W, Austin, TX 78759"
+        content: "13740 Research Boulevard, Austin, TX 78750"
     },
     truckParking: {
         link: 'https://www.google.com/maps/place/11301+Lakeline+Blvd,+Austin,+TX+78717/@30.479393,-97.8018903,17z/data=!3m1!4b1!4m6!3m5!1s0x865b2d0092e8ed89:0xc7cf0d2a879a27bf!8m2!3d30.479393!4d-97.7993154!16s%2Fg%2F11k58c2jc_?entry=ttu&g_ep=EgoyMDI0MTAyNy4wIKXMDSoASAFQAw%3D%3D',
