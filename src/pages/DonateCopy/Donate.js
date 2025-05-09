@@ -193,19 +193,6 @@ const DonateCopy = () => {
         onCategorySelect={categorySelected}
       />
       <ItemsGrid items={items} category={selectedCategory} />
-      <div class="category-scroll-wrapper">
-        <ul class="category-list">
-          <li class="category-item">All</li>
-          <li class="category-item">Smoothies</li>
-          <li class="category-item">Snacks</li>
-          <li class="category-item">Supplements</li>
-          <li class="category-item">Protein</li>
-          <li class="category-item">Vegan</li>
-          <li class="category-item">Low Carb</li>
-          <li class="category-item">Pre Workout</li>
-          <li class="category-item">Post Workout</li>
-        </ul>
-      </div>
     </>
   );
 };

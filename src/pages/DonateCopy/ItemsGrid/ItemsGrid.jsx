@@ -24,13 +24,16 @@ const ItemsGrid = ({ items, category }) => {
             <div className="item-card" key={item.itemName}>
               <img className="item-img" src={item.imgUrl} />
               <div className="title">Hand Engraved Chair </div>
-              <div
-                className="progress-bar"
-                style={{
-                  "--progress": `${(item.progress / item.cost) * 100}%`,
-                }}
-              >
-                {" "}
+              <div className="progress-row">
+                <div
+                  className="progress-bar"
+                  style={{
+                    "--progress": `${(item.progress / item.cost) * 100}%`,
+                  }}
+                />
+                <div className="item-remaining">{`$${
+                  item.cost - item.progress
+                } left!`}</div>
               </div>
             </div>
           ))
