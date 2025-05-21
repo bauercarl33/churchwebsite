@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./itemsgrid.css";
-import Modal from "../../../components/Modal/Modal";
 import ItemModalContent from "../ModalItem/ItemModalContent";
 
 const ItemsGrid = ({ items, category }) => {
@@ -21,6 +20,26 @@ const ItemsGrid = ({ items, category }) => {
       setLocalCategory(category);
     }
   }, [category]);
+  useEffect(() => {
+    if (selectedItem) {
+      // Save scroll position
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        // Restore scroll position
+        const savedY = document.body.style.top;
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        document.body.style.overflow = "";
+        window.scrollTo(0, parseInt(savedY || "0") * -1);
+      };
+    }
+  }, [selectedItem]);
 
   const openModal = (item) => setSelectedItem(item);
   const closeModal = () => setSelectedItem(null);
@@ -79,12 +98,20 @@ const ItemsGrid = ({ items, category }) => {
                   />
                 </div>
               ))}
-      </div>{" "}
-      <Modal isOpen={!!selectedItem} onClose={closeModal}>
-        {selectedItem && (
-          <ItemModalContent item={selectedItem} onSubmit={handleSubmit} />
-        )}
-      </Modal>
+      </div>
+      {selectedItem && (
+        <div className="custom-modal-backdrop" onClick={closeModal}>
+          <div
+            className="custom-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className="modal-close" onClick={closeModal}>
+              &times;
+            </button>
+            <ItemModalContent item={selectedItem} onSubmit={handleSubmit} />
+          </div>
+        </div>
+      )}
     </>
   );
 };

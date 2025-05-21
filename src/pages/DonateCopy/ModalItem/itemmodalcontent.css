@@ -54,11 +54,17 @@
 .checkbox-label {
   display: flex;
   align-items: center;
-  font-size: 1rem;
   gap: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
   white-space: nowrap;
 }
-
+.checkbox-label input[type="checkbox"] {
+  flex-shrink: 0;
+  width: auto;
+}
 .email-inline {
   flex: 1 1 200px;
   min-width: 200px;
@@ -114,4 +120,25 @@
   border-radius: 0.3rem;
   text-decoration: none;
   font-weight: bold;
+}
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 1rem;
+    max-height: 85vh; /* slightly tighter for smaller screens */
+  }
+
+  .item-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .qr-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .switch-button {
+    flex: 1 1 100%; /* stack buttons */
+    min-width: auto;
+  }
 }

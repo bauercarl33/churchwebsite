@@ -14,7 +14,10 @@
   padding: 2rem;
   width: 90%;
   max-width: 500px;
+  max-height: 90vh; /* prevent it from going off-screen */
+  overflow-y: auto; /* allow scroll if content is too tall */
   position: relative;
+  box-sizing: border-box;
 }
 
 .modal-close {

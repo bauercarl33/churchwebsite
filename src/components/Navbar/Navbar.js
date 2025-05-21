@@ -12,7 +12,7 @@ import { LuDoorOpen } from "react-icons/lu";
 import AlertBar from "./AlertBar";
 import { FaTimes } from "react-icons/fa";
 
-import logo from '../../images/logo.png'
+import logo from "../../images/logo.png";
 
 const Navbar = () => {
   const pages = {
@@ -147,10 +147,16 @@ const Navbar = () => {
 
   return (
     <>
-      <AlertBar active={alertActive} />
-      <button className="closeAlertBtn" onClick={closeAlert}>
-        <FaTimes />
-      </button>
+      {alertActive ? (
+        <div>
+          <AlertBar active={alertActive} />
+          <button className="closeAlertBtn" onClick={closeAlert}>
+            <FaTimes />
+          </button>
+        </div>
+      ) : (
+        <div />
+      )}
       <header
         className="navbar"
         style={{
