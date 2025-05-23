@@ -44,12 +44,38 @@ const ItemsGrid = ({ items, category }) => {
   const openModal = (item) => setSelectedItem(item);
   const closeModal = () => setSelectedItem(null);
 
-  const handleSubmit = (formData) => {
-    console.log("User submitted:", formData, "for item:", selectedItem);
+  const updateItems = async (item) => {
+    const url = `https://2wtfo19jwf.execute-api.us-east-1.amazonaws.com/prod/putDonationItem`;
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    });
+    if (!response.ok) {
+      throw new Error(`STATUS: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log("Items DATA: ", data);
+    return data;
   };
-  const onCardClick = (item) => {
-    console.log("item clicked!");
-    console.log(item);
+
+  const handleSubmit = async (formData) => {
+    console.log("User submitted:", formData, "for item:", selectedItem);
+    const newProgress = selectedItem.progress + parseFloat(formData.amount);
+    const item = {
+      itemName: selectedItem.itemName,
+      attributes: {
+        progress: parseFloat(newProgress),
+      },
+    };
+    try {
+      const result = await updateItems(item);
+      console.log("Update successful:", result);
+    } catch (err) {
+      console.error("Update failed:", err.message);
+    }
   };
   return (
     <>
@@ -67,16 +93,23 @@ const ItemsGrid = ({ items, category }) => {
                     src={item.imgUrl}
                     alt={item.itemName}
                   />
-                  {5 > 1 && <div className="item-quantity">{`x30`}</div>}
+
+                  {item.quantity > 1 && (
+                    <div className="item-quantity">{`${item.quantity}x`}</div>
+                  )}
                 </div>
-                <div className="title">Hand Engraved Chair </div>
+                <div className="title">{`${item.displayName}`}</div>
                 <div className="progress-row">
-                  <div className="item-remaining">{`$${
-                    item.cost - item.progress
-                  } left!`}</div>
+                  <div className="item-remaining">
+                    {item.cost - item.progress > 0
+                      ? `$${item.cost - item.progress} left!`
+                      : `Item Purchased!`}
+                  </div>
                 </div>
                 <div
-                  className="progress-bar"
+                  className={`progress-bar ${
+                    item.cost - item.progress <= 0 ? "zero-progress" : ""
+                  }`}
                   style={{
                     "--progress": `${(item.progress / item.cost) * 100}%`,
                   }}
@@ -97,7 +130,9 @@ const ItemsGrid = ({ items, category }) => {
                       src={item.imgUrl}
                       alt={item.itemName}
                     />
-                    {5 > 1 && <div className="item-quantity">{`x30`}</div>}
+                    {item.quantity > 1 && (
+                      <div className="item-quantity">{`${item.quantity}`}</div>
+                    )}
                   </div>
                   <div className="title">Hand Engraved Chair </div>
                   <div className="progress-row">
