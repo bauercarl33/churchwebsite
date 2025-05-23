@@ -142,3 +142,19 @@
     min-width: auto;
   }
 }
+.form-group {
+  width: 100%;
+  box-sizing: border-box;
+}
+.error {
+  border-color: red !important;
+  background-color: #ffe6e6;
+}
+
+.error-text {
+  width: 100%;
+  color: red;
+  font-size: 0.875rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}

@@ -34,6 +34,7 @@ const paymentOptions = {
 };
 
 const ItemModalContent = ({ item, onSubmit }) => {
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     amount: "",
     message: "",
@@ -53,9 +54,29 @@ const ItemModalContent = ({ item, onSubmit }) => {
   };
 
   const handlePaymentChange = (method) => {
-    const updatedFormData = { ...formData, paymentMethod: method };
-    setFormData(updatedFormData);
-    //onSubmit(updatedFormData);
+    const newErrors = {};
+    if (
+      !formData.amount ||
+      parseFloat(formData.amount) <= 0 ||
+      /[^0-9.]/.test(formData.amount)
+    ) {
+      newErrors.amount = "Please enter a valid donation amount";
+    }
+    if (
+      !formData.anonymous &&
+      (!formData.email.trim() ||
+        !formData.email.includes("@") ||
+        !formData.email.includes("."))
+    ) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    setErrors(newErrors);
+    // Don't proceed if there are any validation errors
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+    setFormData((prev) => ({ ...prev, paymentMethod: method }));
+    onSubmit(formData);
     setShowQR(true);
   };
 
@@ -82,7 +103,9 @@ const ItemModalContent = ({ item, onSubmit }) => {
               value={formData.amount}
               onChange={handleChange}
               required
+              className={errors.amount ? "error" : ""}
             />
+            {errors.amount && <p className="error-text">{errors.amount}</p>}
 
             <textarea
               name="message"
@@ -103,15 +126,18 @@ const ItemModalContent = ({ item, onSubmit }) => {
               </label>
 
               {!formData.anonymous && (
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="Benefactor email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="email-inline"
-                />
+                <>
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="Benefactor email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className={`email-inline ${errors.email ? "error" : ""}`}
+                  />
+                  {errors.email && <p className="error-text">{errors.email}</p>}
+                </>
               )}
             </div>
 
