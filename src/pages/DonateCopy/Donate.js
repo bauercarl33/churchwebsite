@@ -83,7 +83,19 @@ const DonateCopy = () => {
   const handleDonation = (option) => {
     setDonationOption(option);
   };
+  const fetchData = async () => {
+    const result = await fetchItems();
+    if (result.body.items) {
+      const categories = result.body.items
+        .filter((item) => item.category)
+        .map((item) => item.category);
 
+      // Step 3: Get unique categories
+      const uniqueCategories = [...new Set(categories)];
+      setCategories(uniqueCategories);
+    }
+    setItems(result.body.items);
+  };
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -93,19 +105,6 @@ const DonateCopy = () => {
       if (activeElement) {
         updatePillPosition(activeElement);
       }
-    };
-    const fetchData = async () => {
-      const result = await fetchItems();
-      if (result.body.items) {
-        const categories = result.body.items
-          .filter((item) => item.category)
-          .map((item) => item.category);
-
-        // Step 3: Get unique categories
-        const uniqueCategories = [...new Set(categories)];
-        setCategories(uniqueCategories);
-      }
-      setItems(result.body.items);
     };
 
     fetchData();
@@ -192,7 +191,11 @@ const DonateCopy = () => {
         categories={categories}
         onCategorySelect={categorySelected}
       />
-      <ItemsGrid items={items} category={selectedCategory} />
+      <ItemsGrid
+        items={items}
+        category={selectedCategory}
+        fetchData={fetchData}
+      />
     </>
   );
 };

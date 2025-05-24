@@ -33,7 +33,7 @@ const paymentOptions = {
   },
 };
 
-const ItemModalContent = ({ item, onSubmit }) => {
+const ItemModalContent = ({ item, onSubmit, closeModal }) => {
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     amount: "",
@@ -167,11 +167,13 @@ const ItemModalContent = ({ item, onSubmit }) => {
             href={selectedOption.link}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => closeModal()}
           >
             <img
               src={selectedOption.qr}
               alt={`${formData.paymentMethod} QR`}
               className="qr-img"
+              onClick={() => closeModal()}
             />
           </a>
           <a
@@ -179,6 +181,7 @@ const ItemModalContent = ({ item, onSubmit }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="qr-button"
+            onClick={() => closeModal()}
           >
             Go to {formData.paymentMethod}
           </a>

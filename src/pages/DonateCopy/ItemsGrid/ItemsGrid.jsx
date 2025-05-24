@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./itemsgrid.css";
 import ItemModalContent from "../ModalItem/ItemModalContent";
 
-const ItemsGrid = ({ items, category }) => {
+const ItemsGrid = ({ items, category, fetchData }) => {
   const [localItems, setLocalItems] = useState([]);
   const [localCategory, setLocalCategory] = useState("All");
   const [selectedItem, setSelectedItem] = useState(null);
@@ -42,7 +42,10 @@ const ItemsGrid = ({ items, category }) => {
   }, [selectedItem]);
 
   const openModal = (item) => setSelectedItem(item);
-  const closeModal = () => setSelectedItem(null);
+  const closeModal = () => {
+    fetchData();
+    setSelectedItem(null);
+  };
 
   const updateItems = async (item) => {
     const url = `https://2wtfo19jwf.execute-api.us-east-1.amazonaws.com/prod/putDonationItem`;
@@ -57,22 +60,49 @@ const ItemsGrid = ({ items, category }) => {
       throw new Error(`STATUS: ${response.status}`);
     }
     const data = await response.json();
-    console.log("Items DATA: ", data);
+    console.log("updateItems: ", data);
     return data;
   };
-
+  const sendEmail = async (emailInfo) => {
+    const response = await fetch(
+      "https://fbe91qmgz7.execute-api.us-east-1.amazonaws.com/prod",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(emailInfo),
+      }
+    );
+    const data = await response.json();
+    console.log("sendEmail: ", data);
+  };
   const handleSubmit = async (formData) => {
     console.log("User submitted:", formData, "for item:", selectedItem);
     const newProgress = selectedItem.progress + parseFloat(formData.amount);
-    const item = {
-      itemName: selectedItem.itemName,
-      attributes: {
-        progress: parseFloat(newProgress),
-      },
-    };
+
     try {
-      const result = await updateItems(item);
-      console.log("Update successful:", result);
+      const updateResult = await updateItems({
+        itemName: selectedItem.itemName,
+        attributes: {
+          progress: parseFloat(newProgress),
+        },
+      });
+
+      console.log("Update successful:", updateResult);
+      const msg =
+        `Benefactor Email: ${formData.email}\n` +
+        `Donation Item: ${selectedItem.displayName}\n` +
+        `Donation Amount: ${formData.amount}\n` +
+        `Personal Message: ${formData.message}\n`;
+      const emailResult = await sendEmail({
+        to: "bauercarliii@gmail.com",
+        from: "bauercarliii@gmail.com",
+        subject: "Church Donation Reciept",
+        message: msg,
+      });
+
+      console.log("Update successful:", emailResult);
     } catch (err) {
       console.error("Update failed:", err.message);
     }
@@ -130,18 +160,23 @@ const ItemsGrid = ({ items, category }) => {
                       src={item.imgUrl}
                       alt={item.itemName}
                     />
+
                     {item.quantity > 1 && (
-                      <div className="item-quantity">{`${item.quantity}`}</div>
+                      <div className="item-quantity">{`${item.quantity}x`}</div>
                     )}
                   </div>
-                  <div className="title">Hand Engraved Chair </div>
+                  <div className="title">{`${item.displayName}`}</div>
                   <div className="progress-row">
-                    <div className="item-remaining">{`$${
-                      item.cost - item.progress
-                    } left!`}</div>
+                    <div className="item-remaining">
+                      {item.cost - item.progress > 0
+                        ? `$${item.cost - item.progress} left!`
+                        : `Item Purchased!`}
+                    </div>
                   </div>
                   <div
-                    className="progress-bar"
+                    className={`progress-bar ${
+                      item.cost - item.progress <= 0 ? "zero-progress" : ""
+                    }`}
                     style={{
                       "--progress": `${(item.progress / item.cost) * 100}%`,
                     }}
@@ -158,7 +193,11 @@ const ItemsGrid = ({ items, category }) => {
             <button className="modal-close" onClick={closeModal}>
               &times;
             </button>
-            <ItemModalContent item={selectedItem} onSubmit={handleSubmit} />
+            <ItemModalContent
+              item={selectedItem}
+              onSubmit={handleSubmit}
+              closeModal={closeModal}
+            />
           </div>
         </div>
       )}
