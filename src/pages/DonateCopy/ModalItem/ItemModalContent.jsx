@@ -162,7 +162,7 @@ const ItemModalContent = ({ item, onSubmit, closeModal }) => {
         </>
       ) : (
         <>
-          <h3 className="modal-title">{item.itemName}</h3>
+          <h1 className="modal-title">{item.displayName}</h1>
           <a
             href={selectedOption.link}
             target="_blank"
