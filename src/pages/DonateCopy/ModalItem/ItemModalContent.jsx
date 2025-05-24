@@ -88,7 +88,7 @@ const ItemModalContent = ({ item, onSubmit, closeModal }) => {
     <div className={`modal-content ${showQR ? "slide-left" : ""}`}>
       {!showQR ? (
         <>
-          <h2 className="modal-title">{item.itemName}</h2>
+          <h2 className="modal-title">{item.displayName}</h2>
           <img className="item-image" src={item.imgUrl} alt={item.itemName} />
           <p className="description">
             {item.description ||
