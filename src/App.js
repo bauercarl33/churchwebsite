@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/media" element={<Media />} />
           <Route path="/media/:name/:id" element={<Media />} />
           <Route exact path="/visitors" element={<Visitors />} />
-          <Route exact path="/donate" element={<Donate />} />
+          <Route exact path="/donate" element={<DonateCopy />} />
           <Route exact path="/donateCopy" element={<DonateCopy />} />
         </Routes>
         <Footer />

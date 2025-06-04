@@ -131,19 +131,21 @@ const ItemsGrid = ({ items, category, fetchData }) => {
                 <div className="title">{`${item.displayName}`}</div>
                 <div className="progress-row">
                   <div className="item-remaining">
-                    {item.cost - item.progress > 0
-                      ? `$${item.cost - item.progress} ${
-                          item.quantity > 1 ? "each!" : "left!"
-                        }`
-                      : `Item Purchased!`}
+                    {item.quantity > 1
+                      ? `$${item.cost} each!`
+                      : `$${item.cost * item.quantity - item.progress} left!`}
                   </div>
                 </div>
                 <div
                   className={`progress-bar ${
-                    item.cost - item.progress <= 0 ? "zero-progress" : ""
+                    item.cost * item.quantity - item.progress <= 0
+                      ? "zero-progress"
+                      : ""
                   }`}
                   style={{
-                    "--progress": `${(item.progress / item.cost) * 100}%`,
+                    "--progress": `${
+                      (item.progress / (item.cost * item.quantity)) * 100
+                    }%`,
                   }}
                 />
               </div>
