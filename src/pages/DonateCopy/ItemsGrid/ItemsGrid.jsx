@@ -132,7 +132,9 @@ const ItemsGrid = ({ items, category, fetchData }) => {
                 <div className="progress-row">
                   <div className="item-remaining">
                     {item.cost - item.progress > 0
-                      ? `$${item.cost - item.progress} left!`
+                      ? `$${item.cost - item.progress} ${
+                          item.quantity > 1 ? "each!" : "left!"
+                        }`
                       : `Item Purchased!`}
                   </div>
                 </div>
