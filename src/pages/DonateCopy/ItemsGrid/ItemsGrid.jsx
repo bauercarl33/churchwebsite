@@ -170,20 +170,28 @@ const ItemsGrid = ({ items, category, fetchData }) => {
                     />
 
                     {item.quantity > 1 && (
-                      <div className="item-quantity">{`${item.quantity}x`}</div>
+                      <div className="item-quantity">{`${
+                        item.progress / item.cost
+                      }/${item.quantity}x`}</div>
                     )}
                   </div>
                   <div className="title">{`${item.displayName}`}</div>
                   <div className="progress-row">
                     <div className="item-remaining">
-                      {item.cost - item.progress > 0
-                        ? `$${item.cost - item.progress} left!`
+                      {item.cost * item.quantity - item.progress > 0
+                        ? `$${
+                            item.cost * item.quantity - item.progress
+                          } left! ${
+                            item.quantity > 1 ? `(${item.cost} each)` : ""
+                          }`
                         : `Item Purchased!`}
                     </div>
                   </div>
                   <div
                     className={`progress-bar ${
-                      item.cost - item.progress <= 0 ? "zero-progress" : ""
+                      item.cost * item.quantity - item.progress <= 0
+                        ? "zero-progress"
+                        : ""
                     }`}
                     style={{
                       "--progress": `${
