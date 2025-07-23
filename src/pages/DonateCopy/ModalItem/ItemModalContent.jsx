@@ -40,6 +40,7 @@ const ItemModalContent = ({ item, onSubmit, closeModal }) => {
     message: "",
     anonymous: false,
     email: "",
+    phone: "",
     paymentMethod: "",
   });
 
@@ -70,8 +71,16 @@ const ItemModalContent = ({ item, onSubmit, closeModal }) => {
     ) {
       newErrors.email = "Please enter a valid email address";
     }
+    if (
+      !formData.anonymous &&
+      (!formData.phone.trim() || !(formData.phone.length === 10))
+    ) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
     setErrors(newErrors);
     // Don't proceed if there are any validation errors
+    console.log(formData);
+    console.log(newErrors);
     if (Object.keys(newErrors).length > 0) {
       return;
     }
@@ -115,16 +124,6 @@ const ItemModalContent = ({ item, onSubmit, closeModal }) => {
             />
 
             <div className="inline-group">
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  name="anonymous"
-                  checked={formData.anonymous}
-                  onChange={handleChange}
-                />
-                Remain anonymous?
-              </label>
-
               {!formData.anonymous && (
                 <>
                   <input
@@ -137,6 +136,16 @@ const ItemModalContent = ({ item, onSubmit, closeModal }) => {
                     className={`email-inline ${errors.email ? "error" : ""}`}
                   />
                   {errors.email && <p className="error-text">{errors.email}</p>}
+                  <input
+                    name="phone"
+                    type="phone"
+                    placeholder="Benefactor Phone #"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className={`email-inline ${errors.phone ? "error" : ""}`}
+                  />
+                  {errors.phone && <p className="error-text">{errors.phone}</p>}
                 </>
               )}
             </div>

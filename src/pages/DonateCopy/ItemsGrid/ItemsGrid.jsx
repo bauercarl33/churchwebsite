@@ -94,6 +94,7 @@ const ItemsGrid = ({ items, category, fetchData }) => {
         `Benefactor Email: ${
           formData.email == "" ? "anonymous" : formData.email
         }\n` +
+        `Benefactor Phone: ${formData.phone}\n` +
         `Payment Type: ${method}\n` +
         `Donation Item: ${selectedItem.displayName}\n` +
         `Donation Amount: ${formData.amount}\n` +
