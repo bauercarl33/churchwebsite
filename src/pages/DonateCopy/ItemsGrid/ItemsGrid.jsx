@@ -77,7 +77,7 @@ const ItemsGrid = ({ items, category, fetchData }) => {
     const data = await response.json();
     console.log("sendEmail: ", data);
   };
-  const handleSubmit = async (formData) => {
+  const handleSubmit = async (formData, method) => {
     console.log("User submitted:", formData, "for item:", selectedItem);
     const newProgress = selectedItem.progress + parseFloat(formData.amount);
 
@@ -91,10 +91,14 @@ const ItemsGrid = ({ items, category, fetchData }) => {
 
       console.log("Update successful:", updateResult);
       const msg =
-        `Benefactor Email: ${formData.email}\n` +
+        `Benefactor Email: ${
+          formData.email == "" ? "anonymous" : formData.email
+        }\n` +
+        `Payment Type: ${method}\n` +
         `Donation Item: ${selectedItem.displayName}\n` +
         `Donation Amount: ${formData.amount}\n` +
-        `Personal Message: ${formData.message}\n`;
+        `Personal Message: ${formData.message}\n\n\n` +
+        `${new Date().toLocaleString()}`;
       const emailResult = await sendEmail({
         to: "bauercarliii@gmail.com",
         from: "bauercarliii@gmail.com",

@@ -76,7 +76,7 @@ const ItemModalContent = ({ item, onSubmit, closeModal }) => {
       return;
     }
     setFormData((prev) => ({ ...prev, paymentMethod: method }));
-    onSubmit(formData);
+    onSubmit(formData, method);
     setShowQR(true);
   };
 
