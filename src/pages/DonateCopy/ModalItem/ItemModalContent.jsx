@@ -31,6 +31,10 @@ const paymentOptions = {
     qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1cjCe9XhuzTk_UocT9Nu73t-E8nbzcLCf",
     link: "https://enroll.zellepay.com/qr-codes?data=eyJuYW1lIjoiU0FJTlQgTUFSWSBST01BTklBTiBPUlRIT0RPWCBDSFVSQ0giLCJ0b2tlbiI6InNhaW50bWFyeWF1c3RpbkBnbWFpbC5jb20iLCJhY3Rpb24iOiJwYXltZW50In0=",
   },
+  "Check/Cash/Wire": {
+    icon: "",
+    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/checkoptionimg.png",
+  },
 };
 
 const ItemModalContent = ({ item, onSubmit, closeModal }) => {
@@ -185,15 +189,19 @@ const ItemModalContent = ({ item, onSubmit, closeModal }) => {
               onClick={() => closeModal()}
             />
           </a>
-          <a
-            href={selectedOption.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="qr-button"
-            onClick={() => closeModal()}
-          >
-            Go to {formData.paymentMethod}
-          </a>
+          {selectedOption.link ? (
+            <a
+              href={selectedOption.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="qr-button"
+              onClick={() => closeModal()}
+            >
+              Go to {formData.paymentMethod}
+            </a>
+          ) : (
+            <div></div>
+          )}
         </>
       )}
     </div>
