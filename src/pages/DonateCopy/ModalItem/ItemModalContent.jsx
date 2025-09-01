@@ -8,8 +8,8 @@ import "./itemmodalcontent.css";
 const paymentOptions = {
   Cashapp: {
     icon: <TbBrandCashapp />,
-    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1T1EgRBGJ5SBLLcNR3DLIHusUkkKoYigh",
-    link: "https://cash.app/$saintmaryaustin?qr=1",
+    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/cashappqrcode.jpeg",
+    link: "https://cash.app/$saintmaryorthodox?qr=1",
   },
   Venmo: {
     icon: <BiLogoVenmo />,
@@ -28,8 +28,8 @@ const paymentOptions = {
   },
   Zelle: {
     icon: <SiZelle />,
-    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1cjCe9XhuzTk_UocT9Nu73t-E8nbzcLCf",
-    link: "https://enroll.zellepay.com/qr-codes?data=eyJuYW1lIjoiU0FJTlQgTUFSWSBST01BTklBTiBPUlRIT0RPWCBDSFVSQ0giLCJ0b2tlbiI6InNhaW50bWFyeWF1c3RpbkBnbWFpbC5jb20iLCJhY3Rpb24iOiJwYXltZW50In0=",
+    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/Screenshot+2025-09-01+at+2.54.16%E2%80%AFPM.png",
+    link: "https://enroll.zellepay.com/qr-codes/?data=eyJuYW1lIjoiU0FJTlQgTUFSWSBST01BTklBTiBPUlRIT0RPWCBDSFVSQ0giLCJ0b2tlbiI6ImNodXJjaEBzYWludG1hcnlhdXN0aW4ub3JnIiwiYWN0aW9uIjoicGF5bWVudCJ9=",
   },
   "Check/Cash/Wire": {
     icon: "",

@@ -10,7 +10,7 @@ import ShopDivisor from "./ShopDivisor/ShopDivisor";
 import ItemsGrid from "./ItemsGrid/ItemsGrid";
 
 const cashapp =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1T1EgRBGJ5SBLLcNR3DLIHusUkkKoYigh";
+  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/cashappqrcode.jpeg";
 const venmo =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1a15SPoeT62u9xoY6-D7xxqcxCkggTUow";
 const paypal =
@@ -18,7 +18,7 @@ const paypal =
 const gofundme =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BgtiL3oU34seQLd8tFM_0rgBSQhheibE";
 const zelle =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1cjCe9XhuzTk_UocT9Nu73t-E8nbzcLCf";
+  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/Screenshot+2025-09-01+at+2.54.16%E2%80%AFPM.png";
 const tihely =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BkJiqWi-0Qf4fzECI23QfyJT2U3uIUGm";
 
@@ -30,7 +30,7 @@ const DonateCopy = () => {
     cashapp: {
       icon: <TbBrandCashapp />,
       qr: cashapp,
-      link: "https://cash.app/$saintmaryaustin?qr=1",
+      link: "https://cash.app/$saintmaryorthodox?qr=1",
     },
     venmo: {
       icon: <BiLogoVenmo />,
@@ -50,7 +50,7 @@ const DonateCopy = () => {
     zelle: {
       icon: <SiZelle />,
       qr: zelle,
-      link: "https://enroll.zellepay.com/qr-codes?data=eyJuYW1lIjoiU0FJTlQgTUFSWSBST01BTklBTiBPUlRIT0RPWCBDSFVSQ0giLCJ0b2tlbiI6InNhaW50bWFyeWF1c3RpbkBnbWFpbC5jb20iLCJhY3Rpb24iOiJwYXltZW50In0=",
+      link: "https://enroll.zellepay.com/qr-codes/?data=eyJuYW1lIjoiU0FJTlQgTUFSWSBST01BTklBTiBPUlRIT0RPWCBDSFVSQ0giLCJ0b2tlbiI6ImNodXJjaEBzYWludG1hcnlhdXN0aW4ub3JnIiwiYWN0aW9uIjoicGF5bWVudCJ9=",
     },
   };
 
