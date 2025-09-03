@@ -10,7 +10,7 @@ import ShopDivisor from "./ShopDivisor/ShopDivisor";
 import ItemsGrid from "./ItemsGrid/ItemsGrid";
 
 const cashapp =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/cashappqrcode.jpeg";
+  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1T8rzdYXFTvXYVT16NtwFxBLCbDGMjdE2";
 const venmo =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1a15SPoeT62u9xoY6-D7xxqcxCkggTUow";
 const paypal =
@@ -18,7 +18,7 @@ const paypal =
 const gofundme =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BgtiL3oU34seQLd8tFM_0rgBSQhheibE";
 const zelle =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/Screenshot+2025-09-01+at+2.54.16%E2%80%AFPM.png";
+  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1r-0cm1EinX-sEZTS6bdk227yE_U1ucPQ";
 const tihely =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BkJiqWi-0Qf4fzECI23QfyJT2U3uIUGm";
 

@@ -8,7 +8,7 @@ import "./itemmodalcontent.css";
 const paymentOptions = {
   Cashapp: {
     icon: <TbBrandCashapp />,
-    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/cashappqrcode.jpeg",
+    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1T8rzdYXFTvXYVT16NtwFxBLCbDGMjdE2",
     link: "https://cash.app/$saintmaryorthodox?qr=1",
   },
   Venmo: {
@@ -28,7 +28,7 @@ const paymentOptions = {
   },
   Zelle: {
     icon: <SiZelle />,
-    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/Screenshot+2025-09-01+at+2.54.16%E2%80%AFPM.png",
+    qr: "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1r-0cm1EinX-sEZTS6bdk227yE_U1ucPQ",
     link: "https://enroll.zellepay.com/qr-codes/?data=eyJuYW1lIjoiU0FJTlQgTUFSWSBST01BTklBTiBPUlRIT0RPWCBDSFVSQ0giLCJ0b2tlbiI6ImNodXJjaEBzYWludG1hcnlhdXN0aW4ub3JnIiwiYWN0aW9uIjoicGF5bWVudCJ9=",
   },
   "Check/Cash/Wire": {
