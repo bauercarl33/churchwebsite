@@ -50,7 +50,7 @@ const DonateCopy = () => {
     zelle: {
       icon: <SiZelle />,
       qr: zelle,
-      link: "https://enroll.zellepay.com/qr-codes/?data=eyJuYW1lIjoiU0FJTlQgTUFSWSBST01BTklBTiBPUlRIT0RPWCBDSFVSQ0giLCJ0b2tlbiI6ImNodXJjaEBzYWludG1hcnlhdXN0aW4ub3JnIiwiYWN0aW9uIjoicGF5bWVudCJ9=",
+      link: "",
     },
   };
 
