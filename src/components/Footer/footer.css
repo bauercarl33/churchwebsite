@@ -17,9 +17,11 @@
 }
 
 .footer .container {
+    width: 100%;
     max-width: 1440px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     border-top: 1px solid var(--bg-color);
     border-bottom: 1px solid var(--bg-color);
     padding: var(--space-l) 0;

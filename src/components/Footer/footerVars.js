@@ -3,20 +3,12 @@ import { FaLocationDot } from 'react-icons/fa6'
 
 export const footerLinks = {
     churchLocation: {
-        link: 'https://maps.app.goo.gl/emh2KpYtpmYaEc4o8',
+        link: 'https://maps.app.goo.gl/fZGhZrtWCDrdrJtY7',
         label: 'Map of church location',
         icon: <FaLocationDot size={24} className='icon' />,
         bold: 'bold',
-        boldContent: "NEW Temporary Address:",
-        content: "13740 Research Boulevard, Austin, TX 78750"
-    },
-    truckParking: {
-        link: 'https://www.google.com/maps/place/11301+Lakeline+Blvd,+Austin,+TX+78717/@30.479393,-97.8018903,17z/data=!3m1!4b1!4m6!3m5!1s0x865b2d0092e8ed89:0xc7cf0d2a879a27bf!8m2!3d30.479393!4d-97.7993154!16s%2Fg%2F11k58c2jc_?entry=ttu&g_ep=EgoyMDI0MTAyNy4wIKXMDSoASAFQAw%3D%3D',
-        label: 'Map of semi-truck parking',
-        icon: <FaTruck size={24} className='icon' />,
-        bold: 'bold',
-        boldContent: "Semi-truck parking (Home Depot):",
-        content: "11301 Lakeline Blvd, Austin, TX 78717"
+        boldContent: "Address:",
+        content: "200 Monaco Dr., Cedar Park, TX 78613"
     },
     phone: {
         link: 'tel: 7374004458',

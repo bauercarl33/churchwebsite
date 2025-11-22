@@ -9,12 +9,12 @@ const Welcome = () => {
     <div className="welcome">
       <div className="container">
         <div className="card">
-          <h5>Temporary Location</h5>
+          <h5>Location</h5>
           <p>
-            13740 Research Boulevard, Austin, TX 78750
+            200 Monaco Dr., Cedar Park, TX 78613
           </p>
           <a
-            href="https://maps.app.goo.gl/emh2KpYtpmYaEc4o8"
+            href="https://maps.app.goo.gl/fZGhZrtWCDrdrJtY7"
             aria-label="Map to church"
             target="_blank"
           >
