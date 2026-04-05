@@ -18,7 +18,7 @@ const paypal =
 const gofundme =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BgtiL3oU34seQLd8tFM_0rgBSQhheibE";
 const zelle =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1r-0cm1EinX-sEZTS6bdk227yE_U1ucPQ";
+  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/IMG_4686.jpeg";
 const tihely =
   "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BkJiqWi-0Qf4fzECI23QfyJT2U3uIUGm";
 
