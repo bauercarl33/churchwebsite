@@ -348,3 +348,67 @@ time. That is a larger change, worth discussing separately.
 Real-world numbers will differ from these. Run `npm run build`, then
 `npm run lighthouse -- --mobile`, in an Incognito window or headless, against
 the preview build, not `npm start`.
+
+## Follow-up: fonts and layout shifts (from the owner's own Lighthouse run)
+
+The owner's run (`npm run lighthouse -- --mobile` on Windows, real network) scored
+lower than my published numbers. Reading the saved reports showed why:
+
+- It was a **mobile** run, with **real network access**. My headline numbers
+  were desktop, with Google Fonts and S3 blocked.
+- **Google Fonts was render-blocking on every page** (estimated cost ≈ 830 ms on
+  mobile; FCP ≈ 2.36 s everywhere). My runs blocked that request, so they
+  never saw it.
+- Layout shifts I hadn't seen, because images and fonts were blocked during my
+  runs:
+  - /calendar CLS 0.275, caused by the phone layout starting as desktop and
+    the calendar being re-created when events arrived
+  - /visitors 0.083, caused by the font swap
+  - /donate 0.082, caused by QR images with unknown size
+- /media (8.7 MB) and /donate (2.6 MB) are dominated by **full-size S3 images**
+  (album covers, QR codes). Fixing those needs smaller preview images
+  generated where photos are uploaded (the Lambda/S3 side), not in this repo.
+
+### Changes
+
+- **Montserrat is self-hosted** (`src/fonts/`). It's the same variable font
+  (v31, OFL), Latin and Latin Extended subsets only, declared with weight
+  `400 700` exactly like the old Google URL, so rendering doesn't change. The
+  Latin file is preloaded from `index.html` by a small Vite plugin. No more
+  requests to Google at all.
+- **Calendar**: the phone layout is detected before the first render, and
+  events are pushed into the existing Schedule-X instance (`eventsService.set`)
+  instead of re-mounting it.
+- **Donate**: QR codes and the Tithely banner reserve their space using their
+  real aspect ratios (measured from the S3 files). The footer logo has
+  explicit dimensions.
+
+### Verification
+
+- Screenshots against the previous build, with the old Google font
+  simulated using the same font file: **pixel-identical** on Home, About and
+  Visitors (desktop and mobile).
+  - Donate differs only because the QR area now reserves its space while the
+    (blocked) image loads; the real image fills that same box.
+- /calendar with a delayed (mocked) API response, measured layout shift:
+  390 px 0.043 → **0.003**; 1280 px 0.001 → 0.001. The event still shows.
+- Lighthouse, mobile, 3 runs each, median (S3/API blocked, no Google
+  requests needed any more). The FCP drop comes from removing the Google
+  Fonts round trip.
+
+  | Page | Perf | FCP | LCP | CLS |
+  |---|---|---|---|---|
+  | / | 84 | 1.32 s | 4.5 s | 0 |
+  | /about | 88 | 1.47 s | 3.8 s | 0 |
+  | /visitors | 98 | 1.40 s | 2.3 s | 0 |
+
+  The owner's runs measured FCP ≈ 2.36 s on all pages with real network.
+
+### Found, not fixed (needs the owner)
+
+- The **"Check/Cash/Wire" image** in the donation modal
+  (`…/images/checkoptionimg.png`) returns an S3 error (404). The image is
+  broken on the live site.
+- The calendar API response isn't gzip-compressed (API Gateway setting).
+- The gallery and donation images need server-side thumbnails; the S3 images
+  also have no `Cache-Control` headers.

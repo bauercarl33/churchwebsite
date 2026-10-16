@@ -1,4 +1,4 @@
-/* Montserrat is loaded from Google Fonts in public/index.html. */
+/* Montserrat is self-hosted: see src/fonts/montserrat.css. */
 :root {
   --bg-color: #f8f8f8;
   --bg-dark: #f2f2f2;

@@ -1,9 +1,38 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
+/**
+ * Preload the main (Latin) Montserrat file so text can render in the right
+ * font on first paint instead of swapping from the fallback font later
+ * (which shifts the layout). The file name has a content hash, so it is
+ * found in the bundle at build time.
+ */
+function preloadFont(prefix) {
+  return {
+    name: "preload-font",
+    apply: "build",
+    transformIndexHtml: {
+      order: "post",
+      handler(html, { bundle }) {
+        const file = Object.keys(bundle ?? {}).find(
+          (name) => name.startsWith(`assets/${prefix}`) && name.endsWith(".woff2")
+        );
+        if (!file) return html;
+        return [
+          {
+            tag: "link",
+            attrs: { rel: "preload", href: `/${file}`, as: "font", type: "font/woff2", crossorigin: "" },
+            injectTo: "head",
+          },
+        ];
+      },
+    },
+  };
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), preloadFont("montserrat-latin-wght-normal")],
   server: {
     // Same port Create React App used.
     port: 3000,

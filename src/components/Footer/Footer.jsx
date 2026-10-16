@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container">
         <div className="logo">
           <Link to="/" aria-label="Go back to home page">
-            <img src={logo} alt="St. Mary Orthodox Church" loading="lazy" />
+            <img src={logo} alt="St. Mary Orthodox Church" loading="lazy" width="200" height="200" />
           </Link>
         </div>
         <div className="info">

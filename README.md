@@ -37,6 +37,7 @@ src/
   lib/                API endpoints, fetch helper, calendar date helpers
   data/               Static data (payment options)
   images/photos/      Generated WebP photos + manifest.json (do not edit by hand)
+  fonts/              Self-hosted Montserrat (OFL)
   test/               Test helpers
 images/originals/     Full-size originals of the site photos
 scripts/              lighthouse.mjs, optimize-images.mjs

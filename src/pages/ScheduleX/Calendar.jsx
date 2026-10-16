@@ -17,10 +17,14 @@ export async function fetchCalendarEvents(now = new Date()) {
   return toScheduleXEvents(data.body);
 }
 
+const MOBILE_QUERY = "(max-width: 600px)";
+
 const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  // Read the media query synchronously so the first render already uses the
+  // right layout (starting with `false` caused a layout shift on phones).
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 600px)");
+    const mediaQuery = window.matchMedia(MOBILE_QUERY);
     const handleChange = () => setIsMobile(mediaQuery.matches);
     handleChange();
     mediaQuery.addEventListener("change", handleChange);
@@ -48,9 +52,8 @@ const Calendar = () => {
     <div className="calendar">
       {isMobile ? (
         // On mobile a curtain image slides away once events have loaded.
-        // The key forces Schedule-X to re-initialise with the loaded events.
         <CurtainLoadingEffect isOpen={!isLoading}>
-          <CalendarApp key={isLoading ? "loading" : "ready"} data={events} />
+          <CalendarApp data={events} />
         </CurtainLoadingEffect>
       ) : (
         <div>{isLoading ? <div>Loading...</div> : <CalendarApp data={events} />}</div>

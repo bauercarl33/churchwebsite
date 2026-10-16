@@ -5,7 +5,16 @@ import "./donate.css";
 import ShopDivisor from "./ShopDivisor/ShopDivisor";
 import ItemsGrid from "./ItemsGrid/ItemsGrid";
 import { endpoints, fetchJson } from "../../lib/api";
-import { paymentOptions, TITHELY_IMAGE, TITHELY_LINK } from "../../data/donationOptions";
+import {
+  paymentOptions,
+  TITHELY_IMAGE,
+  TITHELY_IMAGE_SIZE,
+  TITHELY_LINK,
+} from "../../data/donationOptions";
+
+// Reserve an image's space before it loads (avoids layout shift) without
+// setting a fixed height.
+const aspect = ([width, height]) => ({ aspectRatio: `${width} / ${height}` });
 
 // On this page the Zelle QR code is intentionally not a link
 // (see commit 3217a4f "remove zelle clickable").
@@ -63,7 +72,7 @@ const Donate = () => {
         <div className="col">
           <a href={TITHELY_LINK} target="_blank" rel="noreferrer" className="tithely">
             <p>Click here to donate with Tithely.</p>
-            <img src={TITHELY_IMAGE} alt="Donate with Tithely" />
+            <img src={TITHELY_IMAGE} alt="Donate with Tithely" style={aspect(TITHELY_IMAGE_SIZE)} />
           </a>
           <div className="divider">
             <h5>Or</h5>
@@ -87,7 +96,9 @@ const Donate = () => {
             </div>
             {Object.entries(qrOptions).map(([key, value]) => {
               const className = donationOption === key ? "qr selected" : "qr";
-              const image = <img src={value.qr} alt={`${value.label} QR code`} />;
+              const image = (
+                <img src={value.qr} alt={`${value.label} QR code`} style={aspect(value.qrSize)} />
+              );
               return value.link ? (
                 <a
                   href={value.link}

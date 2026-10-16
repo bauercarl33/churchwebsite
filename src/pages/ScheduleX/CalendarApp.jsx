@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCalendarApp, ScheduleXCalendar } from "@schedule-x/react";
 import { createViewMonthGrid, createViewMonthAgenda } from "@schedule-x/calendar";
 import { createEventsServicePlugin } from "@schedule-x/events-service";
@@ -10,7 +10,8 @@ import "./calendar-app.css";
 function CalendarApp({ data }) {
   // Plugins are created once per mount; useCalendarApp only reads its
   // arguments on the first render anyway.
-  const [plugins] = useState(() => [createEventsServicePlugin(), createEventModalPlugin()]);
+  const [eventsService] = useState(() => createEventsServicePlugin());
+  const [plugins] = useState(() => [eventsService, createEventModalPlugin()]);
 
   const calendar = useCalendarApp(
     {
@@ -20,6 +21,12 @@ function CalendarApp({ data }) {
     },
     plugins
   );
+
+  // Events can arrive after the calendar is created (on mobile it renders
+  // under the loading curtain); update them in place instead of re-mounting.
+  useEffect(() => {
+    if (data) eventsService.set(data);
+  }, [data, eventsService]);
 
   return (
     <div className="calendar">
