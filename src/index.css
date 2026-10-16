@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400..700&display=swap");
-
+/* Montserrat is loaded from Google Fonts in public/index.html. */
 :root {
   --bg-color: #f8f8f8;
   --bg-dark: #f2f2f2;
@@ -144,7 +143,7 @@ a {
   max-width: 1000px;
   position: absolute;
   aspect-ratio: 1;
-  background-image: url("./images/checkeredBG.png");
+  background-image: url("./images/checkeredBG.webp");
   border-radius: 50%;
   opacity: 0.1;
 }
@@ -160,4 +159,27 @@ a {
     rgba(248, 248, 248, 0) 0%,
     rgba(248, 248, 248, 1) 70%
   );
+}
+
+/* Shared full-height loading/error placeholder. */
+.loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Global rules that used to live in page stylesheets (about.css,
+   ShopDivisor.css). Pages are now lazy-loaded, so these are kept here to
+   keep applying site-wide as before. */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }

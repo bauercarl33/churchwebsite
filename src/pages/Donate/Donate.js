@@ -1,153 +1,115 @@
-import React, { useEffect, useRef, useState } from "react";
-
-import { TbBrandCashapp, TbBrandPaypal } from "react-icons/tb";
-import { SiGofundme } from "react-icons/si";
-import { BiLogoVenmo } from "react-icons/bi";
-import { SiZelle } from "react-icons/si";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import "./donate.css";
+import ShopDivisor from "./ShopDivisor/ShopDivisor";
+import ItemsGrid from "./ItemsGrid/ItemsGrid";
+import { endpoints, fetchJson } from "../../lib/api";
+import { paymentOptions, TITHELY_IMAGE, TITHELY_LINK } from "../../data/donationOptions";
 
-const cashapp =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1T8rzdYXFTvXYVT16NtwFxBLCbDGMjdE2";
-const venmo =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1a15SPoeT62u9xoY6-D7xxqcxCkggTUow";
-const paypal =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/16ayX3AeW9dFMMmopqE4SqNxraGqhi5Rh";
-const gofundme =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BgtiL3oU34seQLd8tFM_0rgBSQhheibE";
-const zelle =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1r-0cm1EinX-sEZTS6bdk227yE_U1ucPQ";
-const tihely =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1BkJiqWi-0Qf4fzECI23QfyJT2U3uIUGm";
+// On this page the Zelle QR code is intentionally not a link
+// (see commit 3217a4f "remove zelle clickable").
+const qrOptions = {
+  ...paymentOptions,
+  zelle: { ...paymentOptions.zelle, link: "" },
+};
 
-const tithelyLink =
-  "https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0";
+export const fetchDonationItems = async () => {
+  const result = await fetchJson(endpoints.donationItems);
+  return result.body.items ?? [];
+};
+
+export const uniqueCategories = (items) => [
+  ...new Set(items.map((item) => item.category).filter(Boolean)),
+];
 
 const Donate = () => {
-  const options = {
-    cashapp: {
-      icon: <TbBrandCashapp />,
-      qr: cashapp,
-      link: "https://cash.app/$saintmaryorthodox?qr=1",
-    },
-    venmo: {
-      icon: <BiLogoVenmo />,
-      qr: venmo,
-      link: "https://venmo.com/code?user_id=3093467274149888897&created=1645489089",
-    },
-    paypal: {
-      icon: <TbBrandPaypal />,
-      qr: paypal,
-      link: "https://www.paypal.com/qrcodes/managed/106342a1-8b31-43e1-830f-e8cdbe334363?utm_source=hawk_quick_link",
-    },
-    gofundme: {
-      icon: <SiGofundme />,
-      qr: gofundme,
-      link: "https://gofund.me/a683342f",
-    },
-    zelle: {
-      icon: <SiZelle />,
-      qr: zelle,
-      link: "https://enroll.zellepay.com/qr-codes/?data=eyJuYW1lIjoiU0FJTlQgTUFSWSBST01BTklBTiBPUlRIT0RPWCBDSFVSQ0giLCJ0b2tlbiI6ImNodXJjaEBzYWludG1hcnlhdXN0aW4ub3JnIiwiYWN0aW9uIjoicGF5bWVudCJ9=",
-    },
-  };
-
   const [donationOption, setDonationOption] = useState("cashapp");
-  const [donationpillStyle, setdonationpillStyle] = useState({
-    top: 0,
-    left: 0,
-    width: 0,
-  });
+  const [donationpillStyle, setDonationpillStyle] = useState({ top: 0, left: 0, width: 0 });
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const selectorRef = useRef(null);
 
-  const handleDonation = (option) => {
-    setDonationOption(option);
-  };
+  const { data: items = [], refetch } = useQuery({
+    queryKey: ["donationItems"],
+    queryFn: fetchDonationItems,
+  });
+  const categories = useMemo(() => uniqueCategories(items), [items]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-
-      const activeElement =
-        selectorRef.current?.querySelector(".item.selected");
-      if (activeElement) {
-        updatePillPosition(activeElement);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    const activeElement = selectorRef.current?.querySelector(".item.selected");
-    if (activeElement) {
-      updatePillPosition(activeElement);
-    }
-  }, [donationOption]);
-
-  const updatePillPosition = (element) => {
+  const updatePillPosition = useCallback(() => {
+    const element = selectorRef.current?.querySelector(".item.selected");
+    if (!element) return;
     const rect = element.getBoundingClientRect();
-    const selectedRect = selectorRef.current.getBoundingClientRect();
-    setdonationpillStyle({
-      top: rect.top - selectedRect.top - 1,
-      left: rect.left - selectedRect.left,
+    const selectorRect = selectorRef.current.getBoundingClientRect();
+    setDonationpillStyle({
+      top: rect.top - selectorRect.top - 1,
+      left: rect.left - selectorRect.left,
       width: rect.width - 2,
       height: rect.height,
     });
-  };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", updatePillPosition);
+    return () => window.removeEventListener("resize", updatePillPosition);
+  }, [updatePillPosition]);
+
+  useEffect(() => {
+    updatePillPosition();
+  }, [donationOption, updatePillPosition]);
 
   return (
-    <div className="donate">
-      {/* <div className='col'>
-        <div className='text'>
-          <h4>We Need Your Help!</h4>
-          <p>St. Mary Orthodox Church is currently building a new church to be able to support our growing community for generations. We greatly appreciate your kindness and generosity to keep us able to grow and maintain our church.</p>
-          <p>Provided are multiple ways to donate so you can give in the way you are most comfortable. Either click on the tithe.ly link, or scan/click one of the provided QR codes to give through CashApp, Venmo, PayPal, GoFundMe, or Zelle.</p>
-        </div>
-      </div> */}
-      <div className="col">
-        <a href={tithelyLink} target="_blank" className="tithely">
-          <p>Click here to donate with Tithely.</p>
-          <img src={tihely} alt="tithely link image" />
-        </a>
-        <div className="divider">
-          <h5>Or</h5>
-        </div>
-        <p>Select a QR code and scan/click the link.</p>
-        <div className="qrs">
-          <div className="selector" ref={selectorRef}>
-            <div className="donationpill" style={donationpillStyle} />
-            {Object.entries(options).map(([key, value]) => {
-              return (
+    <>
+      <div className="donate">
+        <div className="col">
+          <a href={TITHELY_LINK} target="_blank" rel="noreferrer" className="tithely">
+            <p>Click here to donate with Tithely.</p>
+            <img src={TITHELY_IMAGE} alt="Donate with Tithely" />
+          </a>
+          <div className="divider">
+            <h5>Or</h5>
+          </div>
+          <p>Select a QR code and scan/click the link.</p>
+          <div className="qrs">
+            <div className="selector" ref={selectorRef} role="group" aria-label="Payment app">
+              <div className="donationpill" style={donationpillStyle} aria-hidden="true" />
+              {Object.entries(qrOptions).map(([key, value]) => (
                 <button
+                  type="button"
                   className={donationOption === key ? "item selected" : "item"}
                   key={key}
-                  onClick={() => handleDonation(key)}
+                  onClick={() => setDonationOption(key)}
+                  aria-label={value.label}
+                  aria-pressed={donationOption === key}
                 >
                   {value.icon}
                 </button>
+              ))}
+            </div>
+            {Object.entries(qrOptions).map(([key, value]) => {
+              const className = donationOption === key ? "qr selected" : "qr";
+              const image = <img src={value.qr} alt={`${value.label} QR code`} />;
+              return value.link ? (
+                <a
+                  href={value.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={className}
+                  key={`${key}_qr`}
+                >
+                  {image}
+                </a>
+              ) : (
+                <div className={className} key={`${key}_qr`}>
+                  {image}
+                </div>
               );
             })}
           </div>
-          {Object.entries(options).map(([key, value]) => {
-            return (
-              <a
-                href={value.link}
-                target="_blank"
-                className={donationOption === key ? "qr selected" : "qr"}
-                key={`${key}_qr`}
-              >
-                <img src={value.qr} alt={`${key} qr code`} />
-              </a>
-            );
-          })}
         </div>
       </div>
-    </div>
+      <ShopDivisor categories={categories} onCategorySelect={setSelectedCategory} />
+      <ItemsGrid items={items} category={selectedCategory} onItemsChanged={refetch} />
+    </>
   );
 };
 

@@ -17,6 +17,7 @@ const Welcome = () => {
             href="https://maps.app.goo.gl/fZGhZrtWCDrdrJtY7"
             aria-label="Map to church"
             target="_blank"
+            rel="noreferrer"
           >
             Map
             <span>

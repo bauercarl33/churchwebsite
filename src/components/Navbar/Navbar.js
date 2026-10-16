@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
-import "./navbar.css";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import {
   GrHomeRounded,
@@ -8,187 +7,136 @@ import {
   GrCamera,
 } from "react-icons/gr";
 import { LuDoorOpen } from "react-icons/lu";
-
-import AlertBar from "./AlertBar";
 import { FaTimes } from "react-icons/fa";
 
-import logo from "../../images/logo.png";
+import "./navbar.css";
+import AlertBar from "./AlertBar";
+import logo from "../../images/logo.webp";
+
+const pages = [
+  { name: "Home", link: "/", icon: <GrHomeRounded className="icon" /> },
+  { name: "About", link: "/about", icon: <GrCircleInformation className="icon" /> },
+  { name: "Calendar", link: "/calendar", icon: <GrCalendar className="icon" /> },
+  { name: "Media", link: "/media", icon: <GrCamera className="icon" /> },
+  { name: "Visitors", link: "/visitors", icon: <LuDoorOpen className="icon" /> },
+];
+
+const MOBILE_BREAKPOINT = 960;
 
 const Navbar = () => {
-  const pages = {
-    Home: {
-      link: "/",
-      icon: <GrHomeRounded className="icon" />,
-    },
-    About: {
-      link: "/about",
-      icon: <GrCircleInformation className="icon" />,
-    },
-    Calendar: {
-      link: "/calendar",
-      icon: <GrCalendar className="icon" />,
-    },
-    Media: {
-      link: "/media",
-      icon: <GrCamera className="icon" />,
-    },
-    Visitors: {
-      link: "/visitors",
-      icon: <LuDoorOpen className="icon" />,
-    },
-  };
-
   const location = useLocation();
+  const activeLink = location.pathname;
 
-  const [click, setClick] = useState(false);
-  const [activeLink, setActiveLink] = useState("/");
-  const [navpillStyle, setnavpillStyle] = useState({
-    top: 0,
-    left: 0,
-    width: 0,
-  });
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [navpillStyle, setNavpillStyle] = useState({ top: 0, left: 0, width: 0 });
+  // Set to true to show the announcement bar above the navbar.
   const [alertActive, setAlertActive] = useState(false);
 
   const navRef = useRef(null);
 
-  const closeMenu = () => {
-    setClick(false);
-  };
+  const closeMenu = () => setMenuOpen(false);
 
-  const handleClick = () => {
-    setClick(!click);
-  };
-
-  const handleLink = (link) => {
-    setActiveLink(link);
-    closeMenu();
-  };
-
-  useEffect(() => {
-    setActiveLink(location.pathname);
-    window.scroll(0, 0);
-  }, [location]);
-
-  useEffect(() => {
-    if (click) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [click]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width > 960) {
-        setClick(false);
-      }
-
-      // Recalculate the navpill position and size based on the active link on resize
-      const activeElement = navRef.current?.querySelector(".active a");
-      if (activeElement) {
-        updatePillPosition(activeElement);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (activeLink === "/donate") {
-      setnavpillStyle({ display: "none" });
-      return;
-    }
-    const activeElement = navRef.current?.querySelector(".active a");
-    if (activeElement) {
-      updatePillPosition(activeElement);
-    }
-  }, [activeLink]);
-
-  const updatePillPosition = (element) => {
+  const updatePillPosition = useCallback((element) => {
+    if (!element || !navRef.current) return;
     const rect = element.getBoundingClientRect();
     const navRect = navRef.current.getBoundingClientRect();
-    setnavpillStyle({
+    setNavpillStyle({
       top: rect.top - navRect.top - 7,
       left: rect.left - navRect.left - 17,
       width: rect.width + 32,
     });
-  };
+  }, []);
 
-  const handleMouseEnter = (e) => {
-    const target = e.currentTarget.querySelector("a");
-    if (target) {
-      updatePillPosition(target);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (activeLink === "/donate") {
-      setnavpillStyle({ opacity: 0 });
-      return;
-    }
+  const resetPill = useCallback(() => {
     const activeElement = navRef.current?.querySelector(".active a");
     if (activeElement) {
       updatePillPosition(activeElement);
+    } else {
+      // No nav item for this page (e.g. /donate): hide the pill.
+      setNavpillStyle({ opacity: 0 });
     }
-  };
+  }, [updatePillPosition]);
 
-  const closeAlert = () => {
-    setAlertActive(false);
+  // Scroll to top and close the mobile menu on every navigation.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setMenuOpen(false);
+  }, [location]);
+
+  useEffect(() => {
+    resetPill();
+  }, [activeLink, resetPill]);
+
+  // Lock page scrolling while the mobile menu is open.
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > MOBILE_BREAKPOINT) setMenuOpen(false);
+      resetPill();
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [resetPill]);
+
+  const handleMouseEnter = (e) => {
+    updatePillPosition(e.currentTarget.querySelector("a"));
   };
 
   return (
     <>
-      {alertActive ? (
+      {alertActive && (
         <div>
           <AlertBar active={alertActive} />
-          <button className="closeAlertBtn" onClick={closeAlert}>
+          <button
+            className="closeAlertBtn"
+            onClick={() => setAlertActive(false)}
+            aria-label="Close announcement"
+          >
             <FaTimes />
           </button>
         </div>
-      ) : (
-        <div />
       )}
-      <header
-        className="navbar"
-        style={{
-          top: alertActive ? "32px" : 0,
-        }}
-      >
-        <nav ref={navRef}>
-          <RouterLink to="/" onClick={closeMenu} className="logo">
-            <img src={logo} />
+      <header className="navbar" style={{ top: alertActive ? "32px" : 0 }}>
+        <nav ref={navRef} aria-label="Main">
+          <RouterLink to="/" onClick={closeMenu} className="logo" aria-label="Home">
+            <img src={logo} alt="St. Mary Orthodox Church" width="60" height="60" />
           </RouterLink>
           <div className="button-wrapper">
             <RouterLink to="/donate" id="mobile" className="button filled">
               Donate
             </RouterLink>
-            <div className="hamburger" onClick={handleClick}>
-              <div
-                className={click ? "hamburger-icon active" : "hamburger-icon"}
-              />
-            </div>
+            <button
+              type="button"
+              className="hamburger"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="main-menu"
+            >
+              <span className={menuOpen ? "hamburger-icon active" : "hamburger-icon"} />
+            </button>
           </div>
-          <ul className={click ? "active" : ""}>
-            <div className="navpill" style={navpillStyle} />
-            {Object.entries(pages).map(([name, data]) => (
+          <ul id="main-menu" className={menuOpen ? "active" : ""}>
+            <div className="navpill" style={navpillStyle} aria-hidden="true" />
+            {pages.map(({ name, link, icon }) => (
               <li
                 key={name}
                 onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onClick={() => handleLink(data.link)}
-                className={activeLink === data.link ? "active" : ""}
+                onMouseLeave={resetPill}
+                className={activeLink === link ? "active" : ""}
               >
-                <RouterLink to={data.link}>
-                  {data.icon}
+                <RouterLink
+                  to={link}
+                  onClick={closeMenu}
+                  aria-current={activeLink === link ? "page" : undefined}
+                >
+                  {icon}
                   {name}
                 </RouterLink>
               </li>

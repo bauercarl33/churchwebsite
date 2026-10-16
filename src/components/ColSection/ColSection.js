@@ -30,7 +30,7 @@ const ColSection = ({ colSectionVars }) => {
                                     <span className='highlight'>{key}</span>
                                 </h4>
                                 <p>{value.text}</p>
-                                <Link to='/about' className='link' aria-label='To about page'>
+                                <Link to='/about' className='link' aria-label={`Learn more about our ${key}`}>
                                     Learn More<span><FaChevronRight size={12} /></span>
                                 </Link>
                             </div>

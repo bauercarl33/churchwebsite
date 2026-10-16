@@ -1,70 +1,67 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { footerLinks, pageLinks, socialLinks } from './footerVars'
-import './footer.css'
-import logo from '../../images/logo.png'
+import { footerLinks, pageLinks, socialLinks } from "./footerVars";
+import "./footer.css";
+import logo from "../../images/logo.webp";
 
 const Footer = () => {
-  const donationLink = 'https://give.tithe.ly/?formId=e10072ba-83d2-456a-99c7-dad8b23177f0'
-
   return (
-    <div className='footer'>
-      <div className='container'>
-          <div className='logo'>
-            <Link to='/' aria-label='Go back to home page'>
-              <img src={logo} />
-            </Link>
-          </div>
-          <div className='info'>
-            {Object.entries(footerLinks).map(([key, value]) => {
-              return (
-                <a href={value.link} key={key} target='_blank'>
-                  <span className='item' aria-label={value.label}>
-                      {value.icon}
-                      <p>
-                        <span className={value.bold}>{value.boldContent} &nbsp;</span>
-                        {value.content}
-                      </p>
-                  </span>
-                </a>
-              )
-            })}
-            <Link to='/donate'
-              className='button filled' 
-              aria-label='Go to donation page'
+    <footer className="footer">
+      <div className="container">
+        <div className="logo">
+          <Link to="/" aria-label="Go back to home page">
+            <img src={logo} alt="St. Mary Orthodox Church" loading="lazy" />
+          </Link>
+        </div>
+        <div className="info">
+          {footerLinks.map((item) => (
+            <a
+              href={item.link}
+              key={item.link}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={item.label}
             >
-              Donate
-            </Link>
-          </div>
+              <span className="item">
+                {item.icon}
+                <p>
+                  <span className={item.bold ? "bold" : "no-bold"}>
+                    {item.boldContent} &nbsp;
+                  </span>
+                  {item.content}
+                </p>
+              </span>
+            </a>
+          ))}
+          <Link to="/donate" className="button filled" aria-label="Go to donation page">
+            Donate
+          </Link>
+        </div>
       </div>
-      <div className='bottom'>
-        <ul className='links'>
-          {Object.entries(pageLinks).map(([key, value]) => {
-            return (
-              <li key={key}>
-                <Link to={value.link} aria-label={value.label}>
-                  {value.name}
-                </Link>
-              </li>
-            )
-          })}
+      <div className="bottom">
+        <ul className="links">
+          {pageLinks.map((item) => (
+            <li key={item.link}>
+              <Link to={item.link} aria-label={item.label}>
+                {item.name}
+              </Link>
+            </li>
+          ))}
         </ul>
-        <ul className='social'>
-          {Object.entries(socialLinks).map(([key, value]) => {
-            return (
-              <li key={key}>
-                <a href={value.link} aria-label={value.label} target='_blank'>
-                  {value.icon}
-                </a>
-              </li>
-            )
-          })}
+        <ul className="social">
+          {socialLinks.map((item) => (
+            <li key={item.link}>
+              <a href={item.link} aria-label={item.label} target="_blank" rel="noreferrer">
+                {item.icon}
+              </a>
+            </li>
+          ))}
         </ul>
         <p>St. Mary Orthodox Church</p>
       </div>
-    </div>
-  )
-}
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

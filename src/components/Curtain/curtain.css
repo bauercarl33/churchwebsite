@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("https://saintmarychurch.s3.amazonaws.com/images/12aFpplmgYs4QV1KXf1Ptm62G-KY4_tcO")
+  background: url("https://saintmarychurch.s3.us-east-1.amazonaws.com/images/12aFpplmgYs4QV1KXf1Ptm62G-KY4_tcO")
     no-repeat center center;
   background-size: cover;
   z-index: 9999; /* Curtain sits above the content */

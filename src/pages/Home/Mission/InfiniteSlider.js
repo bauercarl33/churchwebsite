@@ -1,34 +1,34 @@
-import React from 'react'
+import React from "react";
 
-import './infinite-slider.css'
+import "./infinite-slider.css";
+import { s3Image } from "../../../lib/api";
 
+// The image list is rendered twice so the CSS animation can loop seamlessly.
+// The second copy is decorative, so it is hidden from assistive technology.
 const InfiniteSlider = ({ images, reverse }) => {
-    return (
-        <div className='infinite-wrapper'>
-            <div className={
-                reverse ? 'infinite-slider reverse' : 'infinite-slider'
-            }>
-                {images.map((image, index) => {
-                    return (
-                        <img 
-                            src={`https://saintmarychurch.s3.amazonaws.com/images/${image}`} 
-                            key={image}
-                            alt='Images of our community.'   
-                        />
-                    )
-                })}
-                {images.map((image, index) => {
-                    return (
-                        <img 
-                            src={`https://saintmarychurch.s3.amazonaws.com/images/${image}`} 
-                            key={image + '2'}
-                            alt='Images of our community.'       
-                        />
-                    )
-                })}
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="infinite-wrapper">
+      <div className={reverse ? "infinite-slider reverse" : "infinite-slider"}>
+        {images.map((image) => (
+          <img
+            src={s3Image(image)}
+            key={image}
+            alt="Our community"
+            decoding="async"
+          />
+        ))}
+        {images.map((image) => (
+          <img
+            src={s3Image(image)}
+            key={`${image}-copy`}
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
-export default InfiniteSlider
+export default InfiniteSlider;

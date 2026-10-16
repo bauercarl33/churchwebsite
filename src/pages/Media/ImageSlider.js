@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import './imageSlider.css';
+import { s3Image } from '../../lib/api';
 
 const ImageSlider = ({ images, index }) => {
     const [imageIndex, setImageIndex] = useState(index);
@@ -71,7 +72,7 @@ const ImageSlider = ({ images, index }) => {
         }, 300 * (1 / (1 + velocity)));
 
         return () => clearTimeout(timeout);
-    }, [isSliding, direction, velocity]);
+    }, [isSliding, direction, velocity, images.length]);
 
     const transitionSpeed = 0.3 * (1 / (1 + velocity))
 
@@ -82,8 +83,8 @@ const ImageSlider = ({ images, index }) => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
         >
-            <button className='cycle prev' onClick={handlePrevImage}><FaChevronLeft /></button>
-            <button className='cycle next' onClick={handleNextImage}><FaChevronRight /></button>
+            <button className='cycle prev' onClick={handlePrevImage} aria-label='Previous image'><FaChevronLeft /></button>
+            <button className='cycle next' onClick={handleNextImage} aria-label='Next image'><FaChevronRight /></button>
             <div 
                 ref={sliderRef}
                 className='slider-container'
@@ -94,19 +95,19 @@ const ImageSlider = ({ images, index }) => {
             >
                 <div className='image-wrapper'>
                     <img 
-                        src={`https://saintmarychurch.s3.amazonaws.com/images/${images[prev].id}`} 
+                        src={s3Image(images[prev].id)} 
                         alt={images[prev].name}
                     />
                 </div>
                 <div className='image-wrapper'>
                     <img 
-                        src={`https://saintmarychurch.s3.amazonaws.com/images/${images[imageIndex].id}`} 
+                        src={s3Image(images[imageIndex].id)} 
                         alt={images[imageIndex].name}
                     />
                 </div>
                 <div className='image-wrapper'>
                     <img 
-                        src={`https://saintmarychurch.s3.amazonaws.com/images/${images[next].id}`} 
+                        src={s3Image(images[next].id)} 
                         alt={images[next].name}
                     />
                 </div>

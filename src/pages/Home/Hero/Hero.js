@@ -33,6 +33,7 @@ const Hero = () => {
             "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1CaD4tWqWQYvnOpsJLnXmyoEgjNa6NJhn"
           }
           alt="Icon of the Nativity of the Theotokos"
+          fetchpriority="high"
         />
       </div>
     </div>
