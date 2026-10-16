@@ -22,6 +22,7 @@ Gateway endpoints and S3 (see `src/lib/api.js`).
 | `npm run test:watch` | Run tests in watch mode |
 | `npm run lint` | ESLint (React, hooks and accessibility rules) |
 | `npm run lighthouse` | Lighthouse benchmark of the production build (see below) |
+| `npm run images` | Regenerate the optimized site photos (see below) |
 
 ## Project layout
 
@@ -35,6 +36,8 @@ src/
   pages/              One folder per page
   lib/                API endpoints, fetch helper, calendar date helpers
   data/               Static data (payment options)
+  images/photos/      Generated WebP photos + manifest.json (do not edit by hand)
+images/originals/     Full-size originals of the site photos
   test/               Test helpers
 scripts/lighthouse.mjs
 docs/REFACTOR_LOG.md  History of the 2026 refactor, with measurements
@@ -62,6 +65,24 @@ cached long-term; `index.html` should not be cached.
 There are no environment variables. If you add some, they must be prefixed
 with `VITE_` and read via `import.meta.env.VITE_…`. Anything in them is public,
 so never put secrets there.
+
+## Site photos
+
+The photos on the Home and About pages are stored in the repo (not S3) so they
+can be served at the right size:
+
+1. Put the full-size original in `images/originals/` (JPEG, PNG, WebP or AVIF;
+   a `.jfif` file from a browser download is just a JPEG). The file name
+   becomes the photo's name, e.g. `community-9.jpg` becomes `community-9`.
+2. Run `npm run images`. This writes resized WebP versions (400/800/1200 px,
+   center-cropped to 3:2 like the page CSS shows them; the hero icon is kept
+   uncropped at up to 1920 px) to `src/images/photos/`.
+3. Use it with `<Photo name="community-9" alt="…" sizes={SIZES.halfColumn} />`
+   (`src/components/Photo/Photo.jsx`).
+4. Commit both the original and the generated files.
+
+The media gallery, donation items and QR codes are still loaded from S3, since
+they are managed outside the code.
 
 ## Lighthouse benchmark
 

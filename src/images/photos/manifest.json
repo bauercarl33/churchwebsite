@@ -1,0 +1,111 @@
+{
+  "community-1": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "community-2": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "community-3": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "community-4": {
+    "width": 2048,
+    "height": 1365,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "community-5": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "community-6": {
+    "width": 945,
+    "height": 630,
+    "widths": [
+      400,
+      800,
+      945
+    ]
+  },
+  "community-7": {
+    "width": 2048,
+    "height": 1365,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "community-8": {
+    "width": 2048,
+    "height": 1365,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "fr-gabriel-altar": {
+    "width": 3072,
+    "height": 2048,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "mt-athos-pilgrimage": {
+    "width": 2048,
+    "height": 1365,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "nativity-icon": {
+    "width": 1920,
+    "height": 1088,
+    "widths": [
+      800,
+      1200,
+      1600,
+      1920
+    ]
+  },
+  "new-church-render": {
+    "width": 1121,
+    "height": 747,
+    "widths": [
+      400,
+      800,
+      1121
+    ]
+  }
+}

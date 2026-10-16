@@ -5,11 +5,9 @@ import { FaTimes } from "react-icons/fa";
 import { GoArrowLeft, GoShare } from "react-icons/go";
 
 import ImageSlider from "./ImageSlider";
+import Photo from "../../components/Photo/Photo";
 import "./media.css";
 import { endpoints, fetchJson, s3Image } from "../../lib/api";
-
-const HEADER_IMAGE =
-  "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1CaD4tWqWQYvnOpsJLnXmyoEgjNa6NJhn";
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(
@@ -37,7 +35,7 @@ const FolderList = ({ folders }) => (
   <div className="media">
     <div className="header">
       <div className="overlay" />
-      <img src={HEADER_IMAGE} alt="Church" />
+      <Photo name="nativity-icon" sizes="100vw" alt="Church" loading="eager" />
       <h4>Media Gallery</h4>
     </div>
     <div className="folders">

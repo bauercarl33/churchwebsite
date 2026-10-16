@@ -1,7 +1,9 @@
 
 import './intro.css'
 
-import { images1 } from './IntroVars'
+import { introPhoto } from './IntroVars'
+import Photo from '../../../components/Photo/Photo'
+import { SIZES } from '../../../images/photos'
 
 const Intro = () => {
     return (
@@ -15,9 +17,11 @@ const Intro = () => {
             </div>
             <div className='col'>
                 <div className='image'>
-                    <img 
-                        src={images1[3]} 
-                        alt='Community '
+                    <Photo
+                        name={introPhoto}
+                        sizes={SIZES.halfColumn}
+                        alt='Our community'
+                        loading='eager'
                     />
                 </div>
             </div>

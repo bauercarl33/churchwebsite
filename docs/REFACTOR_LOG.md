@@ -282,3 +282,69 @@ measurably change Lighthouse scores, and I'm not claiming it did.
   `build.sourcemap: true` if you want them.
 - SPA fallback: see README (CloudFront error responses / Amplify rewrite).
 - No CRA-specific pieces remain.
+
+## Follow-up: site photos moved from S3 into the repo
+
+### Why
+
+A Lighthouse run in a normal browser scored about 45 on desktop and 38 on
+mobile. My earlier measurements blocked S3, so they had missed the real
+problem. The Home page downloaded **≈ 9.8 MB** of full-resolution photos from
+S3. For example, a 3072×4080 photo (3.5 MB) was shown at 449×300. None of the
+images had `Cache-Control` headers.
+
+### What changed
+
+- The 12 photos used on Home and About (hero, the three "Our …" sections, the
+  8 marquee photos, clergy, intro and timeline) were downloaded from S3 into
+  `images/originals/` with descriptive names. Browser downloads named them
+  `.jfif`, but their actual formats were JPEG ×10, WebP ×1 and AVIF ×1; each
+  file now has its real extension.
+  - The hero icon's AVIF can't be decoded by sharp's bundled AVIF decoder
+    (Chrome and Pillow can read it). It was converted once to a high-quality
+    JPEG (q95, no chroma subsampling) to serve as the original.
+- `scripts/optimize-images.mjs` (`npm run images`, uses `sharp`, dev-only)
+  generates WebP files at 400/800/1200 px.
+  - Content photos are center-cropped to 3:2. That is exactly what the CSS
+    already showed (`aspect-ratio: 1.5; object-fit: cover`, centered), so
+    the cropped-away pixels are no longer downloaded.
+  - The hero keeps its full frame at 800–1920 px.
+  - The generated files are committed, so builds don't need sharp.
+- `<Photo>` component + `src/images/photos.js`: `srcset`/`sizes` so each
+  device downloads a suitable size; lazy-loading below the fold, eager and
+  `fetchpriority="high"` for the hero.
+- The hero image now has `width`/`height` attributes. Between 800 and 1400 px
+  viewports its height depends on the image, so the page jumped when it loaded
+  (CLS 0.24 measured once images were actually loading). This was already
+  happening on the live site.
+- The S3 copies are untouched and still used by the gallery, donation items
+  and QR codes.
+
+### Results
+
+Measured the same way as before, except the photos now load. The "before"
+column is the original CRA build with its S3 URLs pointed at local copies of
+the same 12 originals. The new build serves its own WebP files. Google Fonts
+and the API are still blocked. Lighthouse 12.8, 3 runs each, median.
+
+| Page | Perf before → after | LCP before → after | Transfer before → after |
+|---|---|---|---|
+| / desktop | 82 → **99** | 3.2 s → **1.0 s** | 7.4 MB → **1.2 MB** |
+| /about desktop | 82 → **100** | 3.3 s → **0.8 s** | 7.0 MB → **0.6 MB** |
+| / mobile | 73 → **82** | 21.5 s → **4.5 s** | 7.4 MB → **1.1 MB** |
+| /about mobile | 72 → **88** | 19.6 s → **3.8 s** | 7.0 MB → **0.6 MB** |
+
+Full-page screenshots of the old and new builds (desktop 1280 px and mobile
+390 px; Home and About, all images loaded) have identical page heights. The
+mean pixel difference is under 1.5/255, which is image re-encoding noise.
+
+Remaining mobile LCP is mostly **render delay**: the hero image has
+downloaded but can't appear until the JavaScript bundle has run, because the
+page is rendered client-side. I tried a `<link rel="preload">` for the hero;
+it cut the image's load delay but LCP didn't improve, so it was not kept. The
+next real gain would be pre-rendering the home page to static HTML at build
+time. That is a larger change, worth discussing separately.
+
+Real-world numbers will differ from these. Run `npm run build`, then
+`npm run lighthouse -- --mobile`, in an Incognito window or headless, against
+the preview build, not `npm start`.

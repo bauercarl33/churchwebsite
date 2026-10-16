@@ -1,5 +1,7 @@
 
 import "./clergy.css";
+import Photo from "../../../components/Photo/Photo";
+import { SIZES } from "../../../images/photos";
 
 const Clergy = () => {
   return (
@@ -18,11 +20,7 @@ const Clergy = () => {
       </div>
       <div className="col">
         <div className="image">
-          <img
-            alt="Fr. Gabriel"
-            loading="lazy"
-            src="https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1Ls9IYg5eX1gHZhF6c6qoQAbX3VyUt04M"
-          />
+          <Photo name="fr-gabriel-altar" sizes={SIZES.halfColumn} alt="Fr. Gabriel" />
         </div>
       </div>
     </div>

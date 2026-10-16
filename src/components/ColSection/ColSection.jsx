@@ -1,6 +1,8 @@
 import {  Link } from 'react-router-dom'
 
 import './colsection.css'
+import Photo from '../Photo/Photo'
+import { SIZES } from '../../images/photos'
 import { FaChevronRight } from 'react-icons/fa6'
 
 
@@ -15,10 +17,10 @@ const ColSection = ({ colSectionVars }) => {
                     <div className='row' key={key}>
                         <div className='col'>
                             <div className='image'>
-                                <img 
-                                    src={value.image} 
-                                    loading='lazy' 
-                                    alt={value.alt} 
+                                <Photo
+                                    name={value.photo}
+                                    sizes={SIZES.halfColumn}
+                                    alt={value.alt}
                                 />
                             </div>
                         </div>

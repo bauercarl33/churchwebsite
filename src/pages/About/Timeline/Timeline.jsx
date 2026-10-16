@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import "./timeline.css";
 import { timeline } from "../AboutVars";
+import Photo from "../../../components/Photo/Photo";
+import { photos, SIZES } from "../../../images/photos";
 
 const Timeline = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -38,7 +40,9 @@ const Timeline = () => {
                   <motion.img
                     key={index}
                     className="desktop-photo"
-                    src={item.image}
+                    src={photos[item.photo].src}
+                    srcSet={photos[item.photo].srcSet}
+                    sizes={SIZES.halfColumn}
                     alt={item.heading}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -67,7 +71,7 @@ const Timeline = () => {
                 <p key={paraIndex}>{para}</p>
               ))}
               <div className="mobile-photo">
-                <img src={item.image} alt={item.heading} loading="lazy" />
+                <Photo name={item.photo} sizes={SIZES.halfColumn} alt={item.heading} />
               </div>
             </div>
           </section>

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
 import "./hero.css";
+import Photo from "../../../components/Photo/Photo";
+import { SIZES } from "../../../images/photos";
 
 const Hero = () => {
   return (
@@ -27,12 +29,13 @@ const Hero = () => {
         </div>
       </div>
       <div className="image-wrapper">
-        <img
-          src={
-            "https://saintmarychurch.s3.us-east-1.amazonaws.com/images/1CaD4tWqWQYvnOpsJLnXmyoEgjNa6NJhn"
-          }
+        <Photo
+          name="nativity-icon"
+          sizes={SIZES.hero}
           alt="Icon of the Nativity of the Theotokos"
+          loading="eager"
           fetchpriority="high"
+          withDimensions
         />
       </div>
     </div>
