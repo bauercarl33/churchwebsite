@@ -17,7 +17,7 @@
  * the raw JSON reports to ./lighthouse-reports/.
  */
 import { spawn } from "node:child_process";
-import { mkdirSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { preview } from "vite";
 
@@ -49,11 +49,19 @@ if (!baseUrl) {
   baseUrl = server.resolvedUrls.local[0].replace(/\/$/, "");
 }
 
+const isWindows = process.platform === "win32";
+
+// On Windows, npx is a .cmd file, which Node can only start through a shell.
+// The shell joins the arguments with spaces, so any argument containing a
+// space (e.g. a path under "St. Mary website") must be quoted, or it gets
+// split into several arguments.
+const quoteForCmd = (arg) => (/[\s"&|<>^()]/.test(arg) ? `"${arg.replace(/"/g, '""')}"` : arg);
+
 const run = (command, commandArgs) =>
   new Promise((resolve, reject) => {
-    const child = spawn(command, commandArgs, {
+    const child = spawn(command, isWindows ? commandArgs.map(quoteForCmd) : commandArgs, {
       stdio: "inherit",
-      shell: process.platform === "win32",
+      shell: isWindows,
     });
     child.on("error", reject);
     child.on("exit", (code) =>
@@ -77,7 +85,7 @@ try {
       process.stdout.write(`Running ${page} (${i}/${runs})...\n`);
       // Must be async: the preview server runs in this same process.
       await run(
-        process.platform === "win32" ? "npx.cmd" : "npx",
+        isWindows ? "npx.cmd" : "npx",
         [
           "--yes",
           "lighthouse@12",
@@ -91,6 +99,9 @@ try {
           ...(firstPartyOnly ? BLOCKED_HOSTS.map((h) => `--blocked-url-patterns=*${h}*`) : []),
         ],
       );
+      if (!existsSync(file)) {
+        throw new Error(`Lighthouse finished but did not write ${file}`);
+      }
       const report = JSON.parse(readFileSync(file, "utf8"));
       const c = report.categories;
       const a = report.audits;

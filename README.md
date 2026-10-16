@@ -37,9 +37,9 @@ src/
   lib/                API endpoints, fetch helper, calendar date helpers
   data/               Static data (payment options)
   images/photos/      Generated WebP photos + manifest.json (do not edit by hand)
-images/originals/     Full-size originals of the site photos
   test/               Test helpers
-scripts/lighthouse.mjs
+images/originals/     Full-size originals of the site photos
+scripts/              lighthouse.mjs, optimize-images.mjs
 docs/REFACTOR_LOG.md  History of the 2026 refactor, with measurements
 ```
 
