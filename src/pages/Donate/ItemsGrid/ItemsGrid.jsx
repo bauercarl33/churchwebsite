@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import "./itemsgrid.css";
 import ItemModalContent from "../ModalItem/ItemModalContent";
@@ -90,10 +90,18 @@ const ItemsGrid = ({ items, category, onItemsChanged }) => {
     };
   }, [selectedItem]);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     onItemsChanged?.();
     setSelectedItem(null);
-  };
+  }, [onItemsChanged]);
+
+  // Close the modal with the Escape key.
+  useEffect(() => {
+    if (!selectedItem) return undefined;
+    const onKeyDown = (e) => e.key === "Escape" && closeModal();
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [selectedItem, closeModal]);
 
   const handleSubmit = async (formData, method) => {
     const newProgress = selectedItem.progress + parseFloat(formData.amount);
@@ -124,13 +132,18 @@ const ItemsGrid = ({ items, category, onItemsChanged }) => {
         ))}
       </div>
       {selectedItem && (
-        <div className="custom-modal-backdrop" onClick={closeModal}>
+        // Clicking the backdrop (but not the dialog) closes the modal; the
+        // keyboard equivalent is the Escape handler above.
+        <div
+          className="custom-modal-backdrop"
+          role="presentation"
+          onClick={(e) => e.target === e.currentTarget && closeModal()}
+        >
           <div
             className="custom-modal-content"
             role="dialog"
             aria-modal="true"
             aria-label={selectedItem.displayName}
-            onClick={(e) => e.stopPropagation()}
           >
             <button className="modal-close" onClick={closeModal} aria-label="Close">
               &times;

@@ -1,4 +1,3 @@
-import React from 'react'
 
 import './mission.css'
 import InfiniteSlider from './InfiniteSlider'

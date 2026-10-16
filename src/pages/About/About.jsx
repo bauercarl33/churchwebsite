@@ -1,6 +1,4 @@
-import React from "react";
 
-import "./about.css";
 
 import Timeline from "./Timeline/Timeline";
 import Intro from "./Intro/Intro";

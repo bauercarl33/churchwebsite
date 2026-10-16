@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const PutImageComponent = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [sessionKey, setSessionKey] = useState("");
-  const [signInUnix, setSignInUnix] = useState("");
+  // Returned by the sign-in API; not used yet.
+  const [, setSignInUnix] = useState("");
   const [contentName, setContentName] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [responseMessage, setResponseMessage] = useState("");
@@ -49,7 +50,7 @@ const PutImageComponent = () => {
       const data = await response.json();
       console.log("Response: " + JSON.stringify(response));
       console.log("data: " + JSON.stringify(data));
-      if (data.statusCode == 200) {
+      if (data.statusCode === 200) {
         const body = JSON.parse(data.body);
         setSessionKey(body.session_key);
         setSignInUnix(body.created_time_unix);
@@ -57,7 +58,7 @@ const PutImageComponent = () => {
       } else {
         setResponseMessage(`Error: ${data.message}`);
       }
-    } catch (error) {
+    } catch {
       setResponseMessage("Error: Failed to sign in.");
     }
   };
@@ -110,7 +111,7 @@ const PutImageComponent = () => {
       } else {
         setResponseMessage(`Error: ${data.message}`);
       }
-    } catch (error) {
+    } catch {
       setResponseMessage("Error: Failed to upload image.");
     }
   };
@@ -120,8 +121,9 @@ const PutImageComponent = () => {
       <h3>Sign In</h3>
       <form onSubmit={handleSignIn}>
         <div>
-          <label>Username:</label>
+          <label htmlFor="upload-username">Username:</label>
           <input
+            id="upload-username"
             type="text"
             value={username}
             onChange={handleUsernameChange}
@@ -129,8 +131,9 @@ const PutImageComponent = () => {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label htmlFor="upload-password">Password:</label>
           <input
+            id="upload-password"
             type="password"
             value={password}
             onChange={handlePasswordChange}
@@ -147,8 +150,9 @@ const PutImageComponent = () => {
           <h3>Upload Image</h3>
           <form onSubmit={handleImageUpload}>
             <div>
-              <label>Content Name:</label>
+              <label htmlFor="upload-content-name">Content Name:</label>
               <input
+            id="upload-content-name"
                 type="text"
                 value={contentName}
                 onChange={handleNameChange}
@@ -156,8 +160,9 @@ const PutImageComponent = () => {
               />
             </div>
             <div>
-              <label>Choose Image:</label>
+              <label htmlFor="upload-image">Choose Image:</label>
               <input
+            id="upload-image"
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}

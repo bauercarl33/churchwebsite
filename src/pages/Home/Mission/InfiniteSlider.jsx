@@ -1,4 +1,3 @@
-import React from "react";
 
 import "./infinite-slider.css";
 import { s3Image } from "../../../lib/api";

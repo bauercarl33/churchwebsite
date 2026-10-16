@@ -170,14 +170,8 @@ a {
   align-items: center;
 }
 
-/* Global rules that used to live in page stylesheets (about.css,
-   ShopDivisor.css). Pages are now lazy-loaded, so these are kept here to
-   keep applying site-wide as before. */
-img {
-  max-width: 100%;
-  display: block;
-}
-
+/* Global rule that used to live in ShopDivisor.css. Pages are now
+   lazy-loaded, so it is kept here to keep applying site-wide as before. */
 html,
 body {
   overflow-x: hidden;

@@ -90,6 +90,21 @@ describe("Donate page", () => {
     expect(within(dialog).getByLabelText("Donation amount")).toBeInTheDocument();
   });
 
+  it("closes the item modal with Escape or a backdrop click", async () => {
+    renderWithProviders(<Donate />, { route: "/donate" });
+    userEvent.click(await screen.findByText("Oil Lamp"));
+    expect(screen.getByRole("dialog", { name: "Oil Lamp" })).toBeInTheDocument();
+    userEvent.keyboard("{Escape}");
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    userEvent.click(screen.getByText("Oil Lamp"));
+    const dialog = screen.getByRole("dialog", { name: "Oil Lamp" });
+    userEvent.click(within(dialog).getByLabelText("Donation amount"));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    userEvent.click(dialog.parentElement);
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
   it("validates the donation form before showing a payment QR", async () => {
     renderWithProviders(<Donate />, { route: "/donate" });
     userEvent.click(await screen.findByText("Oil Lamp"));

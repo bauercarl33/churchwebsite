@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import './imageSlider.css';
 import { s3Image } from '../../lib/api';

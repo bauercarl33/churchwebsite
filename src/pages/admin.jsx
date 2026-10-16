@@ -109,7 +109,7 @@ const AdminPage = () => {
       <h1>Administration Page</h1>
       <img
         src="https://saintmarychurch.s3.amazonaws.com/images/1UrixX0syObDAQiu3cYHS6S0opIVD9mqf"
-        alt="Description of the image"
+        alt="Admin test upload"
         height={500}
       />
       {/* Display Google Calendar */}
@@ -117,13 +117,14 @@ const AdminPage = () => {
         src="https://calendar.google.com/calendar/embed?src=c2FpbnRtYXJ5YXVzdGludHhAZ21haWwuY29t"
         height={500}
         width={500}
+        title="Parish Google Calendar"
       />
-      <img src={cashapp} alt="Description of the image" height={500} />{" "}
-      <img src={venmo} alt="Description of the image" height={500} />{" "}
-      <img src={paypal} alt="Description of the image" height={500} />{" "}
-      <img src={gofundme} alt="Description of the image" height={500} />{" "}
-      <img src={zelle} alt="Description of the image" height={500} />{" "}
-      <img src={tihely} alt="Description of the image" height={500} />
+      <img src={cashapp} alt="Cash App QR code" height={500} />{" "}
+      <img src={venmo} alt="Venmo QR code" height={500} />{" "}
+      <img src={paypal} alt="PayPal QR code" height={500} />{" "}
+      <img src={gofundme} alt="GoFundMe QR code" height={500} />{" "}
+      <img src={zelle} alt="Zelle QR code" height={500} />{" "}
+      <img src={tihely} alt="Tithely" height={500} />
       {/* Display API data */}
       {apiData1 ? (
         <pre>{JSON.stringify(apiData1, null, 2)}</pre>

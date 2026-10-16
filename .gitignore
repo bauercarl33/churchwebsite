@@ -24,3 +24,7 @@ yarn-error.log*
 
 # local npm cache
 /.npm
+
+# Lighthouse reports
+/lighthouse-reports
+/dist

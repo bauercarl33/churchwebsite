@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { paymentOptions as sharedOptions } from "../../../data/donationOptions";
 
 import "./itemmodalcontent.css";

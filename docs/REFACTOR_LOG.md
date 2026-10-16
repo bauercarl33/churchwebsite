@@ -174,3 +174,111 @@ the media page (albums, album photos, API error).
 - Tests print a `ReactDOMTestUtils.act` deprecation warning because
   `@testing-library/react@13` predates React 18.3. To be addressed with the
   test-stack change in Phase 2.
+
+## Phase 2: Create React App → Vite
+
+### What CRA-specific things existed
+
+There was no proxy, no service worker/PWA registration, no `REACT_APP_*`
+variables and no custom webpack config. The CRA-specific pieces were:
+`react-scripts` scripts, `public/index.html` with `%PUBLIC_URL%`, the
+`eslintConfig`/`browserslist` blocks in `package.json`, Jest via
+`react-scripts test`, `ajv`/`ajv-keywords` (a common workaround for a CRA
+install bug), and the `homepage` field (resolves to base path `/`).
+
+### Changes
+
+- **Scripts**: `start`/`dev` → `vite` (port 3000, same as CRA), `build` →
+  `vite build`, `preview`, `test` → `vitest run`, `test:watch`, `lint` →
+  `eslint .`, `lighthouse`.
+- **`vite.config.js`**:
+  - `build.outDir: "build"`, the same folder CRA used, so deployment doesn't
+    change.
+  - `cssCodeSplit: false` emits a single stylesheet like CRA did. The page
+    stylesheets share generic class names, so per-page CSS would make styling
+    depend on navigation order.
+  - `build.target` matches CRA's former production browserslist.
+  - The Vitest config (jsdom) also lives here.
+- **`index.html`** moved to the project root (Vite convention). `%PUBLIC_URL%`
+  was removed and a module script tag added. The `<head>` content is otherwise
+  unchanged.
+- **JSX files renamed `.js` → `.jsx`**: Vite only parses JSX in `.jsx`/`.tsx`
+  files. Files without JSX keep `.js`. Unused `import React` lines were removed
+  (the automatic JSX runtime doesn't need them).
+- **Tests**: Jest (inside `react-scripts`) was replaced by **Vitest**. The test
+  files are unchanged apart from the rename; the API is Jest-compatible.
+  `@testing-library/jest-dom` was upgraded to v6 (it has a Vitest entry) and
+  `@testing-library/react` to v16 (fixes the React 18.3 `act` deprecation
+  warning). Testing libraries moved to `devDependencies`. A test for closing
+  the donation modal with Escape or a backdrop click was added (22 tests).
+- **Lint**: standalone ESLint 9 flat config (`eslint.config.js`) with
+  `eslint:recommended`, `react`, `react-hooks` and `jsx-a11y` recommended rules.
+  This is stricter than CRA's `react-app` preset. Rule settings:
+  - `react/prop-types` is off; TypeScript covers props in Phase 4.
+  - `fetchpriority` is allowed as a DOM attribute, because React 18 has no
+    `fetchPriority` prop.
+  - No other rules are disabled, and there are no inline `eslint-disable`
+    comments.
+  - New jsx-a11y findings were fixed: the donation modal backdrop is now
+    `role="presentation"` and the modal closes with Escape; the admin page got
+    image alt text and an iframe title; the upload form got label associations.
+- **Removed**: `react-scripts`, `ajv`, `ajv-keywords`, and the unused
+  `typescript@4` entry (TypeScript comes back in Phase 4). Also the unused
+  `components/Modal` component, which I missed in Phase 1.
+- **`scripts/lighthouse.mjs`**: a repeatable benchmark (see README).
+- **README** rewritten as developer documentation. The original feature
+  wish list moved to `docs/FEATURE_IDEAS.md`.
+
+### Regression found and fixed during this phase
+
+Comparing full-page screenshots of the original CRA build with the Vite build
+(desktop and mobile; home, about, visitors, donate) showed small height
+differences. The cause was in Phase 1: I had moved an `img { display: block }`
+rule from `about.css` into the global stylesheet, assuming it applied
+site-wide. In fact **all of `about.css` was inside one `/* … */` comment**,
+so it never applied. The rule was removed and the dead `about.css` deleted.
+After the fix, page heights match the original exactly. The remaining pixel
+differences are the re-encoded WebP logo and the improved image alt text,
+which only shows because images were blocked during the comparison.
+
+### Verification
+
+| Check | Result |
+|---|---|
+| `npm ci` (clean, no `--legacy-peer-deps`) | passes |
+| `npm run build` | passes in **~6 s** (CRA: ~70 s), output in `build/` |
+| `npm test` | 22 passed |
+| `npm run lint` | 0 errors, 0 warnings |
+| Dev server: every route loaded directly (/, /about, /calendar, /media, /media/:name/:id, /visitors, /donate, /donateCopy) | all 200, content rendered, no console errors (headless Chromium) |
+| Production preview: same routes, direct navigation (refresh) | same result; `/donateCopy` redirects to `/donate` |
+| Calendar, media, donation pages with mocked API responses | render the data; calendar output is identical to the CRA build |
+| `favicon`, `manifest.json`, `robots.txt` served from `public/` | 200 |
+| Visual comparison against the original CRA build | identical layout (see above) |
+
+Bundle (gzip): main JS 69.8 kB (Phase 1 CRA: 68.9 kB), single CSS 11.5 kB.
+The calendar (39 kB) and About/framer-motion (39 kB) chunks load only on their
+pages.
+
+Lighthouse, same first-party-only conditions as above:
+
+| Page | Perf | A11y | BP | SEO | LCP ms | Transfer KB |
+|---|---|---|---|---|---|---|
+| / | 99 | 95 | 100 | 92 | 862 | 339 |
+| /about | 99 | 95 | 100 | 100 | 844 | 379 |
+| /calendar | 100 | 100 | 100 | 100 | 775 | 203 |
+| /media | 100 | 100 | 100 | 100 | 714 | 168 |
+| /visitors | 100 | 100 | 100 | 100 | 512 | 164 |
+| /donate | 100 | 100 | 100 | 100 | 608 | 172 |
+
+This is essentially the same as Phase 1. Transfer is about 7 kB higher
+because all CSS is now in one file. The bundler switch itself did not
+measurably change Lighthouse scores, and I'm not claiming it did.
+
+### Deployment notes / remaining items
+
+- `build/` contents and their relative layout changed (`static/js/…` →
+  `assets/…`). If the deploy process references specific paths, update it.
+- CRA published `.map` source maps; Vite doesn't by default. Set
+  `build.sourcemap: true` if you want them.
+- SPA fallback: see README (CloudFront error responses / Amplify rewrite).
+- No CRA-specific pieces remain.
