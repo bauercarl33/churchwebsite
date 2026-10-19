@@ -34,7 +34,7 @@ describe("AnnouncementBar", () => {
     renderHarness();
     const banner = screen.getByRole("complementary", { name: "Announcement" });
     expect(banner).toHaveTextContent("Consecration of our new church");
-    expect(banner).toHaveTextContent("November 13–14");
+    expect(banner).toHaveTextContent("November 13–15");
     expect(screen.getByRole("link", { name: /Details/ })).toHaveAttribute("href", "/consecration");
   });
 
@@ -64,7 +64,7 @@ describe("EventPill", () => {
     );
     const link = screen.getByRole("link", { name: /Consecration of our new church/ });
     expect(link).toHaveAttribute("href", "/consecration");
-    expect(link).toHaveTextContent("Nov 13–14");
+    expect(link).toHaveTextContent("Nov 13–15");
   });
 
   it("renders nothing after the event", () => {

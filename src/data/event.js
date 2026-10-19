@@ -8,17 +8,17 @@ export const featuredEvent = {
   id: "consecration-2026",
   title: "Consecration of our new church",
   shortTitle: "Consecration",
-  dateLabel: "November 13–14",
-  shortDateLabel: "Nov 13–14",
-  fullDateLabel: "November 13–14, 2026",
+  dateLabel: "November 13–15",
+  shortDateLabel: "Nov 13–15",
+  fullDateLabel: "November 13–15, 2026",
   // All-day dates for "Add to calendar" (end is the last day, inclusive).
   startDate: "2026-11-13",
-  endDate: "2026-11-14",
-  location: "Saint Mary Orthodox Church, 200 Monaco Dr., Cedar Park, TX 78613",
+  endDate: "2026-11-15",
+  location: "Saint Mary Romanian Orthodox Church, 200 Monaco Drive, Cedar Park, TX 78613",
   mapLink: "https://maps.app.goo.gl/fZGhZrtWCDrdrJtY7",
   path: "/consecration",
   // Hidden automatically from this moment on (Central time).
-  showUntil: "2026-11-15T00:00:00-06:00",
+  showUntil: "2026-11-16T00:00:00-06:00",
   // Production builds only show the promotion while this is true. The dev
   // server (`npm start`) always shows it so it can be reviewed.
   live: true,

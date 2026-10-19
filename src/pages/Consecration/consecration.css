@@ -138,6 +138,17 @@
   color: var(--accent);
 }
 
+.c-main-service {
+  font-size: var(--step-0);
+  margin: calc(-1 * var(--space-s)) 0 var(--space-l);
+  color: #ffffffe6;
+}
+
+.c-main-service strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .c-hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -212,6 +223,142 @@
 
 .c-timeline li.highlight .c-timeline-text {
   font-weight: 500;
+}
+
+.c-lead {
+  max-width: 60ch;
+  margin-bottom: var(--space-l);
+}
+
+/* Program of services */
+.c-program {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-m);
+  align-items: start;
+}
+
+.c-day {
+  padding: var(--space-m);
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: rgba(149, 157, 165, 0.15) 0 8px 24px;
+}
+
+.c-day.main {
+  border: 2px solid var(--accent);
+  box-shadow: rgba(231, 169, 90, 0.25) 0 10px 30px;
+}
+
+.c-day h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px var(--space-xs);
+  margin-bottom: var(--space-s);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.c-day-name {
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.c-day-date {
+  font-size: var(--step-0);
+  font-weight: 400;
+}
+
+.c-day-badge {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--primary-dark);
+  background-color: var(--accent);
+  padding: 2px 10px;
+  border-radius: 50px;
+}
+
+.c-schedule {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.c-schedule li {
+  display: grid;
+  grid-template-columns: 5.5em 1fr;
+  gap: var(--space-xs);
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: var(--step-0);
+  line-height: 1.4;
+}
+
+.c-schedule time {
+  font-weight: 600;
+  color: var(--primary-color);
+  white-space: nowrap;
+}
+
+.c-schedule li.highlight {
+  background-color: #e7a95a26;
+  font-weight: 600;
+}
+
+.c-schedule-detail {
+  display: block;
+  font-weight: 300;
+  font-size: var(--step--1);
+}
+
+.c-day-note {
+  margin-top: var(--space-xs);
+  font-size: var(--step--1);
+  font-style: italic;
+}
+
+.c-program-actions {
+  align-items: center;
+  margin-top: var(--space-m);
+}
+
+.c-actions-label {
+  font-size: var(--step--1);
+  margin-right: var(--space-2xs);
+}
+
+/* Parking facts */
+.c-facts {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  max-width: 70ch;
+  margin-bottom: var(--space-l);
+}
+
+.c-facts li {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: baseline;
+  font-size: var(--step-0);
+  line-height: 1.5;
+}
+
+.c-facts svg {
+  flex-shrink: 0;
+  color: var(--accent-dark);
+  translate: 0 2px;
+}
+
+.c-facts a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Navy explanation band */
@@ -392,7 +539,8 @@
     gap: var(--space-l);
   }
 
-  .c-maps {
+  .c-maps,
+  .c-program {
     grid-template-columns: 1fr;
   }
 }

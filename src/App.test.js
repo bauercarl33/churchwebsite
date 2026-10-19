@@ -53,7 +53,7 @@ describe("featured event promotion", () => {
     expect(container.querySelector(".app")).toHaveClass("has-announcement");
     // Hero link to the event page.
     expect(
-      screen.getByRole("link", { name: "November 13–14: Consecration of our new church. Event details" })
+      screen.getByRole("link", { name: "November 13–15: Consecration of our new church. Event details" })
     ).toHaveAttribute("href", "/consecration");
   });
 
@@ -66,7 +66,7 @@ describe("featured event promotion", () => {
   });
 
   it("is gone after the event", () => {
-    vi.setSystemTime(new Date("2026-11-15T08:00:00-06:00"));
+    vi.setSystemTime(new Date("2026-11-16T08:00:00-06:00"));
     const { container } = renderApp("/");
     expect(screen.queryByRole("complementary")).not.toBeInTheDocument();
     expect(container.querySelector(".app")).not.toHaveClass("has-announcement");
