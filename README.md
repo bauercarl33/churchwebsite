@@ -85,17 +85,20 @@ can be served at the right size:
 The media gallery, donation items and QR codes are still loaded from S3, since
 they are managed outside the code.
 
-## Featured event (announcement bar + home page link)
+## Featured event (announcement bar, home page link, event page)
 
 `src/data/event.js` controls a one-line announcement bar above the navbar on
-every page and a link above the title on the home page. Edit that file to
-change the wording, link or dates.
+every page (except the event page itself), a link above the title on the
+home page, and the details shown on the event page
+(`src/pages/Consecration/`, at `/consecration`). Edit that file to change the
+wording, dates, address or map link.
 
 - Both hide automatically after `showUntil`.
 - Production builds only show them once `live: true`. `npm start` always
   shows them, so they can be reviewed before the event page exists.
 - Visitors can close the bar; that choice is remembered per event (`id`).
-- To remove the feature, set `featuredEvent = null`.
+- To remove the promotion, set `featuredEvent = null`. To remove the page,
+  delete `src/pages/Consecration/` and its route in `src/App.jsx`.
 
 ## Lighthouse benchmark
 

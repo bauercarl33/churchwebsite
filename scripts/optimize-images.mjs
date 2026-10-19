@@ -21,10 +21,16 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const SRC_DIR = path.join(ROOT, "images/originals");
 const OUT_DIR = path.join(ROOT, "src/images/photos");
 // Content photos are never shown wider than 800 CSS px (see the page CSS),
-// so 1200px covers high-DPI screens. Full-width hero images get larger sizes.
+// so 1200px covers high-DPI screens. "Wide" images (heroes, maps) are shown
+// large and uncropped, so they get bigger sizes and keep their full frame.
 const WIDTHS = [400, 800, 1200];
 const WIDE_WIDTHS = [800, 1200, 1600, 1920];
-const WIDE_PHOTOS = new Set(["nativity-icon"]);
+const WIDE_PHOTOS = new Set([
+  "nativity-icon",
+  "consecration-church",
+  "parking-street",
+  "parking-overflow",
+]);
 const QUALITY = 72;
 // Every non-wide photo is displayed in a 3:2 box with `object-fit: cover`
 // (centered), so it is center-cropped to 3:2 here. That looks identical but

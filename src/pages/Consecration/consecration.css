@@ -1,0 +1,408 @@
+/* Consecration event page. Uses the site palette (navy / gold) and type scale. */
+
+.consecration {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+.consecration p {
+  opacity: 1;
+  line-height: 1.6;
+}
+
+/* Keep in-page links (#plan-your-visit, #parking) clear of the fixed header. */
+.consecration [id] {
+  scroll-margin-top: calc(80px + var(--announcement-height) + 16px);
+}
+
+.c-highlight {
+  /* Darker gold than --accent so headings meet contrast guidelines (4.7:1). */
+  color: #9a6420;
+}
+
+.c-heading {
+  font-size: var(--step-3);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: var(--space-m);
+}
+
+.c-heading.light {
+  color: #fff;
+}
+
+/* Gold button used for the main actions */
+.button.c-gold {
+  background-color: var(--accent);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.button.c-gold:hover {
+  background-color: #f0bd7a;
+}
+
+.button.empty.light {
+  color: #fff;
+  border-color: #ffffff88;
+}
+
+.button.empty.light:hover {
+  border-color: #fff;
+  background-color: #ffffff1a;
+}
+
+.consecration .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+/* ---------- Hero ---------- */
+
+.c-hero {
+  position: relative;
+  min-height: min(calc(100vh - 80px - var(--announcement-height)), 760px);
+  display: flex;
+  align-items: flex-end;
+  padding: 80px var(--space-xl) var(--space-2xl);
+  color: #fff;
+  isolation: isolate;
+}
+
+.c-hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% 60%;
+  z-index: -2;
+}
+
+.c-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Darken behind the text (left/bottom) while keeping the domes visible. */
+  background:
+    linear-gradient(to right, rgba(15, 29, 68, 0.85) 0%, rgba(15, 29, 68, 0.55) 50%, rgba(15, 29, 68, 0.1) 100%),
+    linear-gradient(to top, rgba(15, 29, 68, 0.6) 0%, rgba(15, 29, 68, 0) 50%);
+}
+
+.c-hero-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.c-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: var(--space-xs);
+}
+
+.c-hero h1 {
+  font-size: var(--step-5);
+  font-weight: 500;
+  line-height: 1.05;
+  max-width: 14ch;
+  margin-bottom: var(--space-s);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+}
+
+.c-subtitle {
+  font-size: var(--step-1);
+  font-weight: 400;
+  margin-bottom: var(--space-m);
+}
+
+.c-date {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 8px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 50px;
+  background-color: rgba(15, 29, 68, 0.55);
+  font-size: var(--step-1);
+  font-weight: 600;
+  margin-bottom: var(--space-l);
+}
+
+.c-date svg {
+  color: var(--accent);
+}
+
+.c-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* ---------- Sections ---------- */
+
+.c-section {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.c-story {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+.c-story-text p + p {
+  margin-top: var(--space-s);
+}
+
+.c-timeline {
+  position: relative;
+  list-style: none;
+  padding-left: var(--space-l);
+  border-left: 2px solid #e7a95a66;
+}
+
+.c-timeline li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--space-m);
+}
+
+.c-timeline li:last-child {
+  padding-bottom: 0;
+}
+
+.c-timeline li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-l) - 7px);
+  top: 0.35em;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  border: 2px solid var(--accent);
+}
+
+.c-timeline li.highlight::before {
+  background-color: var(--accent);
+  box-shadow: 0 0 0 5px #e7a95a33;
+}
+
+.c-timeline-year {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.c-timeline-text {
+  font-size: var(--step-0);
+  font-weight: 300;
+}
+
+.c-timeline li.highlight .c-timeline-text {
+  font-weight: 500;
+}
+
+/* Navy explanation band */
+.c-band {
+  background-color: var(--primary-dark);
+  color: #fff;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.c-band-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.c-band p {
+  font-weight: 300;
+  color: #ffffffdd;
+}
+
+/* Visit cards */
+.c-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-m);
+}
+
+.c-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-m);
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: rgba(149, 157, 165, 0.15) 0 8px 24px;
+}
+
+.c-card h3 {
+  font-size: var(--step-1);
+  font-weight: 500;
+}
+
+.c-card address {
+  font-style: normal;
+}
+
+.c-card-icon {
+  font-size: 1.4rem;
+  color: var(--accent-dark);
+  margin-bottom: var(--space-2xs);
+}
+
+.c-card-main {
+  font-weight: 500 !important;
+  color: var(--primary-color);
+}
+
+.c-card p a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.c-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+
+.c-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 50px;
+  border: 1px solid #06397033;
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--step--1);
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.c-chip:hover,
+.c-chip:focus-visible {
+  border-color: var(--primary-color);
+  background-color: #06397010;
+}
+
+/* Parking maps */
+.c-maps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-m);
+}
+
+.c-map img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.c-map a {
+  display: block;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.c-map a:hover img {
+  transform: scale(1.02);
+}
+
+.c-map figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: var(--space-xs);
+  font-size: var(--step--1);
+}
+
+.c-map figcaption strong {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Closing CTA (light, so it stands apart from the navy footer) */
+.c-cta {
+  background-color: #f6f0e8;
+  border-top: 1px solid #e7a95a55;
+  text-align: center;
+  padding: var(--space-2xl) var(--space-m);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.c-cta-date {
+  color: var(--primary-color);
+  font-weight: 500 !important;
+  margin-bottom: var(--space-m);
+}
+
+.c-cta .c-hero-actions {
+  justify-content: center;
+}
+
+.share-status {
+  flex-basis: 100%;
+  min-height: 1.4em;
+  font-size: var(--step--1);
+  color: var(--primary-color);
+  order: 3;
+}
+
+/* ---------- Responsive ---------- */
+
+@media screen and (max-width: 960px) {
+  .c-hero {
+    padding: 80px var(--space-m) var(--space-xl);
+  }
+
+  .c-section,
+  .c-band {
+    padding: var(--space-xl) var(--space-m);
+  }
+
+  .c-story {
+    grid-template-columns: 1fr;
+    gap: var(--space-l);
+  }
+
+  .c-maps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .c-hero {
+    min-height: calc(100svh - 80px - var(--announcement-height));
+  }
+
+  .c-hero-photo {
+    object-position: 22% 60%;
+  }
+}

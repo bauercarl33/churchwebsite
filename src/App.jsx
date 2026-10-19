@@ -14,17 +14,21 @@ const Calendar = lazy(() => import("./pages/ScheduleX/Calendar"));
 const Media = lazy(() => import("./pages/Media/Media"));
 const Visitors = lazy(() => import("./pages/Visitors/Visitors"));
 const Donate = lazy(() => import("./pages/Donate/Donate"));
+const Consecration = lazy(() => import("./pages/Consecration/Consecration"));
 
 const defaultQueryClient = new QueryClient();
 
 function App({ queryClient = defaultQueryClient }) {
   const location = useLocation();
   const announcement = useAnnouncement();
+  // No need to advertise the event on its own page.
+  const showAnnouncement =
+    announcement.visible && location.pathname !== announcement.event.path;
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={announcement.visible ? "app has-announcement" : "app"}>
-        <Navbar announcement={announcement} />
+      <div className={showAnnouncement ? "app has-announcement" : "app"}>
+        <Navbar announcement={showAnnouncement ? announcement : null} />
         <main>
           <Suspense fallback={<div className="loading">Loading...</div>}>
             <Routes location={location} key={location.key}>
@@ -35,6 +39,7 @@ function App({ queryClient = defaultQueryClient }) {
               <Route path="/media/:name/:id" element={<Media />} />
               <Route path="/visitors" element={<Visitors />} />
               <Route path="/donate" element={<Donate />} />
+              <Route path="/consecration" element={<Consecration />} />
               {/* Legacy URL from when the shop page was being built. */}
               <Route path="/donateCopy" element={<Navigate to="/donate" replace />} />
             </Routes>
