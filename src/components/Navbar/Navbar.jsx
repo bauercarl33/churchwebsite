@@ -67,6 +67,27 @@ const Navbar = () => {
     resetPill();
   }, [activeLink, resetPill]);
 
+  // The link positions change after the first paint: when the web font
+  // finishes loading (the text is first drawn in a fallback font with
+  // different widths) or when the layout around the menu changes. Re-measure
+  // whenever any menu link changes size, and once all fonts are loaded.
+  useEffect(() => {
+    let cancelled = false;
+    document.fonts?.ready.then(() => !cancelled && resetPill());
+
+    if (typeof ResizeObserver === "undefined" || !navRef.current) {
+      return () => {
+        cancelled = true;
+      };
+    }
+    const observer = new ResizeObserver(() => resetPill());
+    navRef.current.querySelectorAll("ul li a").forEach((link) => observer.observe(link));
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
+  }, [resetPill]);
+
   // Lock page scrolling while the mobile menu is open.
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
