@@ -136,7 +136,7 @@
   align-items: center;
   padding: 0 var(--space-l);
   position: sticky;
-  top: 80px;
+  top: calc(80px + var(--announcement-height));
   background-color: #f8f8f8ee;
   z-index: 1;
 }
@@ -179,11 +179,11 @@
 
 .media .media-modal {
   position: fixed;
-  top: calc(50% + 40px);
+  top: calc(50% + 40px + var(--announcement-height) / 2);
   left: 50%;
   translate: -50% -50%;
   min-width: 100%;
-  height: calc(100% - 80px);
+  height: calc(100% - 80px - var(--announcement-height));
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;

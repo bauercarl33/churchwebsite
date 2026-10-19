@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./hero.css";
 import Photo from "../../../components/Photo/Photo";
+import EventPill from "../../../components/EventPill/EventPill";
 import { SIZES } from "../../../images/photos";
 
 const Hero = () => {
@@ -10,6 +11,7 @@ const Hero = () => {
       <div className='decoration' />
       <div className="title-wrapper">
         <div className="title">
+          <EventPill />
           <h4>
             St. Mary<span className="highlight">Orthodox Church</span>
           </h4>

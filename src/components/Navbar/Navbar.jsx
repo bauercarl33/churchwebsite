@@ -7,10 +7,9 @@ import {
   GrCamera,
 } from "react-icons/gr";
 import { LuDoorOpen } from "react-icons/lu";
-import { FaTimes } from "react-icons/fa";
 
 import "./navbar.css";
-import AlertBar from "./AlertBar";
+import AnnouncementBar from "../AnnouncementBar/AnnouncementBar";
 import logo from "../../images/logo.webp";
 
 const pages = [
@@ -23,14 +22,12 @@ const pages = [
 
 const MOBILE_BREAKPOINT = 960;
 
-const Navbar = () => {
+const Navbar = ({ announcement }) => {
   const location = useLocation();
   const activeLink = location.pathname;
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [navpillStyle, setNavpillStyle] = useState({ top: 0, left: 0, width: 0 });
-  // Set to true to show the announcement bar above the navbar.
-  const [alertActive, setAlertActive] = useState(false);
 
   const navRef = useRef(null);
 
@@ -111,19 +108,10 @@ const Navbar = () => {
 
   return (
     <>
-      {alertActive && (
-        <div>
-          <AlertBar active={alertActive} />
-          <button
-            className="closeAlertBtn"
-            onClick={() => setAlertActive(false)}
-            aria-label="Close announcement"
-          >
-            <FaTimes />
-          </button>
-        </div>
-      )}
-      <header className="navbar" style={{ top: alertActive ? "32px" : 0 }}>
+      <header className="navbar">
+        {announcement?.visible && (
+          <AnnouncementBar event={announcement.event} onDismiss={announcement.dismiss} />
+        )}
         <nav ref={navRef} aria-label="Main">
           <RouterLink to="/" onClick={closeMenu} className="logo" aria-label="Home">
             <img src={logo} alt="St. Mary Orthodox Church" width="60" height="60" />

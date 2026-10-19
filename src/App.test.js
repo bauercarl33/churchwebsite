@@ -38,3 +38,38 @@ describe("App routing", () => {
     expect(screen.getAllByAltText("St. Mary Orthodox Church")).toHaveLength(2);
   });
 });
+
+describe("featured event promotion", () => {
+  beforeEach(() => {
+    window.localStorage.clear();
+    vi.useFakeTimers({ toFake: ["Date"] });
+    vi.setSystemTime(new Date("2026-10-20T12:00:00-05:00"));
+  });
+  afterEach(() => vi.useRealTimers());
+
+  it("shows the announcement bar and offsets the page for it", () => {
+    const { container } = renderApp("/");
+    expect(screen.getByRole("complementary", { name: "Announcement" })).toBeInTheDocument();
+    expect(container.querySelector(".app")).toHaveClass("has-announcement");
+    // Hero link to the event page.
+    expect(
+      screen.getByRole("link", { name: "November 13–14: Consecration of our new church. Event details" })
+    ).toHaveAttribute("href", "/consecration");
+  });
+
+  it("removes the offset when the bar is closed", async () => {
+    const { container } = renderApp("/");
+    screen.getByRole("button", { name: "Close announcement" }).click();
+    await waitFor(() =>
+      expect(container.querySelector(".app")).not.toHaveClass("has-announcement")
+    );
+  });
+
+  it("is gone after the event", () => {
+    vi.setSystemTime(new Date("2026-11-15T08:00:00-06:00"));
+    const { container } = renderApp("/");
+    expect(screen.queryByRole("complementary")).not.toBeInTheDocument();
+    expect(container.querySelector(".app")).not.toHaveClass("has-announcement");
+    expect(screen.queryByRole("link", { name: /Consecration/ })).not.toBeInTheDocument();
+  });
+});

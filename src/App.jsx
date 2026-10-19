@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
+import { useAnnouncement } from "./components/AnnouncementBar/useAnnouncement";
 
 // Secondary pages are split into their own chunks so the home page doesn't
 // download the calendar library, framer-motion, etc.
@@ -18,11 +19,12 @@ const defaultQueryClient = new QueryClient();
 
 function App({ queryClient = defaultQueryClient }) {
   const location = useLocation();
+  const announcement = useAnnouncement();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="app">
-        <Navbar />
+      <div className={announcement.visible ? "app has-announcement" : "app"}>
+        <Navbar announcement={announcement} />
         <main>
           <Suspense fallback={<div className="loading">Loading...</div>}>
             <Routes location={location} key={location.key}>

@@ -1,5 +1,7 @@
 /* Montserrat is self-hosted: see src/fonts/montserrat.css. */
 :root {
+  /* Height of the announcement bar above the navbar (0 when hidden). */
+  --announcement-height: 0px;
   --bg-color: #f8f8f8;
   --bg-dark: #f2f2f2;
   --text-color: #020301;
@@ -176,4 +178,14 @@ html,
 body {
   overflow-x: hidden;
   max-width: 100vw;
+}
+
+/* When the announcement bar is shown, the fixed header is taller, so push
+   the page content down by the same amount. */
+.app.has-announcement {
+  --announcement-height: 36px;
+}
+
+.app.has-announcement main {
+  padding-top: var(--announcement-height);
 }

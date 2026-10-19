@@ -38,7 +38,7 @@
 }
 
 .hero .image-wrapper {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 80px - var(--announcement-height));
     display: flex;
     justify-content: center;
     align-items: center;
