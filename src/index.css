@@ -141,6 +141,8 @@ a {
 }
 
 .decoration {
+  /* Purely decorative: never block clicks on content underneath. */
+  pointer-events: none;
   width: 100%;
   max-width: 1000px;
   position: absolute;
