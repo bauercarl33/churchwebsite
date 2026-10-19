@@ -20,7 +20,6 @@
     gap: var(--space-2xl);
     margin: var(--space-2xl) 0;
     z-index: 1;
-    column-rule: 1px solid var(--bg-color);
 }
 
 .welcome .container .card {
