@@ -28,3 +28,6 @@ yarn-error.log*
 # Lighthouse reports
 /lighthouse-reports
 /dist
+
+claude_opus_react_app_prompt.md
+report.txt
