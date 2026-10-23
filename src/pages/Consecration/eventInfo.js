@@ -80,5 +80,5 @@ export const hotel = {
   name: "Marriott",
   address: "13830 N FM 620, Austin, TX 78717",
   booking: "SAINT MARY",
-  rate: "$75/room",
+  rate: "$99/room",
 };
