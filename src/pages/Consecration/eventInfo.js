@@ -78,7 +78,7 @@ export const parking = {
 
 export const hotel = {
   name: "Marriott",
-  address: "13830 N FM 620, Austin, TX 78717",
+  address: "2600 La Frontera Blvd., Round Rock, TX, 78681",
   booking: "SAINT MARY",
   rate: "$99/room",
 };
