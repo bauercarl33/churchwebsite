@@ -283,8 +283,7 @@ const Consecration = () => {
               <p>{hotel.address}</p>
             </address>
             <p>
-              Mention <strong>{hotel.booking}</strong> when you call to book, and you will receive
-              a special group rate of <strong>{hotel.rate}</strong>.
+              <a href={hotel.link}>Click here</a> to book for a special rate of {hotel.rate}.
             </p>
             <div className="c-card-actions">
               <a href={mapsLink(hotel.address)} target="_blank" rel="noreferrer" className="c-chip">

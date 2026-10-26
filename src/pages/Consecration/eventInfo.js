@@ -81,4 +81,5 @@ export const hotel = {
   address: "2600 La Frontera Blvd., Round Rock, TX, 78681",
   booking: "SAINT MARY",
   rate: "$99/room",
+  link: "https://www.marriott.com/event-reservations/reservation-link.mi?id=1793033685472&key=GRP&app=resvlink&_p=c71529c39d0b7af2e31a90ffeabd&__branch_flow_type=chrome_deepview&__branch_flow_id=1643372191264953521"
 };
